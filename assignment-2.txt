@@ -1,0 +1,8 @@
+ORDER THE FOLLOWING FROM LOW TO HIGH LEVEL LANGUAGES [C++, JAVASCRIPT, BINARY, ASSEMBLY CODE]:
+1. binary - only 1s and 0s
+2. assembly code - basically binary / machine code that's readable by humans
+3. C++ - mid-level statically typed compiled language
+4. JavaScript - high level dynamically typed interpreted language
+
+WHICH OF THE FOLLOWING DOES NOT BELONG? [C, PYTHON, GO, GIT, JAVA, BASH]
+Git!  Git is a version control system, whereas C, Python, Go, Java and Bash are all different programming languages.
