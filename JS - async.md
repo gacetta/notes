@@ -13,7 +13,7 @@ _asynchronous_ code runs in parallel.  Although JS is single threaded, certain o
 There are several steps to creating a success request using XML Http Request:
 
 1. **Create New XML Http Request**  
-    `XMLHttpRequest()` can be used to request data from a web server.  This constructor must be used with the `new` keyword:
+    `XMLHttpRequest()` used to request data from a web server.  This constructor must be used with the `new` keyword:
 
         const request = new XMLHttpRequest();       
     
@@ -256,9 +256,7 @@ so for our code:
     console.log(err);
     })
 
-**NOTE:** this makes it easy to throw a `catch()` at the end of a chain.
-
-If we want to trigger the catch in an earlier `then()` block, we can `throw` an `error` in that black.
+**NOTE:** this makes it easy to throw a `catch()` at the end of a chain. If we want to trigger the catch in an earlier `then()` block, we can `throw` an `error` in that black.
 
 ---
 ## FETCH
@@ -300,5 +298,53 @@ to search for a puzzle with two words, we add an http query: `http://puzzle.mead
 https://www.webfx.com/web-development/glossary/http-status-codes/
 
 ---
-## PROMISES
+## Codesmith Promises, Async & The Event Loop
+---
+
+JS is single threaded - one command runs at a time
+
+JS Engine has 3 main parts:
+1. Thread of execution
+2. Memory/Variable Environment
+3. Call Stack
+
+Need to add some new components
+- web browser APIs / Node background threads
+- Promises
+- Callback / Task queue and micro task queue
+- Event Loop
+
+### Promises
+Promises - introduced in ES6
+
+use two-pronged 'facade' function that both:
+1. initiates background web browser work
+2. returns a placehold object (promise) immediately in JS
+
+    const futureData = fetch('https://twitter.com/will/tweets/1')
+
+    futureData.then(display)
+
+    futureData.then(display).then(grabComments).then......etc
+
+When you create a promise object, it has three keys:
+1. value: the eventual value.  Until that is resolved, has value of `undefined`
+2. status: either `pending`, `fulfilled` or `settled`
+3. onFulfilled: `[ ]` //holds the function definition that will be handled once the status has changed from pending to fulfilled
+
+### Asynchronicity
+Once our async code has been off loaded to the web browser API, it can only come back when we are done with our synchronous code
+
+### The Event Loop
+Like a panicked wedding planner - They are just checking if everything is going according to plan
+
+When something is async, it's sent to the browser API.  When it is completed, it is pushed to the callback queue.  Only when the call stack is empty and all synchronous code is complete, the callback queue then empties to the call stack.
+
+if using promises and thens...
+the value stored in `onFulfilled` will be pushed to the microtask queue NOT the callback queue
+
+The event loop will ALWAYS check the microtask queue before the callback queue
+
+### Microtask queue, Callback queue, and Web Browser features (APIs)
+
 
