@@ -1,4 +1,7 @@
-Big O notation always assumes worst case scenario meaning every item would be accessed
+
+# Big O Notation
+
+**Big O Notation** is a way to compare multiple implementations of code and comparing their performance.
 
 O(1) - Order of 1
 Code that executes in the same amount of time no matter how big the array is
@@ -8,7 +11,7 @@ Time to execute grows in direct proportion to the amount of data
 
 Example: linear search, since you'll have to look at each item of the array once.
 
-O(N^2) - 
+O(N^2)
 Time to execute grows in proportion to N^2
 
 Example: bubble sort
@@ -26,15 +29,8 @@ So the number of comparisons = log n!
 comparisons = log(n) + log(n-1) + .... + log(1)
 comparisons = n log n
 
-- O(N) the minimum O notation for a sort, since every item must be accessed
----
-# Big O Notation
+The minimum O notation for a sort is `O(N)`, since every item must be accessed  
 
-**Big O Notation** is a way to compare multiple implementations of code and comparing their performance.
-
-- It's important to have a precise vocabulary to talk about how our code performs.  We can use this vocabulary to discuss trade-offs between different approaches.
-
-- When your code slows down or crashes, identifying parts of the code that are inefficient can help us find pain points in our applications
 ---
 ## Compare Functions
 

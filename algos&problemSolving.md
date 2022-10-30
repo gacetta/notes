@@ -1,14 +1,8 @@
 # Algorithms and Problem Solving Patterns
 
-## What is an algorithm
-A process or set of steps to accomplish a certain task
-
-Almost everything in programming involves some kind of algorithm.
-
-## How to improve
+## How to improve algos
 1. Devise a plan for solving problems
 2. Master common problem solving patterns
-
 
 ## Problem Solving Strategies
 1. understand the problem
@@ -28,7 +22,7 @@ Fight the urge to jump in too quickly.  Really understand what the problem is as
 4. How should I label the important pieces of data that are a part of the problem?
 
 ## 2. Explore Examples
-- coming up with exmplaes help you understand the problem better
+- coming up with examples helps you understand the problem better
 - examples also provide sanity checks that your eventual solution works how it should
 -user stories!  Unit tests!
 
