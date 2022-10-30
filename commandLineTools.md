@@ -1,6 +1,7 @@
+# Command Line Tools
 
 - `ls`: list files 
-    -   `-a`: list all files including hidden files
+    -   `-a`: list all files including hidden files.  (helpful for .git)
 
 - `mkdir`: creates a new directory folder in the current working directory  
     
@@ -16,4 +17,6 @@
 
 - `sudo`: sudo is an abbreviation of "super user do" and is a Linux command that allows programs to be executed as a super user (aka root user) or another user. It's basically the Linux/Mac equivalent of the runas command in Windows.
 
-- `touch`: creates a new, empty file (not on windows)
+- `touch`: creates a new, empty file in current working directory (not on windows)
+
+to edit a text file in the terminal window:  `sudo nano fileName.txt`

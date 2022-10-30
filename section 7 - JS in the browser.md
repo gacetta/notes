@@ -12,7 +12,7 @@ HTML = tags.  `<html>` opens `</html>` closes
         * tags can be customized with **attributes**
         * to access a .js file in the same folder as the .html use `<script src="file-PATH">`.  If using the `src` attribute, there should be no script embedded in the `<script>` tags
 
-* **DOM or Document Object Model** is a way of referencing an html document from a js document.  uses the syntax `document` so something like `document.querySelectorAll('p')` would search the html document for every instance of <'query'> elements where 'query' might be "p" or "body" or any other tag element
+* **DOM or Document Object Model** is a way of referencing an html document from a js document.  uses the syntax `document` so something like `document.querySelectorAll('query')` would search the html document for every instance of <'query'> elements. 'query' might be "p" or "body" or any other tag type
 
     * `appendChild('new element')` is a method for adding a new element to the end of the contents of a pair of tags in an html document from javascript
 

@@ -1,6 +1,6 @@
 # Closure
 
-NAMES: 
+Also known as: 
 - closure
 - "backpack"
 - C.O.V.E. or _Closed Over Variable Environment_

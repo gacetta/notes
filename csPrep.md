@@ -14,41 +14,24 @@ The execution is:
 - Synchronous
 - Blocking
 
-HELEN - React front-end.  Express back-end.
-
-**Execution Contexts**
-- consists of thread of execution and a data storage
-- Global Context is first, and variable environment is referred to as Global Memory
-- When a function is invoked, a local execution context (or function-level) is created.  Variable memory is referred to as local memory.
-- Multiple execution contexts can exist
-
-**Call Stack**
-- A _stack_ data structure that is in control of the execution.  
-- Last in, first out (LIFO).  (Opposite of a Queue)
-- Each execution context is represented by a stack frame.
-- when a new function is invoked, a new frame is pushed to the call stack.
-- the function returns (when it has finished), the frame is popped off the call stack and the next frame (now at the top of the stack) takes control of the interpreter.
-
-
-Tech Communication 
+# Technical Communication 
 
 "Declaring the constant with the label sumOfAges and assigning it to the evaluated result of invoking the function addAges passing in the arguments myAge and yourAge."
 
 "pair our arguments with our parameters"
 
+"save a function definition to the label ____"
+
 **Functions and return values**
-Every function in JS returns something.
 - a return statement tells the interpreter that the invocation of the current function is complete
 
 **Side effect** - any application state change that is or remains observable outside a function invocation
 
 **Interpreter**  
-How does it work?
-
 Interpreter runs through our code in two "passes":
 
 The Allocation or Creation Phase
-* Variable and Function declarations are stored in memory, "hoiseted" to the top of their scopes
+* Variable and Function declarations are stored in memory, "hoisted" to the top of their scopes
 * Variable declarations are stored with the label only
 * function declarations are stored with both the label and its definition.
 
@@ -56,7 +39,6 @@ The assignment or execution phase:
 * This is the part we diagram.
 * values are assigned
 * expressions are evaluated
-* 
 
 **Hoisting**
 Allocation Phase:
@@ -64,7 +46,7 @@ Allocation Phase:
 * Function declaration sayHello is stored in global memory.
 * Variable otherThing is declared in global memory.  its current value is undefined.
 
-Assignment  phase:
+Assignment Phase:
 * The string "hello" is assigned to thing in global memory.
 * The string 'bye bye' is assigned to otherThing in global memory.
 
@@ -77,8 +59,6 @@ function sayHello() {
 const sayHello = function() {
     console.log('hello');
 }
-
-ES6 introduced `let` and `const`
 
 in the allocation phase, const thing is declared in global memory, BUT, its current value is inaccessible and uninitialized
 
@@ -101,11 +81,6 @@ Variables declared with `const`
 * hoisted - access before assignment throws ReferenceError
 * Cannot be reassigned
 
-
-**fat arrow**
-`=>`
-
-### Day 2
 #### POD
 edge cases should always be at the top of your code - saves time for your program (like throwing an error)
 
@@ -125,10 +100,6 @@ Goal of OOP is to keep data and functionality as close together as possibile
 
 when an object has a key that has a value of function(), it's referred to as an method.
 
-"save a function definition to the label ____"
-
-push userCreator stack-frame to the call stack
-
 `Object.create()`
 `Object.create(null)` creates an empty object
 
@@ -141,10 +112,7 @@ push userCreator stack-frame to the call stack
 #### Inheritance and Prototypes
 * Objects all inherit properties and methods from a parent object ***REVIEW SLIDE***
 
-arrow functions handle `this` keyword differently.  look up arrow function scope and this.
-**Best practice** when defining 
-
-`TypeError`
+Arrow functions handle `this` keyword differently.  Arrow functions do not bind their own `this`, instead, they inherit the one from the parent scope, which is called `lexical scoping`.
 
 `Number()` - constructor function
 `String()` - similar to the above
@@ -161,7 +129,7 @@ arrow functions handle `this` keyword differently.  look up arrow function scope
 
 We're declaring the constant with the label user1 and we're assigning it the evaluated result of new userCreator and passing in the arguments 'Rajeeb" and 5
 
-functions named with the first letter capitalized signals to use with `new` keyword.  (Pascal Case)
+functions named with the first letter capitalized signals to use with `new` keyword.  (PascalCase)
 
 ### classes
 ### arguments object _REVISIT SLIDE_
