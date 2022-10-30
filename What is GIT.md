@@ -342,3 +342,102 @@ Take lunch, come back a while later.  Code might have changed!
 `npm install`
 Do some more work on the most up to date version (even if nothing has changed, you're sure it hasn't)
 ETC.
+
+## Conventional Commits
+
+The commit message should be structured as follows:
+
+    <type>[optional scope]: <description>
+
+    [optional body]
+
+    [optional footer(s)]
+
+The commit contains the following structural elements, to communicate intent to the consumers of your library:
+
+1. `fix:` a commit of the _type_ `fix` patches a bug in your codebase (this correlates with `PATCH` in Semantic Versioning).
+
+2. `feat:` a commit of the _type_ `feat` introduces a new feature to the codebase (this correlates with `MINOR` in Semantic Versioning).
+
+3. `BREAKING CHANGE:` a commit that has a footer `BREAKING CHANGE:`, or appends a `!` after the type/scope, introduces a breaking API change (correlating with `MAJOR` in Semantic Versioning). A `BREAKING CHANGE` can be part of commits of any _type_.
+
+4. _types_ other than `fix:` and `feat:` are allowed, such as `build:`, `chore:`, `ci:`, `docs:`, `style:`, `refactor:`, `perf:`, `test:`, and others.
+
+5. footers other than `BREAKING CHANGE: <description>` may be provided and follow a convention similar to git trailer format.
+
+Additional types are not mandated by the Conventional Commits specification, and have no implicit effect in Semantic Versioning (unless they include a BREAKING CHANGE). A scope may be provided to a commit’s type, to provide additional contextual information and is contained within parenthesis, e.g., `feat(parser): add ability to parse arrays.`
+
+### Conventional Commit Examples
+
+**Commit message with description and breaking change footer**
+
+    feat: allow provided config object to extend other configs
+
+    BREAKING CHANGE: `extends` key in config file is now used for extending other config files
+
+**Commit message with ! to draw attention to breaking change**
+
+    feat!: send an email to the customer when a product is shipped
+
+**Commit message with scope and ! to draw attention to breaking change**
+
+    feat(api)!: send an email to the customer when a product is shipped
+
+**Commit message with both ! and BREAKING CHANGE footer**
+
+    chore!: drop support for Node 6
+
+    BREAKING CHANGE: use JavaScript features not available in Node 6.
+
+**Commit message with no body**
+
+    docs: correct spelling of CHANGELOG
+
+**Commit message with scope**
+
+    feat(lang): add Polish language
+
+**Commit message with multi-paragraph body and multiple footers**
+
+    fix: prevent racing of requests
+
+    Introduce a request id and a reference to latest request. Dismiss
+    incoming responses other than from latest request.
+
+    Remove timeouts which were used to mitigate the racing issue but are
+    obsolete now.
+
+    Reviewed-by: Z
+    Refs: #123
+
+### Conventional Commit Types
+
+- `build:` The commit alters the build system or external dependencies of the product (adding, removing, or upgrading dependencies).
+
+- `change:` The commit changes the implementation of an existing feature.
+
+- `chore:` The commit includes a technical or preventative maintenance task that is necessary for managing the product or the repository, but it is not tied to any specific feature or user story. For example, releasing the product can be considered a chore. Regenerating generated code that must be included in the repository could be a chore.
+
+- `ci:` The commit makes changes to continuous integration or continuous delivery scripts or configuration files.
+
+- `deprecate:` The commit deprecates existing functionality, but does not remove it from the product. For example, sometimes older public APIs may get deprecated because newer, more efficient APIs are available. Removing the APIs could break existing integrations so the APIs may be marked as deprecated in order to encourage the integration developers to migrate to the newer APIs while also giving them time before removing older functionality.
+
+- `docs:` The commit adds, updates, or revises documentation that is stored in the repository.
+
+- `feat:` The commit implements a new feature for the application.
+
+- `fix:` The commit fixes a defect in the application.
+
+- `perf:` The commit improves the performance of algorithms or general execution time of the product, but does not fundamentally change an existing feature.
+
+- `refactor:` The commit refactors existing code in the product, but does not alter or change existing behavior in the product.
+
+- `remove:` The commit removes a feature from the product. Typically features are deprecated first for a period of time before being removed. Removing a feature from the product may be considered a breaking change that will require a major version number increment.
+
+- `revert:` The commit reverts one or more commits that were previously included in the product, but were accidentally merged or serious issues were discovered that required their removal from the main branch.
+
+- `security:` The commit improves the security of the product or resolves a security issue that has been reported.
+
+- `style:` The commit updates or reformats the style of the source code, but does not otherwise change the product implementation.
+
+- `test:` The commit enhances, adds to, revised, or otherwise changes the suite of automated tests for the product.
