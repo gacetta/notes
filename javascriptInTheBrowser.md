@@ -114,6 +114,48 @@ To allow a user to filter a list and see results in realtime, involves several s
           document.querySelector('#notes').appendChild(newNote);
       })  
 
+---
+### Forms
+---
+default behavior of submit button is to refresh the page and 'store' form data in the url address.  To prevent this from happening we can use the method `preventDefault()`
+
+  document.querySelector('#name-form').addEventListener('submit', (e) => {
+      e.preventDefault()
+  })
+
+#### Accessing Form Data
+
+When we hit submit on a form, we can access the data from the form.  Lets say there's a text input field.  If we give it the attribute `name='favoriteColor'`, then we can access that in an event listener with:
+
+  `e.target.element.favoriteColor.value`
+
+---
+### Checkboxes
+---
+has the boolean trait:
+
+  `e.target.checked`
+
+---
+### Dropdowns
+---
+
+#### select element
+* can be used to create dropdown menus.  Each different element of the dropdown menu is contained in `<option> tags
+* the `value=""` attribute is a good practice for naming each option.  
+Here's an example of using `<select>` and `<option>`tags to create a dropdown menu:
+
+```
+
+    <select id="filter-by">
+    <option value="byEdited">Sort by last edited</option>
+    <option value="byCreated">Sort by recently created</option>
+    <option value="alphabetical">Sort alphabetically</option>
+    </select>`
+
+```
+
+
 
 
 Data Storage needs to do the 4 **CRUD** operations = `create`, `read`, `update` and `delete`.
