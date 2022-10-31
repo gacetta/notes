@@ -129,11 +129,8 @@ Arrow functions handle `this` keyword differently.  Arrow functions do not bind 
 
 We're declaring the constant with the label user1 and we're assigning it the evaluated result of new userCreator and passing in the arguments 'Rajeeb" and 5
 
-functions named with the first letter capitalized signals to use with `new` keyword.  (PascalCase)
+functions named with the first letter capitalized signals to use with `new` keyword.  (and are named using PascalCase)
 
-### classes
-### arguments object _REVISIT SLIDE_
-- an array-like object corresponding to 
 ### spread syntax
 three dots `...` allow you to use a single variable name to represent more items (e.g. array elements or object).
 "spread out the elements into one array"
@@ -146,31 +143,22 @@ using the `...` as parameters "The rest parameters syntax allow us to represent 
 ### Object Oriented Programming - keeping data and functionality closely together
 
 ### Functional Programming
-**Pure Function** no side effects - never reaches outside of it's execution context to affect something else
-**Side effects** 
-
-intro to JS workshop - for loop diagramming
-
-copied by value vs copied by reference
-
-The 'backpack'
-Closed over variable environment
-persistent lexical scope referenced data (PLSRD)
-'backpack'
-'closure'
+**Side effects** are when an operation, function or expression modies some state variable value outside its local environment
+**Pure Function** no side effects - never reaches outside of its execution context to affect something else
 
 
+**copied by value vs copied by reference**
+`copied by value` - primitive datatypes.  the variable stores in memory the actual value specified
+`copied by reference` - for non-primitive datatypes.  The variable stores in memory a reference pointer to the location where the values are stored.
+
+**Errors**
 `if (typeof num !== 'number') throw new TypeError('datatype needs to be a number');`
-
-**NOTE::** `typeof (myArray)` will return a value of 'object'  
-so to double check if a datatype is an array, use `Array.isArray(myArray)` instead
 
 ### Recusrion
 **Base Case** is required.  It returns a value without making any more recursive calls
-
 each recursive calls must bring the program closer to reaching the base case.
 
-WHEN?
+WHEN To Recurse?
 sorting
 - mergesort, quicksort
 
@@ -189,14 +177,6 @@ thus, using recursive functions often forces you to write declarative code inste
 
 **ALL RECURSIVE FUNCTIONS MUST APPROACH A NON-RECURSIVE BASE CASE**
 
-### What is an algorithm?
-* an **ALGORITHM** is a step by step solution (review slide)
-## What is time complexity
-* in CS, the time complexity is the computation complexity that describes the amount of computer time it takes to run an algorithm.
-* it describes the relationship between the size of an algorithm's input and the number of computational steps it takes for the algorithm to complete.
-
-compare the number of steps a program takes when given an input of 2 vs the number of steps a program takes when given an input of twice as much.  Same number of steps?  Double number of steps?  Exponential increase of steps?
-
 ## Big O Notation
 * how we communicate about time complexity
 * Big O is a mathematical notation that describes _the rate at which the number of computational steps grows in relation to the input size_
@@ -211,34 +191,10 @@ Common time complexities (from fastest to slowest)
 * as the input size grows
 
 ### Closure
-
+The 'backpack'
+Closed over variable environment
+persistent lexical scope referenced data (PLSRD)
 `[[scope]]` is the backpack
-
-
-
-Interview Tips
-
-'don't use native.length() methods'  typically steering you to recursion
-'any prompt that asks about returning a function... think about closure'
-
-'let, const vs var'
-'hoisting'
-'callbacks and higher order'
-'what is closure'
-'recursion'
-'pass by value vs pass by reference'
-
-repetition leads to quicker algorithm answers
-
-closure:
-```
-{
-[[scope]]: {
-    variables from lexical scope of function
-    }
-
-}
-```
 
 ## Spread Operator
 
@@ -252,8 +208,7 @@ return (...callbackArgs) =>
 }
 ```
 
-callbackArgs stored in memory:
-callbackArgs: []
+callbackArgs stored in memory.  callbackArgs = []
 
 When searching for a variable
 "First look in it's current memory.

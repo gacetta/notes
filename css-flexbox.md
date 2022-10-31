@@ -3,11 +3,14 @@
 ## DISPLAY PROPERTY
 _flex container property_
 
-The CSS property `display` specifies the display behavior of an element.  The default value is `display: block;` which starts on a new line and takes up the entire width.
+The CSS property `display` specifies the display behavior of an element. There are many options, including:
 
-`display: flex` positions in as a flex container.  Applying this style is known as _flexbox_.
-
-**NOTE:** There are many other values including:  `inline`, `grid`, `table`, `none` 
+* `display: block;` The element generates a block element box, generating line breaks both before and after the element when in the normal flow.  (**DEFAULT VALUE**)
+* `display: inline` The element generates one or more inline element boxes that do not generate line breaks before or after themselves. In normal flow, the next element will be on the same line if there is space.
+* `display: flex` positions in as a flex container.  Applying this style is known as _flexbox_.
+* `display: grid` The element behaves like a block element and lays out its content according to the grid model.
+* `display: table` These elements behave like HTML <table> elements. It defines a block-level box.
+* `display: none` Turns off the display of an element so that it has no effect on layout.  Document is rendered as if the element (and all descendants) did not exist. **NOTE:** To have an element take up the space that it would normally take, but without actually rendering anything, use the `visibility` property instead.
 
 ## FLEX-DIRECTION PROPERTY
 _flex container property_
@@ -34,6 +37,7 @@ The CSS property `justify-content` specifies how to align and space out flex ite
 _flex container property_
 
 The CSS property `align-items` specifies how to align and space items along the _cross axis_.  There are several possible values:
+
 * `flex-start` - aligns items to the start of the flex container.  Items are only as large as their content.
 * `flex-end` - aligns items to the end of the flex container.  Items are only as large as their content.
 * `center` - aligns items to the center. Items are only as large as their content.
