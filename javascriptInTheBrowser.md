@@ -95,8 +95,25 @@ Once a tag has a class, we can select it using the `.class-name`
 // h1.application#title     //Searches for <h1 class="application" id="title">
 
 ---
-### Text Input
+### Live Filtering
 ---
+
+To allow a user to filter a list and see results in realtime, involves several steps:
+1. create filter object
+2. create input field - store the value in the filter object
+3. Create a Div with a specific ID that allows for querySelection of the Div
+4. Create a function that filtersNotes 
+      const filteredNotes = notes.filter((note) => {
+            return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
+      })
+5. Clear the div using `div.innerHTML = ''`
+6. Render the notes:
+      filteredNotes.forEach((note) => {
+          const newNote = document.createElement('p');
+          newNote.textContent = note.title;
+          document.querySelector('#notes').appendChild(newNote);
+      })  
+
 
 
 Data Storage needs to do the 4 **CRUD** operations = `create`, `read`, `update` and `delete`.
