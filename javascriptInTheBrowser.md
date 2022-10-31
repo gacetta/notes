@@ -12,16 +12,17 @@ To access a JS file from an HTML document, it requires a `script` tag with the `
 ---
 The DOM is a way of referencing an html document from a js document.  It uses the syntax `document` 
 
-`querySelector()` searches DOM for a certain element. `document.querySelectorAll('query')` would search the html document for every instance of <'query'> elements. 'query' might be "p" or "body" or any other tag type
+`querySelector()` searches DOM for a single certain element. `document.querySelectorAll('query')` would search the html document for every instance of <'query'> elements. 'query' might be "p" or "body" or any other tag type
 
 Once `querySelector()` has found an element, we can then use a method on that element such as `remove()` which deletes the targeted element
 
-Basic DOM manipulation is a two step process that involves selecting an element and then performing an action on it.
+Basic DOM manipulation is a two step process that involves:
+1. selecting an element 
+2. then performing an action on it.
 
 ---
-
 ### removing element
-
+---
 select element (for instance, the first <p> tag):
 
   `document.querySelector('p');`
@@ -30,8 +31,72 @@ remove element:
 
   `p.remove();`
 
+---
 ### adding elements
+---
+create a new element:
 
+  `const newElement = document.createElement('p');`
+
+update text content:
+
+  `newElement.textContent = 'this is some new text';`
+
+use `appendChild` to add new element.  This will append the new element to the very end of the area that we choose to add it.
+The following selects the body element in the DOM, then adds our new element to the end of <body>:
+
+  `document.querySelector('body').appendChild(newElement)`;
+
+---
+### handling user interaction
+---
+* An **Event** is something the user does such as click a button, hovering over a link or scrolling on the screen.  All of these evenets you can attach event listeners to.
+* An **Event Listener** is a function to run when the event happens.
+    * a method. `.addEventListener('event', function)`  
+     `event` is the event to listen for (_always a string_)= 'hover', 'click', 'dblclick', etc. 
+     `function` is the function to run when `event` occurs
+* function often uses the `e` variable (for event).  (e) => {}
+* `event.target` is a useful way to target the element that the event is occuring on.
+* Most straightforward example = when someone clicks a button, run this function.
+
+---
+### selecting elements with more precision
+---
+We can target multiple elements of the same type using bracket notation.  
+Lets say we have two buttons and we want to target the second one.  We use bracket notation after the `querySelector` and use array indexing
+
+  document.querySelector('button')[1]
+
+This can become an issue if the HTML is altered so there's a better way!
+
+---
+### IDs and Classes
+---
+Once a tag has an ID, we can select it using the `#id-name`
+
+  document.querySelector('#id-name');
+
+Once a tag has a class, we can select it using the `.class-name`
+
+  document.querySelectorAll('.class-name')
+
+***Creating and accessing IDs and CLASSes is the same in CSS***
+// Syntax for searches
+
+//-- Single--
+// p                        //Searches for <p>
+// #replace                 //Searches for id="replace"
+// .item                    //Searches for class="item"
+
+// -- Multiple --
+// p#order                  //Searches for <p id="order">
+// button.inventory         //Searches for <button class="inventory">
+// h1#title.application     //Searches for <h1 id="title" class="application">
+// h1.application#title     //Searches for <h1 class="application" id="title">
+
+---
+### Text Input
+---
 
 
 Data Storage needs to do the 4 **CRUD** operations = `create`, `read`, `update` and `delete`.
