@@ -20,6 +20,18 @@ Basic DOM manipulation is a two step process that involves selecting an element 
 
 ---
 
+### removing element
+
+select element (for instance, the first <p> tag):
+
+  `document.querySelector('p');`
+
+remove element:
+
+  `p.remove();`
+
+### adding elements
+
 
 
 Data Storage needs to do the 4 **CRUD** operations = `create`, `read`, `update` and `delete`.
