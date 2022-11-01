@@ -1,7 +1,7 @@
 # CSS Grid
 
 ## DISPLAY: GRID
-The CSS property `display: grid` turns any HTML element into a grid container.  
+The CSS property `display: grid` turns any HTML element into a grid container.
 
 **NOTE:** the parent element is referred to as the _container_ and the children are called _items_
 
@@ -12,6 +12,8 @@ _grid container property_
 
 ### GRID-TEMPLATE-COLUMNS
 The CSS property `grid-template-columns` will define the column structure of the grid.
+
+The following creates two columns 50px wide:
 
     `grid-template-columns: 50px 50px`
 
@@ -27,7 +29,11 @@ The CSS shorthand property `grid-template` combines `grid-template-rows` and `gr
 
 The syntax:  
 
-    `grid-template: grid-template-rows-values / grid-template-columns-values`
+`grid-template: grid-template-rows / grid-template-columns`
+
+The following would create 5 columns and 5 rows equally spaced:
+
+    grid-template: 20% 20% 20% 20% 20% / 20% 20% 20% 20% 20%;
 
 ---
 
@@ -45,7 +51,7 @@ Absolute and relative units such as `px` or `em` can be used to define column an
 ## COLUMN AND ROW GAP
 _grid container properties_
 
-The CSS property `grid-column-gap` will add a gap between the columns.  The CSS property `grid-row-gap` will add a gap between the rows.  Both properties require a numberical value and a unit.
+The CSS property `grid-column-gap` will add a gap between the columns.  The CSS property `grid-row-gap` will add a gap between the rows.  Both properties require a numerical value and a unit.
 
     `grid-columnn-gap: 10px`
 
@@ -85,7 +91,7 @@ The CSS property `grid-column-end` specifies a grid item's end position within t
 ### GRID-COLUMN
 The CSS shorthand property `grid-column` combines `grid-column-start` and `grid-column-end`. 
 
-`grid-column` specifies the number of columns an item will consume.  You specify the line number you want the item to start and stop at, For example:   
+`grid-column` specifies the number of columns an item will consume.  You specify the line number you want the item to start and stop at, For example:
 
     `grid-column: 1 / 3;`  
 

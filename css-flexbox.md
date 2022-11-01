@@ -6,8 +6,8 @@ _flex container property_
 The CSS property `display` specifies the display behavior of an element. There are many options, including:
 
 * `display: block;` The element generates a block element box, generating line breaks both before and after the element when in the normal flow.  (**DEFAULT VALUE**)
-* `display: inline` The element generates one or more inline element boxes that do not generate line breaks before or after themselves. In normal flow, the next element will be on the same line if there is space.
 * `display: flex` positions in as a flex container.  Applying this style is known as _flexbox_.
+* `display: inline` The element generates one or more inline element boxes that do not generate line breaks before or after themselves. In normal flow, the next element will be on the same line if there is space.
 * `display: grid` The element behaves like a block element and lays out its content according to the grid model.
 * `display: table` These elements behave like HTML <table> elements. It defines a block-level box.
 * `display: none` Turns off the display of an element so that it has no effect on layout.  Document is rendered as if the element (and all descendants) did not exist. **NOTE:** To have an element take up the space that it would normally take, but without actually rendering anything, use the `visibility` property instead.
@@ -48,6 +48,7 @@ The CSS property `align-items` specifies how to align and space items along the 
 _flex container property_
 
 The CSS property `align-content` determines the spacing between lines (while `align-items` determines the how the items as a whole are aligned within a container).  There are several values:
+
 * `flex-start` - lines are packed at the start of the container
 * `flex-end` - lines are packed at the end of the container
 * `center` - lines are packed at the center of the container
@@ -63,6 +64,7 @@ _flex container property_
 By default, a flex container will fit all flex items together.  However there is a feature to split a flex container into multiple rows (or columns).
 
 The CSS property `flex-wrap` tells CSS how to wrap items into a new row or column.  The break point of where the wrapping happens depends on the size of the items and the size of the container.  There are several possible values:
+
 * `nowrap` - do not wrap items (**DEFAULT**)
 * `wrap` - wraps items onto multiple lines from top-to-bottom if they are in rows and left-to-right if they're in columns
 * `wrap-reverse` - wraps items onto multiple lines from bottom-to-top if they're in rows, and right-to-left if they're in columns.
@@ -89,6 +91,8 @@ _flex item property_
 The CSS property `flex-grow` is the opposite of `flex-shrink`.  It controls the size of items when the parent container expands.
 
 `flex-grow` takes numbers as values.  The higher the number, the more it will grow compared to the other items in the container.
+
+For example, if one item has a `flex-grow: 1;`  and the other has `flex-grow: 3;`, the one with the value of `3` will grow three times as much as the other.
 
 ## FLEX-BASIS
 _flex item property_
