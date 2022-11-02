@@ -1,4 +1,10 @@
-**CRUD OPERATIONS** = data storage mechanism.  Create. Read. Update. Delete. 
+# Data Storage in JavaScript
+---
+**CRUD OPERATIONS** = mnemonic for 4 data storage mechanisms.  
+1. Create
+2. Read
+3. Update
+4. Delete
 
 `localStorage` is a read-only property of the `window` interface.  Data can be stored here that won't get lost when a web page is reloaded or closed.  Only stores strings.  
 Includes all the CRUD operations:
@@ -6,9 +12,9 @@ Includes all the CRUD operations:
 * READ - `localStorage.getItem('keyName');` takes one argument, a key name, and returns the corresponding keyValue
 * UPDATE - use `.setItem()`
 * DELETE - `localStorage.removeItem('keyName');` takes one argument, a key name, and deletes the key:value pair.
-    * additionally, `localStorage.clear();` has no parametes and deletes all stored data.
+    * additionally, `localStorage.clear();` has no parameters and deletes all stored data.
 
-* **JSON** - JavaScript Object Notation.  Used for converting an object to a string and back.  
+* **JSON** - JavaScript Object Notation.  Used for converting an object to a string and back.  This is useful for `localStorage` which only accepts strings
 There are two methods we use:
 1. `JSON.stringify(obj);` which takes an object as an argument and converts it to a string.  Double quotes only are allowed in this string so any single quotes will be converted.
 ```
@@ -33,7 +39,7 @@ The goal of refactoring isn't to reduce the code to as few lines as possible.  T
 using `console.log()` does work but there's a better way!  
 
 Use `debugger;` statement!  
-* When dev tools are open, a browser will parse through the code until it reaches `debugger` at which point it will pause, allowing you to investigate variable values and troubleshoot your code easier than 
+* **Only** When dev tools are open, a browser will parse through the code until it reaches `debugger` at which point it will pause, allowing you to investigate variable values and troubleshoot your code easier than 
 * more than one `debugger` statement can be used to troubleshoot multiple spots
 
 ### more HTML tags
@@ -44,7 +50,6 @@ Use `debugger;` statement!
 
 ### setAttribute
 * when we create a new element in the DOM, we can also assign it attributes, such as `type="text"` or `placeholder="typeHereDummy"`.  To do so we use `nodeName.setAttribute('attributeName', 'attributeValue').  So to create a checkbox we could use the following code:
-
 
 //creates a new `<input>` element in DOM  
 `const checkbox = document.createElement('input');`  

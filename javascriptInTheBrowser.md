@@ -154,14 +154,9 @@ Here's an example of using `<select>` and `<option>`tags to create a dropdown me
     </select>`
 
 ```
-
-
-
-
-Data Storage needs to do the 4 **CRUD** operations = `create`, `read`, `update` and `delete`.
-
+---
 ## Under The Browser Hood
-
+---
 two most important parts of the browser are the JS engine and a rendering engine.
 
 **Rendering Engine**
