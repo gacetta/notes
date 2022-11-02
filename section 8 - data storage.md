@@ -68,8 +68,7 @@ there are certain event listeners that don't make sense attached to a visual ele
 * new type of `addEventListener` = `'storage'`.  It fires whenever there is a change to localStorage.
     * important note.  the 'storage' listener will not fire on the current page.  If there are 2 tabs open, it will not fire on the current page, but will fire on the other open tabs.
 
-### substring method
-* a method on strings, `string.substring(arg1, arg2)` is a method that shortens a string.  It has two parameters, the first is the index of where to start the string (inclusive), the second is the index of where to end the string (noninclusive).  The first parameter is required, and the second is optional.  If omitted `.substring()` will include the final character of the string.
+## Syncing data across pages
 
 ### dealing with time in JS
 
