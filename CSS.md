@@ -29,11 +29,9 @@ Using inline style attributes could get repetative if we need to assign a style 
 
 **classes** are reusable styles that can be added to multiple HTML elements
 
-    <style>
       .blue-text {
         color: blue;
       }
-    </style>
 
 this class can now be applied to an element inline using:
 
@@ -71,9 +69,9 @@ We've seen how elements can be selected using classes and ids, however they can 
 
 the `[attr=value]` selector matches and styles elements with a specific attribute value
 
-        [type='radio'] {
-            margin: 20px 10px 10px 20px;
-        }
+      [type='radio'] {
+          margin: 20px 10px 10px 20px;
+      }
 
 ---
 ## CSS Units
@@ -160,20 +158,19 @@ In the following code, `rem` units are used to set the `font-size`, but `em` uni
 ---
 ## List of CSS Properties
 ---
-`color`  - specifies the color of text in an element
+`color`  - specifies the color of text in an element  
 
-```
-color: color; 
-```
+    color: color; 
+
 Color values can be `hex`, `rgb`, `hsl`, `rgba`, `hsla`, or a `color name`.
 
 ---
-`font-size`  - sets the size of the font for an element
-```
-font-size: medium | xx-small | x-small | small | 
-           large | x-large | xx-large | smaller | 
-           larger | length;
-```
+`font-size`  - sets the size of the font for an element  
+
+    font-size: medium | xx-small | x-small | small | 
+              large | x-large | xx-large | smaller | 
+              larger | length;
+
 `larger` and `smaller` specifies larger or smaller font size than parent element.
 
 **_BEST PRACTICE:_** use `rem` units.
@@ -182,9 +179,8 @@ font-size: medium | xx-small | x-small | small |
 `font-family` - sets the font family for an element.  
 
 The following sets font to `FAMILY_NAME` and `GENERIC_NAME` is a fallback font that the browser will **"degrade"** to if the first font isn't available:
-```
-font-family: family-name, generic-name;
-```
+
+    font-family: family-name, generic-name;
 
   * family names are case-sensitive and need to be wrapped in quotes if there is a space in the name, such as `"Open Sans"`
   * generic font family names are CSS keywords and thus are not case-sensitive and do not require quotes.  Generic font families available in all browsers include: `serif`, `sans-serif`, `monospace`, `cursive` and `fantasy`.

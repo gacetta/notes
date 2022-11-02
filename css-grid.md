@@ -218,7 +218,7 @@ You can easily overlap multiple items without any trouble in a CSS grid.  The ov
 
 ### ORDER
 
-If grid items aren't explicitly placed, they are automatically placed according to their order int he source code.  This order can be overridden using the `order` property.
+If grid items aren't explicitly placed, they are automatically placed according to their order in the source code.  This order can be overridden using the `order` property.  Items are sorted low to high.
 
     `order: -1`
 
@@ -282,7 +282,7 @@ With the above code, when the container changes size, this set up will
 ---
 ## MEDIA QUERIES WITH CSS GRID
 
-Media queries can be used to rearrange grid areas, change dimensions of a grid, and rearrange placement of items when the screen size changes.
+Media queries can be used to rearrange grid areas, change dimensions of a gridw, and rearrange placement of items when the screen size changes.
 
 ---
 ## GRIDS WITHIN GRIDS
