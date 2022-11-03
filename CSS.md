@@ -76,26 +76,27 @@ the `[attr=value]` selector matches and styles elements with a specific attribut
 ---
 ## CSS Units
 ---
-**ABSOLUTE UNITS** - (won't necessarily line up to a ruler if held to screen.  Use measurements when doing things for print)  
-  * Pixels (px)
-  * pt
-  * cm
-  * mm
-  * in
+**ABSOLUTE UNITS** - tie to physical units of length. (won't necessarily line up to a ruler if held to screen.  Use measurements when doing things for print)  
+  * Pixels (`px`)
+  * `pt`
+  * `cm`
+  * `mm`
+  * `in`
 
 **PERCENTAGES** - mainly used for widths.  Relative to their parent  (Heights get weird)
 
-**RELATIVE UNITS** - relative to something else.  
+**RELATIVE UNITS** - relative to another length value.  
 
 * UNITS RELATIVE TO FONT-SIZE:
   * `em` is relative to the parents's `font-size`, which is an inherited property.  If none of the parents have a declared `font-size` then `em` will inherit its size from the `<body>` (or the default which is usually 16px).
     * for example: `1em` = 100% of its parent's font-size.  `1.5em` = 150% of parent's font-size.
     * **NOTE:** when used for the font-size, `em` units can get out of control and have a cascading effect.
-  * `rem` - short for root em.  It's always relative to the "root" of the document.  The "root" being the `<html>` element
+  * `rem` - short for root em.  It's always relative to the font size at the "root" of the document.  The "root" being the `<html>` element
 
 * UNITS RELATIVE TO VIEWPORT
-    * `vw` - viewport width
-    * `vh` - viewport height
+    * `vw` - relative to 1% of the viewport width
+    * `vh` - relative to 1% of the viewport height
+    * `lh` - relative to the line height of the element
     * `vmin` - uses the ratio of the _smallest side_.  If the browser is wider than it is tall, `1vmin` will be equivalent to `1vh`.  If the viewport is taller than it is wide, `1vmin` is equivalent to `1vw`.
     * `vmax`- similarly to `vmin`, `vmax` uses the ratio of the _largest side_.  `1vmax` is equivalent to `1vw` if the viewport is wider than it is tall; if the browser is taller than it is wide, `1vmax` will be equivalent to `1vh`.
 ---
@@ -193,17 +194,21 @@ The following sets font to `FAMILY_NAME` and `GENERIC_NAME` is a fallback font t
 
 ---
 `width` - sets the width of an element, such as an image.  
-```
-width: auto | length;
-```
+
+    width: auto | length;
+
 ***BEST PRACTICE:*** use `em` or `percentage` (occasionally `px`)
 
 ---
 `background-color` - sets the background color of the element
 
-```
-background-color: color | transparent;
-```
+  background-color: color | transparent;
+
+colors can be:
+1. named colors (`aqua`)
+2. hex colors (`#00FFFF` or `0FF`)
+3. RG and RGBa colors: (`rgb(0, 255, 255)` and `rgba(0, 255, 255, .5)`)
+4. HSL and HSLa colors: (`hsl(180, 100%, 50%)` and `hsla(180, 100%, 50%, .5)`)
 ---
 ### BORDERS
 ---
@@ -236,6 +241,21 @@ It accepts one to four values for top-left, top-right, bottom-right, bottom-left
 can be defined using `px` or using a percentage, such as `50%` (which makes a circle)  
 
 ---
+`border` is a shorthand property that combines the `border-width`, `border-style`, and `border-color` properties
+
+    /* style */
+    border: solid;
+
+    /* width | style */
+    border: 2px dotted;
+
+    /* style | color */
+    border: outset #f33;
+
+    /* width | style | color */
+    border: medium dashed green;
+
+---
 
 ### LISTS
 ---
@@ -266,10 +286,29 @@ it combines `list-style-type`, `list-style-position`, and, optionally, `list-sty
 
     list-style: list-style-type list-style-position list-style-image (optional)
 
+    /* type */
+    list-style: square;
+
+    /* image */
+    list-style: url("../img/shape.png");
+
+    /* position */
+    list-style: inside;
+
+    /* type | position */
+    list-style: georgian inside;
+
+    /* type | image | position */
+    list-style: lower-roman url("../img/shape.png") outside;
+
+    /* Keyword value */
+    list-style: none;
+
 ---
 ### PADDING
+---
 There are three properties that control the space surrounding an HTML element:
-* **Padding** controls the amount of space between the elements content and it's border
+* **Padding** controls the amount of space between the elements content and its border
 * **Border** is the edge of the html element
 * **Margin** controls the amount between the border and surrounding elements
     * setting the margin to a negative value makes the element grow larger  
@@ -280,43 +319,31 @@ These three properties can have different values for all sides: `padding-top`, `
 * padding (and margin and border) notation has various shorthands:
 
 **Shorthand**
-*four values**
+*four values* - clockwise starting at top
 `padding: 10px, 5px, 15px, 20px;`
   * top padding is 10px
   * right padding is 5px
   * bottom padding is 15px
   * left padding is 20px
 
-*three values**
+*three values* - top, sides, bottom
 `padding: 10px, 5px, 15px;`
   * top padding is 10px
   * right & left padding is 5px
   * bottom padding is 15px
 
-*two values**
+*two values* - top/bottom, sides
 `padding: 10px, 5px;`
   * top & bottom padding is 10px
   * right & left padding is 5px
 
-*one value**
+*one value* - all sides
 `padding: 10px;`
   * all four paddings are 10px
 
-
-### ABSOLUTE VS RELATIVE UNITS
-**Absolute units** tie to physical units of length:
-* `in`
-* `mm`
-* `px`  
-
-**Relative units** are relative to another length value:
-* `em` is based on the size of an element's font
-* `rem` is relative to the font size of the root element
-* `lh` is relative to the line height of the element
-* `vw` is relative to 1% of the viewport's width
-* `vh` is relative to 1% of the viewport's height
-
+---
 ### INHERITANCE / OVERRIDE
+---
 Sometimes HTML elements will receive multiple styles that conflict with one another.  There is a heirarchy of which declarations will take precedence over each other.
 
 **inheritance** controls what happens when no value is specified for a property on an element
@@ -336,11 +363,13 @@ Sometimes HTML elements will receive multiple styles that conflict with one anot
       color: orange;
   }
 </style>
-<h1>Green Text!</h1>
-<h2 class="pink-text">Pink Text!</h2>
-<h3 class="blue-text pink-text">Blue Text!</h3>
-<h4 id="orange-text" class="pink-text blue-text">Orange Text!</h4>
-<h5 style="color: white;" id="orange-text" class="pink-text blue-text">White Text!</h5>
+<body>
+  <h1>Green Text!</h1>
+  <h2 class="pink-text">Pink Text!</h2>
+  <h3 class="blue-text pink-text">Blue Text!</h3>
+  <h4 id="orange-text" class="pink-text blue-text">Orange Text!</h4>
+  <h5 style="color: white;" id="orange-text" class="pink-text blue-text">White Text!</h5>
+</body>
 ```
 
 The results of the above code:
