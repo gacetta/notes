@@ -24,6 +24,8 @@ Using inline style attributes could get repetative if we need to assign a style 
 
 ## SELECTORS
 
+`*` Selects all elements
+
 ---
 ### CLASSES
 
@@ -240,6 +242,32 @@ It accepts one to four values for top-left, top-right, bottom-right, bottom-left
 
 can be defined using `px` or using a percentage, such as `50%` (which makes a circle)  
 
+  /* The syntax of the first radius allows one to four values */
+  /* Radius is set for all 4 sides */
+  border-radius: 10px;
+
+  /* top-left-and-bottom-right | top-right-and-bottom-left */
+  border-radius: 10px 5%;
+
+  /* top-left | top-right-and-bottom-left | bottom-right */
+  border-radius: 2px 4px 2px;
+
+  /* top-left | top-right | bottom-right | bottom-left */
+  border-radius: 1px 0 3px 4px;
+
+  /* The syntax of the second radius allows one to four values */
+  /* (first radius values) / radius */
+  border-radius: 10px / 20px;
+
+  /* (first radius values) / top-left-and-bottom-right | top-right-and-bottom-left */
+  border-radius: 10px 5% / 20px 30px;
+
+  /* (first radius values) / top-left | top-right-and-bottom-left | bottom-right */
+  border-radius: 10px 5px 2em / 20px 25px 30%;
+
+  /* (first radius values) / top-left | top-right | bottom-right | bottom-left */
+  border-radius: 10px 5% / 20px 25em 30px 35em;
+
 ---
 `border` is a shorthand property that combines the `border-width`, `border-style`, and `border-color` properties
 
@@ -314,6 +342,7 @@ There are three properties that control the space surrounding an HTML element:
     * setting the margin to a negative value makes the element grow larger  
     * setting `margin: auto;` will center a block element horizontally.
       * this method works for images too.  They're inline elements by default but can be changed to block elements using `display: block;`
+    * It's helpful to have your margins all push in the same one direction.  That means setting the top margin to 0 and adjusting the bottom margin for items.
 
 These three properties can have different values for all sides: `padding-top`, `padding-right`, `padding-bottom`, and `padding-left`.  Same for margin (and border)
 * padding (and margin and border) notation has various shorthands:
@@ -690,3 +719,162 @@ the `cubic-bezier` function consists of four main points that sit on this 1 by 1
 ## CSS SYNTAX
 properties can be combined in a single line.  For example, defining the absolute size of an image:  
 `img { height: 250px; width: 250px; }`
+
+### Filter
+`filter: blur(radius)` applies a gaussian blur to input image.
+
+Examples: 
+
+    blur(0)        /* No effect */
+    blur(8px)      /* Blur with 8px radius */
+    blur(1.17rem)  /* Blur with 1.17rem radius */
+
+---
+### Box-Shadow
+---
+`box-shadow` property adds shadow effects around an element's frame.  A box shadow is described by X and Y offsets relative to the element, blur and spread radius, and color.  We can set multiple effects separated by commas.
+
+    /* Keyword values */
+    box-shadow: none;
+
+    /* offset-x | offset-y | color */
+    box-shadow: 60px -16px teal;
+
+    /* offset-x | offset-y | blur-radius | color */
+    box-shadow: 10px 5px 5px black;
+
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+    /* inset | offset-x | offset-y | color */
+    box-shadow: inset 5em 1em gold;
+
+    /* Any number of shadows, separated by commas */
+    box-shadow: 3px 3px red, -1em 0 0.4em olive;
+
+---
+### Transform
+---
+`transform: rotate(angle)` defines a transformation that rotates an element around a fixed point on the 2D plane without deforming it.
+
+---
+### Images
+---
+`object-fit` property sets how the content of a replaced element such as `<img>` or `<video>` should be resized.
+
+This can be a better choice than `width` and `height` to better maintain aspect ratio
+
+  object-fit: contain;
+  object-fit: cover;
+  object-fit: fill;
+  object-fit: none;
+  object-fit: scale-down;
+
+---
+### Box-Sizing
+---
+`box-sizing` property sets how the total width and height of an element is calculated.
+
+By default, the `width` and `height` you assign to an element is applied only to the element's content box.  If you add `border` or `padding`, that will be added to the existing content box.  This can be a problem.  
+
+**For example**, if you have four boxes with `width: 25%`, if any has left or right padding or left or right borders, all four boxes will not fit on one line.
+
+That default value is `box-sizing: content-box`.
+
+By contrast, `box-sizing: border-box` will account for any border and padding values and factor those into the `width` and `height` values. 
+
+---
+## Text Properties
+---
+`text-transform` property specifies how to capitalize an elements text.  
+
+  /* Keyword values */
+  text-transform: none;
+  text-transform: capitalize;
+  text-transform: uppercase;
+  text-transform: lowercase;
+  text-transform: full-width;
+  text-transform: full-size-kana; // for <ruby> annotation text
+
+  ---
+  ## Layout Properties
+  ---
+  `gap` property sets gaps (or `gutters`) between rows and columns
+
+  It is shorthand property for `row-gap` | `column-gap`.  If one value is specified, it sets both the row and column gaps equally.
+
+---
+## Pseudo Selectors & Properties
+---
+`::after` creates a _pseudo-element_ that is the last child of the selected element.  It's often used to add content to an element with the `content` property.  Inline by default.
+
+Example: cat photo gallery.  Last element is centered when odd number of photos.  The following code adds an element to the end to push the last cat photo to the left
+
+```
+gallery::after {
+  content: '';
+  width: photo-width;
+}
+```
+---
+`:root` is a pseudo-class that matches the root element of a tree representing the document.  In an HTML document, `:root` represens the `<html>` element and is identical to the selector `html` (except that its specificity is higher)
+
+For example: 
+
+    /* Selects the root element of the document:
+      <html> in the case of HTML */
+    :root {
+      background: yellow;
+    }
+
+Is similar to:
+
+    html {
+      background: yellow;
+    }
+
+---
+## Custom Properties
+---
+Just like declaring a variable in JS, we can declare a custom property (sometimes called a CSS variable) in CSS.
+
+Property names that are prefixed with `--`, like `--example-name`, represent _custom properties_ that contain a value that can be used in other declarations using the `var()` function.
+
+Custom properties are scoped to the element(s) they are declared on.  It's common to declare custom properties at the top of the CSS stylesheet in the `:root` pseudo-selector.  This allows the custom properties to be accessible on the entire page
+
+Example:
+
+    :root {
+      --text-color: #8f9f0f;
+      --background-color: #33ff22;
+    }
+
+    .container {
+      color: var(--text-color);
+    }
+
+### Naming Conventions
+good reference: https://codepen.io/piggyslasher/pen/vQyegv
+
+---
+## CSS Functions
+---
+`var()` can be used to insert the value of a custom property instead of any part of a value of another property
+
+Example:
+
+  // --primary-color: seafoamgreen is declared in :root 
+  border-color: var(--primary-color)  // sets border to seafoamgreen
+
+---
+`calc()` is a CSS function that lets you perform calculations when specifying CSS property values.  It can be used anywhere a `<length>`, `<frequency>`, `<angle>`, `<time>`, `<percentage>`, `<number>`, or `<integer>` is allowed.
+
+Examples:
+
+    /* property: calc(expression) */
+    width: calc(100% - 80px);
+
+    width: calc(2em * 5);
+
+    width: calc(var(--variable-width) + 20px)
+    ---
