@@ -412,8 +412,12 @@ The results of the above code:
 **One more way to override CSS**  
 `!important` can be used to make sure an element has specific CSS: `color: red !important;`
 
-### COLORS
-#### HEX CODES
+**NOTE:** best to avoid `!important` as it can cause real issues with debugging
+
+---
+## COLORS
+---
+### HEX CODES
 A hex code is another method of representing colors in CSS
 * **hexadecimal digit** is a base 16 number, meaning it uses sixteen distinct symbols to represent a value.  0-9 represent the values zero to nine and A,B,C,D,E,F represent the values ten to fiften.  Altogether, 0 to F can represent a digit in hexadecimal giving us 16 total possible values.
     * the digit `0` is lowest number in hex code and represents a complete absence of color
@@ -421,12 +425,16 @@ A hex code is another method of representing colors in CSS
 * a **hex code** uses 6 hexadecimal digits to represent colors, two for the red component (R), two for the green component (G) and two for the blue component (B) such as  `color: #000000;`
 * hex code can be abbreviated to three hexadecimal digits instead of 6.  `#FF0000` is equal to `#F00`
 
+---
 ### RGB VALUES
+---
 Another method of representing colors: RGB values can be used the specify the brightness of each color with a number between 0 and 255  
 
 `color: rgb(255, 165, 0)` is equal to orange
 
+---
 ### RGBA VALUES
+---
 Yet another method of setting color:
 
     rgba stands for:
@@ -437,41 +445,81 @@ Yet another method of setting color:
 
 `background-color: rgba(45, 45, 45, 0.1)` produces a dark gray color that is nearly transparent givent the low opacity value of 0.1
 
-### HUE, SATURATION, LIGHTNESS
+---
+### HUE, SATURATION, LIGHTNESS (hsl)
+---
 `hsl()` function is another method to pick a color by setting `hue` or color, `saturation` or amount of gray in a color and `lightness` or amount of white or black in a color.
 
 red = `hsl(0, 100%, 50%)`
 
+---
+### hsla values
+---
+The final method of setting color:
+
+  hsla stands for:
+    h = hue
+    s = saturation
+    l = lightness
+    a = alpha/level of opacity
+
+---
 ### GRADIENTS
+---
 **Linear Gradient**  
 accessed through the `background` property's `linear-gradient()` function.
-the syntax:  
 
-`background: linear-gradient(gradient_direction, color 1, color 2, color 3, ...);`  
+  `background: linear-gradient(gradient_direction, color 1, color 2, color 3, ...);`  
 
-`gradient_direction` specifies the direction from which color transition starts.  `90deg` makes a horizontal gradient from left to right and `45deg` makes a diagonal gradient from bottom left to top right
+  `gradient_direction` specifies the direction from which color transition starts.  `90deg` makes a horizontal gradient from left to right and `45deg` makes a diagonal gradient from bottom left to top right
 
 **Repeating Linear Gradient**
 `repeating-linear-gradient` is similar to `linear-gradient` with one major difference that it repeats the gradient pattern.
 
+    /* A repeating gradient tilted 45 degrees,
+      starting blue and finishing red, repeating 3 times */
+    repeating-linear-gradient(45deg, blue, red 33.3%);
 
-### CSS VARIABLES
-CSS Variables are a way to change many CSS style properties at once by changing only one value.
+    /* A repeating gradient going from the bottom right to the top left,
+      starting blue and finishing red, repeating every 20px */
+    repeating-linear-gradient(to left top, blue, red 20px);
 
-* to create a CSS variable you need to give it a name with two hyphens in front of it `--penguin-skin: gray;`
+    /* A gradient going from the bottom to top,
+      starting blue, turning green after 40%,
+      and finishing red. This gradient doesn't repeat because
+      the last color stop defaults to 100% */
+    repeating-linear-gradient(0deg, blue, green 40%, red);
 
-* then call that variable by assigning it to over values: `background: var(--penguin-skin);`  
+    /* A gradient repeating five times, going from the left to right,
+      starting red, turning green, and back to red */
+    repeating-linear-gradient(to right, red 0%, green 10%, red 20%);
 
-CSS Variables are often defined in the `:root` element to allow the variable to be accessible globally.
+---
+### Custom Properties (CSS variables)
+---
+
+Just like declaring a variable in JS, we can declare a custom property (sometimes called a CSS variable) in CSS.  Custom properties are a way to change many CSS style properties at once by changing only one value.
+
+* Property names that are prefixed with `--`, like `--example-name`, represent _custom properties_ that contain a value that can be used in other declarations using the `var()` function.
+
+* to call that variable, we use the `var()` function - `background: var(--example-name);`
+
+Custom properties are scoped to the element(s) they are declared on.  Thus, CSS Variables are often defined in the `:root` element to allow the variable to be accessible globally.
 * `:root` is a _pseudo-class_ selector that matches the root element in the document, usually the `html` element
 * variables created in `:root` will set the value of that variable for the entire page.  They can be overridden byt setting them again within a specific selector.
 
 A **FALLBACK VALUE** can be assigned in the instance the variable isn't found: 
 * `background: var(--penguin-skin, black);`  
 
+---
+#### Browser Fallbacks
+---
 Browser compatibility can be improved with **BROWSER FALLBACKS**.
 * some browsers (IE) don't support CSS variables so we can create a fallback by defining a property twice.  This way if a CSS variable isn't supported, a default value will still be applied:
-```
+
+Example:
+
+ ```
 <style>
     :root {
         --red-color: red;
@@ -482,9 +530,13 @@ Browser compatibility can be improved with **BROWSER FALLBACKS**.
     }
 </style>
 ```
+---
+#### Custom Property Naming Conventions
+good reference: https://codepen.io/piggyslasher/pen/vQyegv  
 
+---
 ### APPLIED VISUAL DESIGN
-
+---
 #### TEXT  
 
 **Text Align**
