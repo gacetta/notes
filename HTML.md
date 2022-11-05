@@ -1,9 +1,20 @@
 # HTML
-### Create an HTML Document
+---
+## Create an HTML Document
+---
 `<!DOCTYPE html>` at the top of a document.  The default document is saved as `index.html`
 
+---
+## HTML Elements - 
+---
+All require a closing tab unless otherwise indicated:
 
-### HTML Elements - All require a closing tab unless otherwise indicated
+---
+### HTML
+
+* `<html>` - HTML tag that contains all your HTML code.  
+---
+
 * `<h1>` -Header tag.  6 different levels of headers with different sizes:
     * `<h2>`
     * `<h3>`
@@ -72,8 +83,9 @@
     * `<style>` - contains style information, or CSS, for a document.
 * `<body>` - the element that contains the content of the page
 
+---
 ## TEXT ALTERNATIVE TO IMAGES FOR VISUALLY IMPAIRED ACCESSIBILITY
-
+---
 `alt` attribute in an `img` tag provides a text description of the image content.  This is helpful when the image fails to load, for visually impaired users and to help search engines.
 
     <img src="importantLogo.jpeg" alt="Company Logo">
@@ -88,8 +100,9 @@ Headings with equal (or higher) rank start new implied sections, headings with l
 
 **NOTE** each page should always have only one `h1` element.  This is the main subject of your content and is used in part by search engines to understand the topic of the page.
 
+---
 ## TAGS WITH SEMANTIC MEANING
-
+---
 There are several tags that are similar to `div` yet give additional meaning to your markup and incorporate accessibility features.  They are: `main`, `header`, `footer`, `nav`, `article`, `section`, among others
 ### Main
 * The `main` element is used to wrap the main content of the page and there should be only one per page.  It should not include items that repeat across pages, like nav links or banners.  

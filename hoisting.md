@@ -1,4 +1,5 @@
 # Hoisting
+---
 **HOISTING** is a JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution
 
 **NOTE:** the hoisting mechanism only moves the declaration.  The assignments are left in place.
@@ -22,7 +23,8 @@ In JavaScript, a `ReferenceError` is thrown when trying to access a previously u
 ## HOISTING VARIABLES
 ---
 ### ASSIGNMENT
-The sequence of assigning a value to a variable is first declaration and then initialization:
+
+The sequence of assigning a value to a variable is first _declaration_ and then _initialization_:
 
 _declaration_ --> _initialization / assignment_ --> _usage_
 
@@ -34,11 +36,12 @@ However, in the background, JS is always:
 1. declarating a variable
 2. initializing the variable
 
+---
 ### UNDECLARED VARIABLES
 
-All variable and function declarations are hoisted to the top of their scope.  Additionally, Variable _declarations_ are processed before any code is executed.
+All variable and function declarations are hoisted to the top of their scope.  Additionally, variable _declarations_ are processed before any code is executed.
 
-**HOWEVER**, in contrast, _undeclared_ variables do not exist until the code assigning them is executed.  Therefore, assigning a value to an undeclared variable implicityly creates it as a global variable when the assignment is executed.  This means **all undeclared variables are global variables**
+**HOWEVER**, in contrast, _undeclared_ variables do not exist until the code assigning them is executed.  Therefore, assigning a value to an undeclared variable implicitly creates it as a global variable when the assignment is executed.  This means **all undeclared variables are global variables**
 
     function hoist() {
     a = 20;
@@ -76,15 +79,14 @@ All variable and function declarations are hoisted to the top of their scope.  A
     Expected `ReferenceError: hoist is not defined` but instead the output is `undefined`.  This is what the above code looks like to the interpreter:
 
         var hoist;
-
         console.log(hoist); // Output: undefined
         hoist = 'The variable has been hoisted.';
 
 * FUNCTION SCOPED HOISTING
 
         function hoist() {
-        console.log(message);
-        var message='Hoisting is all the rage!'
+            console.log(message);
+            var message = 'Hoisting is all the rage!';
         }
 
         hoist();
@@ -95,13 +97,14 @@ All variable and function declarations are hoisted to the top of their scope.  A
         function hoist() {
         var message;
         console.log(message);
-        message='Hoisting is all the rage!'
+        message = 'Hoisting is all the rage!';
         }
 
         hoist(); // Ouput: undefined
 
     **NOTE:** this is why it's important to declare and initialize variables before referencing them.
 
+---
 ### STRICT MODE
 
 **strict mode** tells JS not to tolerate the usage of variables before they are declared
@@ -110,7 +113,7 @@ All variable and function declarations are hoisted to the top of their scope.  A
 2. It fixes mistakes that make it difficult for JS engines to perform optimizations
 3. It prohibits some syntax likely to be defined in future versions of JS
 
-strict mode can be enabled by typing \`use strict\` or "use strict" at the top of the code:
+strict mode can be enabled by typing \'use strict\' or "use strict" at the top of the code:
 
     'use strict';
 
@@ -120,9 +123,6 @@ strict mode can be enabled by typing \`use strict\` or "use strict" at the top o
 ---
 ## ES6
 ---
-
-
-
 ### LET
 
 `let` variables are _block scoped_ and not _function scoped_, meaning that its scope is bound to the code block in which it is declared and not the function in which it is declared
@@ -141,6 +141,7 @@ The following code WILL output `undefined` instead of `ReferenceError`
 
 **NOTE:** to err on the side of caution, we should declare then assign variables to a value before using them.
 
+---
 ### CONST
 
 `const` is used to declare _immutable variables_ and will throw a `ReferenceError` when referenced before declaration, similar to `let`.
@@ -148,12 +149,12 @@ The following code WILL output `undefined` instead of `ReferenceError`
 this can be seen when using `const` in a function:
 
     function getCircumference(radius) {
-    console.log(circumference)
-    circumference = PI*radius*2;
-    const PI = 22/7;
+        console.log(circumference);
+        circumference = PI*radius*2;
+        const PI = 22/7;
     }
 
-    getCircumference(2) // ReferenceError: circumference is not defined
+    getCircumference(2); // ReferenceError: circumference is not defined
 
 With `const`, es6 goes further and throws an error if we use the constant before declaring and initiailzing it
 
