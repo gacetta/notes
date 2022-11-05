@@ -495,46 +495,6 @@ accessed through the `background` property's `linear-gradient()` function.
     repeating-linear-gradient(to right, red 0%, green 10%, red 20%);
 
 ---
-### Custom Properties (CSS variables)
----
-
-Just like declaring a variable in JS, we can declare a custom property (sometimes called a CSS variable) in CSS.  Custom properties are a way to change many CSS style properties at once by changing only one value.
-
-* Property names that are prefixed with `--`, like `--example-name`, represent _custom properties_ that contain a value that can be used in other declarations using the `var()` function.
-
-* to call that variable, we use the `var()` function - `background: var(--example-name);`
-
-Custom properties are scoped to the element(s) they are declared on.  Thus, CSS Variables are often defined in the `:root` element to allow the variable to be accessible globally.
-* `:root` is a _pseudo-class_ selector that matches the root element in the document, usually the `html` element
-* variables created in `:root` will set the value of that variable for the entire page.  They can be overridden byt setting them again within a specific selector.
-
-A **FALLBACK VALUE** can be assigned in the instance the variable isn't found: 
-* `background: var(--penguin-skin, black);`  
-
----
-#### Browser Fallbacks
----
-Browser compatibility can be improved with **BROWSER FALLBACKS**.
-* some browsers (IE) don't support CSS variables so we can create a fallback by defining a property twice.  This way if a CSS variable isn't supported, a default value will still be applied:
-
-Example:
-
- ```
-<style>
-    :root {
-        --red-color: red;
-    }
-    .red-box {
-        background: red;
-        background: var(--red-color);
-    }
-</style>
-```
----
-#### Custom Property Naming Conventions
-good reference: https://codepen.io/piggyslasher/pen/vQyegv  
-
----
 ### APPLIED VISUAL DESIGN
 ---
 #### TEXT  
