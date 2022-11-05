@@ -268,3 +268,41 @@ Screen readers can provide a user with the links available on a page.  They do t
 
     **NOTE:** by assigning `tabindex` values, the default order of top to bottom is overwritten.  
 
+---
+### Tables
+---
+`<table>` element represents tabular data - that is, info presented in a two-dimensional table comprised of rows and columns of cells containing data
+
+Flow Content:
+
+1. (optional) `<caption>` element
+2. zero or more `<colgroup>` elements
+3. (optional) `<thead>` element
+4. either one of the following:
+    - zero or more `<tbody>` elements
+    - one or more `<tr>` elements
+5. an optional `<tfoot>` element
+
+---
+`<caption>` element (optional) specifies the caption (or title) of a table.
+
+It should always be the first child of `<table>` though it may be positioned using `caption-side` CSS property.
+
+**NOTE:** a `background-color` on the table will not include the caption.  Add a `background-color` to the `<caption>` element as well if you want the same color to be behind both.
+
+---
+`<thead>` element defines a set of rows defining the head of the columns of the table
+
+---
+`<tbody>` element encapsulates a set of table rows (`<tr>` elements) indicating that they comprise the body of the table.
+
+---
+`<tr>` element is used to indicate a table row.
+
+---
+`<td>` element indicates a data cell
+
+---
+`<th>` element indicates a header cell
+
+---
