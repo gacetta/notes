@@ -829,6 +829,65 @@ gallery::after {
 }
 ```
 ---
+`:first-of-type` is a pseudo-selector that targets the first element that matches the selector.
+
+It can get complicated with nested elements:
+
+    <article>
+      <div>This `div` is first!</div>
+      <div>This <span>nested `span` is first</span>!</div>
+      <div>
+        This <em>nested `em` is first</em>, but this <em>nested `em` is last</em>!
+      </div>
+      <div>This <span>nested `span` gets styled</span>!</div>
+      <p>This `p` qualifies!</p>
+      <div>This is the final `div`.</div>
+    </article>
+
+    article :first-of-type {
+      background-color: pink;
+    }
+
+---
+`:last-of-type` is a pseudo-selector that targets the last element that matches the selector.
+
+It can get complicated with nested elements:
+
+    <article>
+      <div>This `div` is first.</div>
+      <div>This <span>nested `span` is last</span>!</div>
+      <div>
+        This <em>nested `em` is first</em>, but this <em>nested `em` is last</em>!
+      </div>
+      <p>This `p` qualifies!</p>
+      <div>This is the final `div`!</div>
+    </article>
+
+    article :last-of-type {
+      background-color: pink;
+    }
+
+---
+`:not()` is a pseudo-class that represents elements that do not match a list of selectors.  Since it prevents specific items from being selected, it is known as a negation pseudo-class.
+
+It requires a comma-separated list of one or more selectors as its argument.  The list must **not** contain another negation selector or a pseudo-element.  For example:
+
+    p:not(.class-name) {
+
+    }
+
+    p:not(strong, .important) {
+      
+    }
+
+There are many quirks, tricks and unexpected results when using `:not()`.
+
+From MDN: 
+
+---
+`:nth-of-type()` is a pseudo-selector that tagers specific elements based on their order among siblings of the same type.
+---
+
 `:root` is a pseudo-class that matches the root element of a tree representing the document.  In an HTML document, `:root` represens the `<html>` element and is identical to the selector `html` (except that its specificity is higher)
 
 For example: 
@@ -890,3 +949,58 @@ Examples:
 
     width: calc(var(--variable-width) + 20px)
     ---
+
+---
+## selectors of elements & classes
+
+`span[class~="class-name"]` is a selector that will select any `span` element whose `class` includes `class-name`.  
+
+---
+`span[class]` will target any span element that has a `class` attribute set, regardless of the attribute's value
+
+---
+The key difference between `tr[class="total"]` and `tr.total` is that the first will select tr elements where the only class is total. The second will select tr elements where the class includes total.
+
+---
+## Completely hiding an element visually
+
+Including the following properties is a common way to ensure that an element is completely hidden visually:
+
+- `border: 0;`
+- `clip: rect(1px, 1px, 1px, 1px);`
+- `clip-path: inset(50%)`
+- `-webkit-clip-path: inset(50%)`
+
+The `clip` property is used to define the visible portions of an element. (_depreciated_ use `clip-path` instead)
+
+
+---
+- `clip-path` property creates a clipping region that sets what part of an element should be shown.  Parts that are inside the region are shown, while those outside are hidden.
+
+    /* Keyword values */
+    clip-path: none;
+
+    /* <clip-source> values */
+    clip-path: url(resources.svg#c1);
+
+    /* <geometry-box> values */
+    clip-path: margin-box;
+    clip-path: border-box;
+    clip-path: padding-box;
+    clip-path: content-box;
+    clip-path: fill-box;
+    clip-path: stroke-box;
+    clip-path: view-box;
+
+    /* <basic-shape> values */
+    clip-path: inset(100px 50px);
+    clip-path: circle(50px at 0 100px);
+    clip-path: ellipse(50px 60px at 0 10% 20%);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    clip-path: path(
+      "M0.5,1 C0.5,1,0,0.7,0,0.3 A0.25,0.25,1,1,1,0.5,0.3 A0.25,0.25,1,1,1,1,0.3 C1,0.7,0.5,1,0.5,1 Z"
+    );
+
+    /* Box and shape values combined */
+    clip-path: padding-box circle(50px at 0 100px);
+---
