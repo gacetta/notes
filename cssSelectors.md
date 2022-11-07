@@ -23,35 +23,102 @@ ids attributes are assigned similarly to classes:
 ---
 ## ATTRIBUTE SELECTORS
 ---
-Elements can be selected using the _attribute selector_ as well.
+Elements can be selected using an _attribute selector_.  This selects elements based on attribute values.  There are several types of attribute selectors:
 
-The `[attr=value]` selector matches elements with a specific attribute value
+**NOTE:** By Default, the strings inside attribute selectors are case sensitive.  You can make the string case-insensitive by passing the value `i` as the character before the closing `]`.
 
-    /* <a> elements with a title attribute */
-    a[title] {
-      color: purple;
-    }
+    /* Will match
+    <div data-state="open"></div>
+    <div data-state="Open"></div>
+    <div data-state="OPEN"></div>
+    <div data-state="oPeN"></div>
+    */
+    [data-state="open" i] { }
 
-    /* <a> elements with an href matching "https://example.org" */
-    a[href="https://example.org"]
-    {
-      color: green;
-    }
+---
+### Has Attribute []
+---
+`[attr]` - matches with elements that have an attribute name of `attr`
 
-    /* <a> elements with an href containing "example" */
-    a[href*="example"] {
-      font-size: 2em;
-    }
+---
+### Attribute Exactly Equals Value [=]
+---
+`[attr=value]` - matches elements with an attribute name of `attr` whose value is exactly `value`
 
-    /* <a> elements with an href ending ".org" */
-    a[href$=".org"] {
-      font-style: italic;
-    }
+One of the most common uses of regular attribute selectors is on inputs:
 
-    /* <a> elements whose class attribute contains the word "logo" */
-    a[class~="logo"] {
-      padding: 2px;
-    }
+    input[type="text"] { padding: 3px; }
+    input[type="radio"] { float: left; }
+
+**Note on Quotes**: You can usually get away without using quotes in attribute selectors, like [type=radio], but the rules for omitting quotes are weird and inconsistent across actual browser implementations. So, best practice, just use quotes, like [type="radio"]. It’s safer and always works.
+
+---
+### Attribute Contains Value [~=]
+---
+`[attr*=value]` - matches elements with an attribute name of `attr` whose value contains at least one occurrence of `value` within the string.
+
+**NOTE:** classes and IDs are attributes too and can be used with attribute selectors.  For example:
+
+    <div id="post_1"></div>
+    <div id="post_two"></div>
+    <div id="third_post"></div>
+
+    div[id*="post"]  { color: red; } //selects all posts
+
+---
+### Attribute Begins with Certain Value [^=]
+---
+`[attr^=value]` - matches elements with an attribute name of `attr` whose value is prefixed (preceded) by `value`.
+
+_Real-World Example:_ Say you wanted to style every single link to your friends site different than other links. Doesn’t matter if you are linking to their homepage or any subpage, any links to them you want to style up.  The following would match a link to their homepage, but also any other subpages as well:
+
+    a[href^="http://perishablepress.com"] { color: red; } 
+
+---
+### Attribute Ends with Certain Value [$=]
+---
+`[attr$=value]` - matches elements with an attribute name of `attr` whose value is suffixed (followed) by `value`.
+
+_Good Use Case:_ selecting file types
+
+    a[href$=".pdf"] { background: url(icon-pdf.png) left center no-repeat; padding-left: 30px; }
+    a[href$=".doc"] { background: url(icon-doc.png) left center no-repeat; padding-left: 30px; }
+
+---
+### Attribute is withing Space Separated List [~=]
+---
+`[attr~=value]` - matches elements with an attribute name of `attr` whose value is a whitespace-separated list of words, one of which is exactly `value`.
+
+_Good Use Case:_ If your `rel` attribute has multiple values (e.g. values in a space-separated list) you'll need to use `~=`:
+
+    <h1 rel="friend external sandwich">Attribute Space Separated</h1>
+
+    h1[rel~="external"] { color: red; }
+
+**NOTE::** You might be thinking, why would I use this when `*=` would also match this and be more versatile? Indeed it is more versatile, but it can be too versatile. This selector requires the spaces around the value where as `*=` would not. So if you had two elements one with `rel=home friend-link` and one with `rel=home friend link` you are going to need the space-separated selector to target the second one properly.
+
+---
+### Attribute is the start of a Dash Separated List [|=]
+---
+`[attr|=value]` - matches elements with an attribute name of `attr` whose value can be exactly `value` or is at the start of a dash-separated-list of attribute values.
+
+_Good Use Case:_ often used for language subcode matches
+
+    <h1 rel="friend-external-sandwich">Attribute Dash Separated</h1>
+
+    h1[rel|="friend"] { color: red; }
+
+**NOTE:** even though it matches based on the start of the selector, the entire first part of the string before the first dash needs to match. So in the above example, if the `rel` attribute was `friend2-external-sandwich`, it would not be a match while the `^=` attribute selector would have.
+
+---
+### Multiple Attribute Matches [=][^=]
+---
+Multiple attribute selectors can be used in the same selector, which requires all of them to match for the selector itself to match.
+
+    <h1 rel="handsome" title="Important note">Multiple Attributes</h1>
+
+    h1[rel="handsome"][title^="Important"] { color: red; }
+
 ---
 ## PSEUDO-CLASSES
 ---
