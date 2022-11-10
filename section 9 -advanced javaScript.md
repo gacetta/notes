@@ -132,6 +132,7 @@ const getTip = (amount) => {
 
 We can throw an error message with more information with the syntax  
  `throw Error('Argument must be a number')`.  
+ 
  This will print the string we provided but also provide much more informative data to help with debugging  
  #### Try Catch  
  Try catch is an approach to error checking that doesn't crash your program.  The boilerplate syntax:  
