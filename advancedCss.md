@@ -338,3 +338,72 @@ An algorithm that calculates boxes and determines the layout of these boxes, for
 - margin: space between boxes;
 - fill area: area that gets filled with background color or background image.  Includes content, padding and border, but not the margin.
 
+---
+### Box Type
+---
+Types:
+
+1. `block-level` boxes (DEFAULT for p)
+  - Elements formatted visually as blocks
+  - 100% of parent's width
+  - vertically, one after another
+  - _box-model applies as showed_
+
+      display: block
+      (display: flex)
+      (display: list-item)
+      (display: table)
+
+2. `inline` boxes
+  - Content is distributed in lines
+  - _occupies only content's space_
+  - _no line-breaks_
+  - no heights and widths
+  - paddings and margins only horizontal (left and right)
+
+    display: inline
+
+3. `inline-block` boxes
+  - a mix of block and inline
+  - _occupies only content's space_
+  - _no line-breaks_
+  - _box-model applies as shown_
+
+    display: inline-block
+
+---
+### Positioning Schemes
+---
+
+`Normal flow`
+- default positioning scheme
+- NOT floated
+- NOT absolutely positioned
+- Elements laid out according to their source order
+
+  -Default value-
+  position: relative
+
+`Floats`
+- Element is removed from the normal flow
+- Text and inline elements will wrap around the floated element
+- The container will not adjust its height to the element
+
+  float: left
+  float: right
+
+`Absolute positioning`
+- Element is removed from the normal flow
+- No impact on surrounding content or elements
+- We use `top`, `bottom`, `left` and `right` to offset the element from its relatively positioned container.
+
+  position: absolute
+  position: fixed
+
+  ---
+  ### Stacking Contexts
+  ---
+  Like layers 
+  most common approach is `z-index`.  The lower the number, the lower the layer (or further back the layer).
+
+  There are other properties that affect the layer, though.
