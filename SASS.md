@@ -1,91 +1,136 @@
 # SASS
-
----
 ## What is SASS
 ---
-
 `SASS` is a CSS preprocessor, an extension of CSS that adds power and elegance to the basic language.
 
-CSS files get messy and huge and unmangeable after time.
+CSS files get huge, messy and unmangeable after time.  SASS can help us with our program architecture
 
 SASS Source Code ----Sass compiler----> Compiled CSS Code
 
 Instead of writing in CSS, we write SASS which is compiled into a css file that then can be read by the browser.
+ 
+Functionality added by SASS:
 
-- Variables: for reusable values such as colors, font-sizes, spacing, etc.
-- Nesting: to nest selectors inside of one another, allowing us to write less code
-- Operators: for mathematical operations right inside of Css
-- Partials and imports: to write CSS in different files and importing them all into one single file
-- Mixins: to write reusable pieces of CSS code
-- Functions: similar to mixins, with the difference that they produce a value that can then be used
-- Extends: to make different selectors inherit declarations that are common to all of them
-- Control directives: for writing complex code using conditionals and loops
+- `Variables`: for reusable values such as colors, font-sizes, spacing, etc.
+- `Nesting`: to nest selectors inside of one another, allowing us to write less code
+- `Operators`: for mathematical operations right inside of Css
+- `Partials and imports`: to write CSS in different files and importing them all into one single file
+- `Mixins`: to write reusable pieces of CSS code
+- `Functions`: similar to mixins, with the difference that they produce a value that can then be used
+- `Extends`: to make different selectors inherit declarations that are common to all of them
+- `Control directives`: for writing complex code using conditionals and loops
 
-Two syntaxes:
+Two different syntaxes - similar but different:  
 `Sass syntax` & `SCSS syntax` (also known as sassy css)
+
+**We're using SCSS**
 
 ---
 ## Variables
 ---
-we name variables using the `$` character.  `$color-primary: red;`
-Then they are referenced with the same syntax: `color: $color-primary`
+Variables are named using the `$` character followed immediately by the variable name: 
+
+     $color-primary: red;
+
+Variables are referenced with the same syntax: 
+
+    color: $color-primary;
 
 ---
 ## Nesting
 ---
+An important part of SCSS is nesting of selectors, which provides visual clarity of the heirarchy much like `html`
 
-In SCSS we can nest selector elements.  So instead of:
+In SCSS we can nest selector elements.  
+Take this CSS for example:
 
-    .navigation li {
-
+    nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    nav li {
+      display: inline-block;
+    }
+    nav a {
+      display: block;
+      padding: 6px 12px;
+      text-decoration: none;
     }
 
-we can use: 
+The same code written in SCSS, with the `ul`, `li`, and `a` selectors nested inside the `nav` selector:
 
-    .navigation {
-      list-style: none;
-
-      li {    // nested selector.  equivalent to .navigation ls {}
-        display: inline-block;
-        margin-left: 30px;
+    nav {
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
       }
+
+      li { display: inline-block; }
+
+      a {
+        display: block;
+        padding: 6px 12px;
+        text-decoration: none;
+      }
+    }
+
+There's no limit to how deep the nesting can go (though overly nested rules will result in over-qualified CSS that could prove hard to maintain and is considered BAD PRACTICE)
+
+Lets say the above CSS also has the following selector:
+
+    nav li:first-child {
+      color: blue;
+    }
+
+we can use the `&` character to represent the current path: `nav li` and nest the `:first-child` selector _inside_ the `li` selector
+
+  nav {
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li { 
+      display: inline-block; 
       
-    }
-
-There's no limit to how deep the nesting can go.
-
-Instead of 
-
-.navigation li:first-child {
-
-}
-
-we can use the `&` character to represent the current path: `.navigation li` and nest the `:first-child` selector inside the `li` selector
-
-    .navigation {
-      list-style: none;
-
-      li {    // nested selector.  equivalent to .navigation ls {}
-        display: inline-block;
-        margin-left: 30px;
-        
-        &:first-child {    // `&` represents the curren path: .navigation li:first-child
-          margin: 0;
-        }
+      &:first-child {
+        color: blue
       }
     }
----
-## Color Function in SASS
----
-we can use the `darken()` or `lighten()` function to automatically calculate a color.
 
-  &:link {
-    background-color: $color-secondary;  
+    a {
+      display: block;
+      padding: 6px 12px;
+      text-decoration: none;
+    }
   }
-  
-  &:hover {
-    background-color: darken($color-secondary, 10%);
-  }
+
+
+---
+## Color Functions in SASS
+---
+### Lighten / Darken
+`lighten($base-color, value%)` function to calculate a lighter shade of the base color.
+`darken($base-color, value%)` function to calculate a darker shade of the base color.
+
+---
+### Saturate / Desaturate
+---
+`saturate($base-color, value%)` function to calculate a more saturated shade of the base color.
+`desaturate($base-color, value%)` function to calculate a less saturated shade of the base color.
+
+---
+### Adjust Hue
+---
+`adjust-hue($base-color, value%)` function to adjust the hue value of HSL
+
+---
+### Adding Alpha Transparency
+---
+`rgba($base-color, opacity-value)` function can turn our color variable into a transparent value easily.
 
 ---
 ## Float
