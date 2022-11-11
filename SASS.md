@@ -1,0 +1,222 @@
+# SASS
+
+---
+## What is SASS
+---
+
+`SASS` is a CSS preprocessor, an extension of CSS that adds power and elegance to the basic language.
+
+CSS files get messy and huge and unmangeable after time.
+
+SASS Source Code ----Sass compiler----> Compiled CSS Code
+
+Instead of writing in CSS, we write SASS which is compiled into a css file that then can be read by the browser.
+
+- Variables: for reusable values such as colors, font-sizes, spacing, etc.
+- Nesting: to nest selectors inside of one another, allowing us to write less code
+- Operators: for mathematical operations right inside of Css
+- Partials and imports: to write CSS in different files and importing them all into one single file
+- Mixins: to write reusable pieces of CSS code
+- Functions: similar to mixins, with the difference that they produce a value that can then be used
+- Extends: to make different selectors inherit declarations that are common to all of them
+- Control directives: for writing complex code using conditionals and loops
+
+Two syntaxes:
+`Sass syntax` & `SCSS syntax` (also known as sassy css)
+
+---
+## Variables
+---
+we name variables using the `$` character.  `$color-primary: red;`
+Then they are referenced with the same syntax: `color: $color-primary`
+
+---
+## Nesting
+---
+
+In SCSS we can nest selector elements.  So instead of:
+
+    .navigation li {
+
+    }
+
+we can use: 
+
+    .navigation {
+      list-style: none;
+
+      li {    // nested selector.  equivalent to .navigation ls {}
+        display: inline-block;
+        margin-left: 30px;
+      }
+      
+    }
+
+There's no limit to how deep the nesting can go.
+
+Instead of 
+
+.navigation li:first-child {
+
+}
+
+we can use the `&` character to represent the current path: `.navigation li` and nest the `:first-child` selector inside the `li` selector
+
+    .navigation {
+      list-style: none;
+
+      li {    // nested selector.  equivalent to .navigation ls {}
+        display: inline-block;
+        margin-left: 30px;
+        
+        &:first-child {    // `&` represents the curren path: .navigation li:first-child
+          margin: 0;
+        }
+      }
+    }
+---
+## Color Function in SASS
+---
+we can use the `darken()` or `lighten()` function to automatically calculate a color.
+
+  &:link {
+    background-color: $color-secondary;  
+  }
+  
+  &:hover {
+    background-color: darken($color-secondary, 10%);
+  }
+
+---
+## Float
+floating elements lose their height
+
+clearfix method fixes this problem.  Simply add a class to the parent container named `clearfix`.  Then use `.clearfix::after{}` to create an element after that gives the container height.
+
+    <nav class='clearfix'>
+      <ul class="navigation">
+        <li><a href='#'>About Us</a></li>
+        <li><a href='#'>Pricing</a></li>
+        <li><a href='#'>Contact</a></li>
+      </ul>
+      <div class="buttons">
+        <a class="btn-main" href="#">Sign up</a>
+        <a class="btn-hot" href="#">Get A Quote</a>
+      </div>
+    </nav>
+
+    nav {
+      margin: 30px;
+      background-color: $color-primary;
+    }
+
+    .clearfix::after {
+      content: '';
+      clear: both;
+      display: table;
+    }
+
+    .navigation {
+      list-style: none;
+      float: left;
+    }
+
+    .buttons {
+      float: right;
+    }
+
+---
+### Mixin
+---
+A snippet of code that can be "mixed in" to the code easily.
+
+Lets say there are a lot of `clearfix` moments in the code.  Rather than add the following code into every selector, we can create a mixin:
+
+    nav {
+      margin: 30px;
+      background-color: $color-primary;
+      
+      &::after {        //The code from here
+        content: '';    // |
+        clear: both;    // |
+        display: table; // |
+      }                 // To here
+    }
+
+Using the syntax:
+
+@mixin clearfix {
+  &::after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+}
+
+nav {
+  margin: 30px;
+  background-color: $color-primary;
+  
+  @include clearfix;    
+}
+
+#### Mixin Arguments
+
+We can pass an argument to a mixin as well.  
+Lets say we have a mixin to style our links.  But we want different to use different colors for different applications.  
+
+Declaration:
+
+    @mixin style-link-text($color) {
+      text-decoration: none;
+          text-transform: uppercase;
+          color: $color;
+    }
+
+Call:
+
+    @include style-link-text($text-color-dark);
+
+
+---
+## Functions in SASS
+---
+Not often used, but possible!
+
+to declare:
+@function divide($a, $b) {
+  @return $a / $b;
+}
+
+to call:
+margin: divide(60 / 2) * 1px;
+
+---
+## Extend
+---
+
+%btn-placeholder {
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 100px;
+  width: $width-button;
+  @include style-link-text($color-text-light);
+}
+
+.btn-hot {
+  &:link {
+    @extend %btn-placeholder;
+    background-color: $color-tertiary;  
+  }
+  
+  &:hover {
+    background-color: lighten($color-tertiary, 10%);
+  }
+}
+
+### Extend vs Mixin. 
+
+Mixin copies properties into the place of call
+Extend copies selector into its rule
+
