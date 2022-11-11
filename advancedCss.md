@@ -400,10 +400,47 @@ Types:
   position: absolute
   position: fixed
 
-  ---
-  ### Stacking Contexts
-  ---
-  Like layers 
-  most common approach is `z-index`.  The lower the number, the lower the layer (or further back the layer).
+---
+### Stacking Contexts
+---
+Like layers 
+most common approach is `z-index`.  The lower the number, the lower the layer (or further back the layer).
 
-  There are other properties that affect the layer, though.
+There are other properties that affect the layer, though.
+
+---
+## CSS Architecture, Components and Build
+---
+How to approach setting up your project:
+1. Think - think about the layout of your webpage or web app before writing code.
+2. Build - build your layout in HTML and CSS with a consistent structure for naming classes.
+3. Architect - Create a logical architecture for your CSS with files and folders.
+
+THINK
+`component-driven design`
+- Modular building blocks that make up interfaces
+- re-usable across a project, and between different projects
+- independent, allowing us to use them anywhere on the page
+
+BUILD
+`BEM` - Block Element Modifier
+
+  Low-specificity BEM selectors:
+
+    .block {}
+    .block__element{}
+    .block__element--modifier {}
+
+ARCHITECT
+`The 7-1 Pattern` - We have 7 different folders for partial Sass files, and 1 main Sass file to import all other files into a compiled CSS stylesheet.
+
+The folders:
+1. base/
+2. components/
+3. layout/
+4. pages/
+5. themes/
+6. abstracts/
+7. vendors/
+
+---

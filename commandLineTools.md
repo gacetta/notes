@@ -20,3 +20,5 @@
 - `touch`: creates a new, empty file in current working directory (not on windows)
 
 to edit a text file in the terminal window:  `sudo nano fileName.txt`
+
+- `open` - opens a file in the default program for your system
