@@ -6,7 +6,6 @@ The CSS property `display: grid` turns any HTML element into a grid container.
 **NOTE:** the parent element is referred to as the _container_ and the children are called _items_
 
 ---
-
 ## COLUMNS AND ROWS
 _grid container property_
 
@@ -291,3 +290,53 @@ Turning an element into a grid only affects the behavior of its direct descendan
 
 ---
 
+`grid-auto-flow:` - controls how the auto-placement algorithm works, specifying exactly how auto-placed items get flowed into the grid.
+
+        /* Keyword values */
+        grid-auto-flow: row;
+        grid-auto-flow: column;
+        grid-auto-flow: dense;
+        grid-auto-flow: row dense;
+        grid-auto-flow: column dense;
+
+`dense` packing algorithm attempts to fill in holes earlier in the grid, if smaller items come up later. This may cause items to appear out-of-order, when doing so would fill in holes left by larger items.
+
+If it is omitted, a "sparse" algorithm is used, where the placement algorithm only ever moves "forward" in the grid when placing items, never backtracking to fill holes. This ensures that all of the auto-placed items appear "in order", even if this leaves holes that could have been filled by later items.
+
+---
+`grid-auto-columns:` property specifies the size of an implicitly-created grid column track or pattern of tracks.
+
+        /* Keyword values */
+        grid-auto-columns: min-content;
+        grid-auto-columns: max-content;
+        grid-auto-columns: auto;
+
+        // non negative lengths
+        grid-auto-columns: 100px;
+        grid-auto-columns: 10%;
+        grid-auto-columns: 3fr;
+        grid-auto-columns: minmax(100px, auto);
+        grid-auto-columns: fit-content(400px);
+
+`place-items` - shorthand property that allows you to set both `align-items` and `justify-items` at the same time when using a relevant layout system like `grid` or `flexbox`
+
+        /* Keyword values */
+        place-items: center;
+        place-items: normal start;
+
+        /* Positional alignment */
+        place-items: center normal;
+        place-items: start legacy;
+        place-items: end normal;
+        place-items: self-start legacy;
+        place-items: self-end normal;
+        place-items: flex-start legacy;
+        place-items: flex-end normal;
+        place-items: left legacy;
+        place-items: right normal;
+
+        /* Baseline alignment */
+        place-items: baseline normal;
+        place-items: first baseline legacy;
+        place-items: last baseline normal;
+        place-items: stretch legacy;
