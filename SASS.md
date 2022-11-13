@@ -134,9 +134,18 @@ we can use the `&` character to represent the current path: `nav li` and nest th
 
 ---
 ## Float
-floating elements lose their height
+---
+The `float` CSS property places an element on the left or right side of its container, allowing text and inline elements to wrap around it. The element is removed from the normal flow of the page, though still remaining a part of the flow (in contrast to `absolute positioning`).
 
-clearfix method fixes this problem.  Simply add a class to the parent container named `clearfix`.  Then use `.clearfix::after{}` to create an element after that gives the container height.
+### How Floating Elements are Positioned
+As mentioned above, when an element is floated, it is taken out of the normal flow of the document (though still remaining part of it). It is shifted to the left, or right, until it touches the edge of its containing box, or another floated element.
+
+A floated element is at least as tall as its tallest nested floated children. We gave the parent width: 100% and floated it to ensure it is tall enough to encompass its floated children, and to make sure it takes up the width of the parent so we don't have to clear its adjacent sibling.
+
+In other words, if a container element only contains `floated` elements, that container element sees itself as having no height.
+
+### Clearfix 
+The clearfix method fixes the problem of floated content having no height.  Simply add a class to the parent container named `clearfix`.  Then use `.clearfix::after{}` to create an element after that gives the container height.
 
     <nav class='clearfix'>
       <ul class="navigation">
@@ -155,7 +164,7 @@ clearfix method fixes this problem.  Simply add a class to the parent container 
       background-color: $color-primary;
     }
 
-    .clearfix::after {
+    .clearfix::after {      //<----- Clearfix!
       content: '';
       clear: both;
       display: table;
@@ -171,11 +180,11 @@ clearfix method fixes this problem.  Simply add a class to the parent container 
     }
 
 ---
-### Mixin
+## Mixins
 ---
 A snippet of code that can be "mixed in" to the code easily.
 
-Lets say there are a lot of `clearfix` moments in the code.  Rather than add the following code into every selector, we can create a mixin:
+Lets say there are a lot of `clearfix` moments in the code.  Rather than add the following code into every selector, we can create a `mixin`:
 
     nav {
       margin: 30px;
@@ -188,21 +197,23 @@ Lets say there are a lot of `clearfix` moments in the code.  Rather than add the
       }                 // To here
     }
 
-Using the syntax:
+Declaration syntax: `@mixin mixin-name`
 
-@mixin clearfix {
-  &::after {
-    content: '';
-    clear: both;
-    display: table;
-  }
-}
+    @mixin clearfix {
+      &::after {
+        content: '';
+        clear: both;
+        display: table;
+      }
+    }
 
-nav {
-  margin: 30px;
-  background-color: $color-primary;
-  
-  @include clearfix;    
+Calling syntax: `@include mixin-name`
+
+    nav {
+      margin: 30px;
+      background-color: $color-primary;
+      
+      @include clearfix;    // call the mixin with @include
 }
 
 #### Mixin Arguments
@@ -228,40 +239,110 @@ Call:
 ---
 Not often used, but possible!
 
-to declare:
-@function divide($a, $b) {
-  @return $a / $b;
-}
+to declare: `@function func-name(args)`
 
-to call:
-margin: divide(60 / 2) * 1px;
+    @function divide($a, $b) {
+      @return $a / $b;
+    }
+
+to call: `func-name(args)`
+
+    margin: divide(60 / 2) * 1px;
 
 ---
 ## Extend
 ---
+There are often cases when designing a page when one class should have all the styles of another class, as well as its own specific styles.  But this can create cluttered HTML, it's prone to errors from forgetting to include both classes, and it can bring non-semantic style concerns into your markup.
 
-%btn-placeholder {
-  padding: 10px;
-  display: inline-block;
-  text-align: center;
-  border-radius: 100px;
-  width: $width-button;
-  @include style-link-text($color-text-light);
-}
+Sass’s @extend rule solves this. It’s written `@extend <selector>`, and it tells Sass that one selector should inherit the styles of another.
 
-.btn-hot {
-  &:link {
-    @extend %btn-placeholder;
-    background-color: $color-tertiary;  
-  }
-  
-  &:hover {
-    background-color: lighten($color-tertiary, 10%);
-  }
-}
+SCSS syntax:
+
+    .error {
+      border: 1px #f00;
+      background-color: #fdd;
+
+      &--serious {
+        @extend .error;
+        border-width: 3px;
+      }
+    }
+
+CSS syntax:
+
+    .error, .error--serious {
+      border: 1px #f00;
+      background-color: #fdd;
+    }
+    .error--serious {
+      border-width: 3px;
+    }
+
+### Placeholder Selectors
+Sass has a special kind of selector known as a `“placeholder”`. It looks and acts a lot like a class selector, but it starts with a `%` and it's not included in the CSS output. In fact, any complex selector (the ones between the commas) that even _contains_ a placeholder selector isn't included in the CSS, nor is any style rule whose selectors all contain placeholders.
+
+SCSS Syntax:
+
+    .alert:hover, %strong-alert {
+      font-weight: bold;
+    }
+
+    %strong-alert:hover {
+      color: red;
+    }
+
+Compiled to CSS:
+
+    .alert:hover {
+      font-weight: bold;
+    }
+
+What’s the use of a selector that isn’t emitted? It can still be extended! Unlike class selectors, placeholders don’t clutter up the CSS if they aren’t extended and they don’t mandate that users of a library use specific class names for their HTML.
+
+SCSS Syntax:
+
+    %toolbelt {
+      box-sizing: border-box;
+      border-top: 1px rgba(#000, .12) solid;
+      padding: 16px 0;
+      width: 100%;
+
+      &:hover { border: 2px rgba(#000, .5) solid; }
+    }
+
+    .action-buttons {
+      @extend %toolbelt;
+      color: #4285f4;
+    }
+
+    .reset-buttons {
+      @extend %toolbelt;
+      color: #cddc39;
+    }
+
+Compiled CSS:
+
+    .action-buttons, .reset-buttons {
+      box-sizing: border-box;
+      border-top: 1px rgba(0, 0, 0, 0.12) solid;
+      padding: 16px 0;
+      width: 100%;
+    }
+    .action-buttons:hover, .reset-buttons:hover {
+      border: 2px rgba(0, 0, 0, 0.5) solid;
+    }
+
+    .action-buttons {
+      color: #4285f4;
+    }
+
+    .reset-buttons {
+      color: #cddc39;
+    }
+
 
 ### Extend vs Mixin. 
 
 Mixin copies properties into the place of call
-Extend copies selector into its rule
+Extend copies its selector into the specified rule.
 
