@@ -36,3 +36,14 @@ To avoid this, we can add a `watch` flag to the end of the script, which tells t
 
     "scripts": {
         "compile:sass": "node-sass sass/main.scss css/style.css -w"
+
+---
+## CLI commands and flags
+---
+**Install**
+`npm install [<package-spec> ...]` will install the specified package
+aliases: `add`, `i`, `in`, `ins`, `inst`, `insta`, `instal`, `isnt`, `isnta`, `isntal`, `isntall`
+
+Flags:
+
+  `-D` is equivalent to `--save-dev`.  Package will appear in your `devDependencies`
