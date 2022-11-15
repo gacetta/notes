@@ -494,6 +494,9 @@ more information here: https://javascript.info/regexp-sticky
 ---
 ## METHODS
 ---
+
+### Test
+### Match
 ### Replace
 
 `string.replace(regex)`
