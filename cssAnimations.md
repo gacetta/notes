@@ -269,3 +269,6 @@ when elements have specified `position` such as `fixed` or `relative`, the offse
       }
     }
 
+
+
+`transform-origin` - sets the point of origin for an element's transformations.
