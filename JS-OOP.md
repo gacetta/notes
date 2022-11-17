@@ -126,69 +126,16 @@ in OOP, Methods are defined on the prototype object, giving access to all instan
             return `${this.firstName} is ${this.age}`;
         }
 
----
-## Use Class Syntax to Define a Constructor Function
----
-**NOTE:** `class` syntax is just syntax, and not a full-fledged class-based implementation of an object-oriented paradigm, unlike in languages such as Java, Python, Ruby, etc.
+We can define them in an object using two types of syntax:
 
-In ES5 we usually define a `constructor` function and use the `new` keyword to instantiate an object:
+    const obj = {
+        methodName = function () {
+            function-body;
+        }
 
-    var SpaceShuttle = function(targetPlanet){
-    this.targetPlanet = targetPlanet;
-    }
-    var zeus = new SpaceShuttle('Jupiter');
-
-The `class` syntax simple replaces the `constructor` function creation:
-
-    class SpaceShuttle {
-    constructor(targetPlanet) {
-        this.targetPlanet = targetPlanet;
-    }
-    }
-    const zeus = new SpaceShuttle('Jupiter');
-
-**NOTE:** the `class` keyword declares a new function, to which a constructor is added.  This constructor is invoked when `new` is called to create a new object.
-
-**BEST PRACTICE -** UpperCamelCase should be used by convention for ES6 class names, as in `SpaceShuttle` used above
-
-
-
-## Getters and Setters
-
-we can access data stored in an object by directly accessing the object properties:
-
-    const data = {
-        location: 'Seattle'
-    }
-
-    console.log(data.location)  // 'Seattle'
-
-However, we can create methods on an object that can customize the behavior (and provide behind the scenes functionality, such as trimming a string or just creating more privacy) by using `getters` and `setters`.  
-
-### Getters
-
-A method that is used to access and retrieve data from an object.  The syntax uses the `get` keyword:
-
-    const data = {
-        get location() {
-            return this._location;
+        methodShorthand() {
+            function-body;
         }
     }
 
-    console.log(data.location)
-
-
-### Setters
-
-A method that is used to set the value of an object property.  The syntax uses the `set` keyword:
-
-    const data = {
-        get location() {
-            return this._location;
-        },  // <------- a comma separates properties (and methods) in an object
-        set location(value) {
-            this._location = value.trim();
-        }
-    }
-
-    data.location = 'Miami'
+---
