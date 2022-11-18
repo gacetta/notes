@@ -346,3 +346,10 @@ Compiled CSS:
 Mixin copies properties into the place of call
 Extend copies its selector into the specified rule.
 
+---
+### Partials and Imports
+---
+
+A partial SASS file is just that, a part of the complete SASS.  These files are conventionally named with an underscore as the first character `_base.scss`
+
+These partials are imported into the main.scss file using `@import "file-path"` such as `@import "base/base"`
