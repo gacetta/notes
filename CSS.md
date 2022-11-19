@@ -884,4 +884,104 @@ select only our custom button::after that follows the checked radio button
     opacity: 1;
     }
 
-hide default radio button with display: none'
+hide default radio button with display: none;
+
+---
+## sliding background on hover
+---
+create background gradient with hard transition (angle, $color1 0%, $color1 50%, $color2 50%) // color can be transparent
+background-size: 200% will make the background only show $color1.  //might need larger size to compensate for angle
+
+:hover { 
+  background-position: 100%;
+  transform: translateX(3px);
+}
+
+---
+## checkbox hack nav menu
+---
+create nav-container at top of `<body>`.  Inside: input type='checkbox', label class='button', background div, and nav container with nav list
+style initial background state - small to be hidden behind the button (width/height: 6rem, position: fixed, z-index)
+style initial button state - larger than background, z-index higher than background
+hide checkbox `display: none`
+style nav container final state - size should fill screen, z-index between the background and button, 
+style nav container initial state with `opacity: 0` and `width: 0`
+`checkbox:checked ~ background {}` selector to select the background when the checkbox is checked
+`checkbox:checked ~ navigation {}` selector to select the navigation when the checkbox is checked
+
+---
+## hamburger menu
+---
+For the label element (our button), the icon is three lines.  The center line will be a span.  The first and last lines will be ::before and ::after elements.
+
+On click, the middle line disappears and the other two lines rotate to form an x.
+
+create span in html to contain the line
+style the span, and ::before/::after selectors with height, width, color and display: inline-block
+position the before and after elements
+on hover, make lines spread a bit
+on checkbox:checked ~ button icon { background-color: transparent; }
+on checkbox:checked ~ button icon::before { rotate(45deg) }
+
+---
+## pop-up component
+---
+create a popup container with popup content inside (can be anywhere in the html)
+style the final state of the container - full screen, fixed, z-index on top
+style the content size and positioning
+update container style to initial state with opacity: 0 and visibility: 0
+
+to activate popup, use the :target selector to give opacity and visibility when targeted
+
+to deactivate popup, add a link that targets another element in the page.  
+When clicked, container returns to initial state
+
+.popup {
+  height: 100vh;
+  width: 100%;
+  background-color: rgba($gray, .8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+
+  opactiy: 0;
+  visibility: hidden;
+
+  &:target {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__content {
+    width: 75%;
+    height: 50rem;
+    box-shadow: 0 1rem, 2.5rem ($black, .2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+    background-color: $white
+  }
+}
+
+---
+## two boxes same height side by side
+---
+parent{ display: table; }, children { display: table-cell; }
+smaller child { vertical-align: middle; }
+
+---
+## creating columns of text
+---
+`column-count: 2`
+`column-gap: 4rem;`
+`column-rule: 1px solid $color`
+
+---
+## hyphenation
+---
+`-moz-hyphens: auto`
+`-ms-hyphens: auto`
+`-webkit-hyphens: auto`
+`hyphens: auto` (requires `lang` attribute of `html` tag)
