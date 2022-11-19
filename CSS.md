@@ -418,6 +418,8 @@ accessed through the `background` property's `linear-gradient()` function.
 
   `gradient_direction` specifies the direction from which color transition starts.  `90deg` makes a horizontal gradient from left to right and `45deg` makes a diagonal gradient from bottom left to top right
 
+**NOTE:** works on `background` and `background-image` but not `background-color`
+
 **Repeating Linear Gradient**
 `repeating-linear-gradient` is similar to `linear-gradient` with one major difference that it repeats the gradient pattern.
 
@@ -739,4 +741,147 @@ The `clip` property is used to define the visible portions of an element. (_depr
 
     /* Box and shape values combined */
     clip-path: padding-box circle(50px at 0 100px);
+
 ---
+## Outline
+---
+Outline property, specified like a border with `thickness style color`, is a line outside of the elements border.  Doesn't take up space so it doesn't affect the document layout. Can be styled with `outline-offset` and `border-radius`
+
+**NOTE:** outline style defaults to `none` for most elements (except `input`) so it will be invisible if style isn't defined.  
+
+---
+### outline-offset
+`outline-offset` sets amount of space between an outline and the edge or border of an element
+
+---
+## Rotating Cards Feature
+---
+Set transition to .8 s or something like that on the parent
+Make two cards (one with ::after) have them stack on stop of each other with position absolute
+
+Have the back card already hidden and rotated 180 deg on rotateY
+Backface-visibility: hidden
+
+On hover (or click), transform rotateY(-180deg) the front card, and rotate the back card back to 0 deg
+Perspective (apply to parent): the lower it is, the more drastic the rotation transformation is
+
+---
+## button effect
+create btn::after hiding behind btn.  Should be exact same size and position as btn, with z-index:-1
+
+set transition property and position: relative on both btn and btn::after
+
+::hover:
+1. btn element - translateY(`-3px`) / alter or add box shadow (increase distance, blur, darkness)
+2. ::after element - increase scale, opacity: 0
+
+on ::active update btn properties - translateY(`-1px`) and box shadow accordingly 
+
+---
+## text gradient effect
+---
+think: background image that is clipped using the text path, text is transparent.
+background-image: gradient
+-webkit-background-clip: text
+color: transparent
+
+---
+## composition effect
+---
+group of overlapped images.  On hover, selected image gets larger with outline, other images get smaller
+
+create container for all images
+img::hover, add outline, scale(1.1), translateY(-3px)
+container:hover img:not(::hover) - scale(.9)
+
+---
+## skewed container effect
+---
+for parent container - skewY(-7deg)
+select all direct children of that parent container and skew the opposite direction 
+use child combiner (direct child selector) - `container > *` selects all direct children of skewed parent container
+
+---
+## Child Combiner (Direct Child Selector)
+---
+The child combinator (`>`) is placed between two CSS selectors. It matches only those elements matched by the second selector that are the direct children of elements matched by the first.
+
+---
+## circle image with text wrapping around it
+---
+a given element must have declared width, height values and be floated.
+-webkit-shape-outside: circle(50% at 50% 50%) // for full support of property
+shape-outside: circle(50% at 50% 50%) // creates a circle for text to wrap around
+-webkit-clip-path: circle(50% at 50% 50%) // full support of property
+clip-path: circle(50% at 50% 50%) // clips element to match the outside path
+
+---
+## filter properties
+---
+similar to `transform`
+`filter: blur(6px) brightness(80%)`
+
+---
+### background video effect
+---
+html
+create container for video
+create video element but don't use `src` attribute
+create source elements for various video types (best practice to include "Browser not supported" as final option)
+
+reduce container opacity, set content to object-fit: cover; 
+
+---
+## solid color gradient
+---
+background-image: linear-gradient(105deg, rgba($white, .9) 0%, rgba($white, .9) 50%, transparent 50%)
+
+---
+## selecting input placeholder
+---
+input::-webkit-input-placeholder { //only works on chrome and safari
+  color: gray;
+} 
+
+---
+## selecting invalid state
+---
+input:focus:invalid {   //if type='email' and you haven't entered properly
+
+}
+
+---
+## input placeholder slide down on entry effect
+---
+format label for final state
+set label initial state
+    input:placeholder-shown + label {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-4rem);
+    }
+
+### Sibling selector
+`+` Selects element that is immediately following (a sibling)
+
+---
+## Custom Styled Radio Buttons
+---
+we can't use css to style radio buttons
+
+solution: create our own buttons and hide the default buttons
+
+create the outside circle
+create an inside cicrle (for when checked) using ::after
+
+set the initial state for the inside circle to opacity: 0;
+
+select only our custom button::after that follows the checked radio button
+
+    button:checked ~ label button::after {   // selects the button::after element 
+                                             // that is a child of the label element 
+                                             // that is a sibling of btn:checked element
+    opacity: 1;
+    }
+
+hide default radio button with display: none'

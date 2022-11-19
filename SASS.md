@@ -353,3 +353,40 @@ Extend copies its selector into the specified rule.
 A partial SASS file is just that, a part of the complete SASS.  These files are conventionally named with an underscore as the first character `_base.scss`
 
 These partials are imported into the main.scss file using `@import "file-path"` such as `@import "base/base"`
+
+---
+## Architecture
+---
+One of the advantages of sass is having multiple files for different aspects of styling your site.  Multiple files in multiple folders makes it easier to organize your css.
+
+**FILE NAMING CONVENTION:** - start with underscore: `_filename.scss`
+
+Folders:
+1. /sass/abstracts - contains abstracted styling: `_variables`, `_mixins`, `_functions`
+2. /sass/base - contains core styling that is referenced throughout site: `_animations`, `_base`(reset, html body selectors), `_typography`, `utilities`
+3. /sass/components - contains components you've created for the page such as `buttons`, `cards`, etc.
+4. /sass/layout - contains layout information for the page such as `header`, `grid`, etc.
+5. /sass/pages - contains an scss sheet for each page.  `_home.scss` might contain styling information for each `section` of that page
+6. /`main.scss` - `main.scss` (no underscore) is used to link all scss pages together.  It should live in the /scss folder.
+
+example `main.scss`
+```
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
+
+@import 'base/animations';
+@import 'base/base';
+@import 'base/typography';
+@import 'base/utilities';
+
+@import 'components/button';
+@import 'components/card';
+@import 'components/composition';
+@import 'components/feature-box';
+
+@import 'layout/grid';
+@import 'layout/header';
+
+@import "pages/home";
+```
