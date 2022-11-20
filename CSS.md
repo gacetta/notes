@@ -985,3 +985,7 @@ smaller child { vertical-align: middle; }
 `-ms-hyphens: auto`
 `-webkit-hyphens: auto`
 `hyphens: auto` (requires `lang` attribute of `html` tag)
+
+
+## filter effects
+backdrop-filter: blur(10px)

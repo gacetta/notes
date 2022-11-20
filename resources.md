@@ -14,5 +14,9 @@ https://linea.io/ - free icons
 https://easings.net/ - animation timing functions
 https://cubic-bezier.com/ - to preview, compare and customize animation timings
 
-<!-- STATS / DATA -->
+<!-- BROWSER INFO -->
 https://gs.statcounter.com/screen-resolution-stats - screen resolution stats worldwide (for determining breakpoints)
+https://caniuse.com/ - check browser support
+
+<!-- CSS -->
+https://css-tricks.com/ - ultimate CSS reference
