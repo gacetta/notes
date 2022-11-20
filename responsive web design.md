@@ -1,17 +1,17 @@
 # Responsive Web Design
-
+---
 ## MEDIA QUERY
-**Responsive web design** refers to web design that is _responsive_ to different devices, namely, different screen sizes.  Layout can be altered using **Media Queries**
-
+---
 A **media query** consists of a _media type_ and/or a _media feature_:
-* **media type** defines the broad category of device for which the media query applies.  Only three types: `all` (default except when using `not` or `only`), `print`, and `screen`
+A **media type** defines the broad category of device for which the media query applies.  Only three types: `all` (default except when using `not` or `only`), `print`, and `screen`
 
-* **media features** (more common) describe a specific characteristc that, when true, executes specified media query: `any-hover`, `any-pointer`, `aspect-ratio`, `color`, `color-gamut`, `color-index`, `display-mode`, `dynamic-range`, `forced-colors`, `grid`, `height`, `hover`, `inverted-colors`, `max-width`, `min-width`, `max-height`, `min-height`, `monochrome`, `orientation`, `overflow-block`, `overflow-inline`, `pointer`, `prefers-color-scheme`, `prefers-contrast`, `prefers-reduced-motion`, `resolution`, `scripting`, `update`, `video-dynamic-range`, `width`.
+**media features** (more common) describe a specific characteristc that, when true, executes specified media query: 
+`any-hover`, `any-pointer`, `aspect-ratio`, `color`, `color-gamut`, `color-index`, `display-mode`, `dynamic-range`, `forced-colors`, `grid`, `height`, `hover`, `inverted-colors`, `max-width`, `min-width`, `max-height`, `min-height`, `monochrome`, `orientation`, `overflow-block`, `overflow-inline`, `pointer`, `prefers-color-scheme`, `prefers-contrast`, `prefers-reduced-motion`, `resolution`, `scripting`, `update`, `video-dynamic-range`, `width`.
 
 **NOTE:** _A media query_ requires either a _media type_ or a _media feature_, though both can be combined using **logical operators** such as `not`, `and`, and `only`.
-
+---
 ## TARGETING MEDIA TYPES
-
+---
 Media types describe the general category of the given device.  Most commonly websites are designed with screens in mind, but you can also target devices such as printers or audio-based screenreaders.  _Very general_
 
 Here's a media query that targets printers:  
@@ -33,7 +33,7 @@ A simple media query targeting a viewport that is equal to or narrower than 900 
 
 ## COMPLEX MEDIA QUERIES
 
-Sometimes a media query is need that depends on multiple conditions, which is where the _logical operators_ (`not`, `and`, `only`) are used.  Furthermore, bultiple media queries can be combined with a _comma-separated list_.
+Sometimes a media query is need that depends on multiple conditions, which is where the _logical operators_ (`not`, `and`, `only`) are used.  Furthermore, multiple media queries can be combined with a _comma-separated list_.
 
 **COMBINING MULTIPLE TYPES OR FEATURES**  
 `@media (min-width: 30em) and (orientation: landscape) {...}`  
@@ -117,7 +117,7 @@ https://gs.statcounter.com/screen-resolution-stats#monthly-202110-202210-bar
 PERFECT - put your breakpoints wherever your design starts to look wrong and out of place (don't think about devices)
 
 ---
-## Responsive Images
+## Responsive Images using HTML
 ---
 The goal of responsive images is to serve the right image to the right screen size and device, in order to avoid downloading unneccesary large images on smaller screens
 
@@ -158,3 +158,14 @@ This isn't enough for the browser to know which image to choose.  We use the `si
     alt="photo 1"
     class="face_pic"
     src="img/face-large.png">           // should always include `src` in case `srcset` isn't supported by browser
+
+---
+## responsive images using CSS
+---
+use @media to target resolution (instead of min-width).  
+
+backgroundimage: image-small.jpg
+
+@media (min-resolution: 1920dpi) and (min-width: 600px) {
+    background-image: image-large.jpg
+}
