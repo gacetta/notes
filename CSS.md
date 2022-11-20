@@ -988,4 +988,4 @@ smaller child { vertical-align: middle; }
 
 
 ## filter effects
-backdrop-filter: blur(10px)
+`backdrop-filter: blur(10px);  // requires -webkit for chrome`

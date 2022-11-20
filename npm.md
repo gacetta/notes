@@ -47,3 +47,40 @@ aliases: `add`, `i`, `in`, `ins`, `inst`, `insta`, `instal`, `isnt`, `isnta`, `i
 Flags:
 
   `-D` is equivalent to `--save-dev`.  Package will appear in your `devDependencies`
+
+
+---
+## npm build process
+---
+main.sass
+|   //COMPILATION
+v
+style.comp.css    icon-font.css
+|  //CONCATENATION  |
+v                   |
+style.concat.css  <-
+|  //PREFIXING
+v
+style.prefix.css
+| //COMPRESSING
+v
+style.css (production code)
+
+modify "scripts" in `package.json`
+`"watch:sass": "node-sass sass/main.scss css/style.css -w"` // watches for changes in main.scss and compiles into style.css
+`"compile:sass": "node-sass sass/main.scss css/style.comp.css"` //compiles all scss files into .comp.css file
+`"concat:css": "concat -o css/style.concat.css css/icon-font.css css/style.comp.css"` //concat icon-font.css and style.comp.css files
+`"prefix:css": "postcss --use autoprefixer -b 'last 10 versions' css/style.comp.css -o css/style.prefix.css"` //POSTCSS autoprefixes for compatibility (`-webkit`, `moz`, etc.)
+`"compress:css": "node-sass css/style.prefix.css css/style.css --output-style compressed"`
+
+NOW that we've set up each step of the build process, we can combine them into one command using the npm package, npm-run-all
+`"build:css": "npm-run-all compile:sass concat:css prefix:css compress:css"`
+
+---
+## combining watch and live-server
+---
+We have to have two terminals open to run both `watch:sass` and `live-server` concurrently.  We can do better:
+
+`"watch:sass": "node-sass sass/main.scss css/style.css -w"` // watches for changes in main.scss and compiles into style.css
+`"devserver": "live-server"`
+`"start": "npm-run-all --parallel devserver watch:sass" `
