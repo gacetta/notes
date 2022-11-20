@@ -75,3 +75,86 @@ Another more complex example:
     }
 }
 ```
+
+---
+## desktop first vs mobile first
+---
+desktop first then media query for smaller screen - easier way to learn
+mobile first then media query for bigger screens - forces us to design for essential elements only
+
+mobile-first pros and cons:
+PROS:
+- 100% optimised for the mobile experience
+- Reduces websites and apps to the absolute essentials
+- Results in smaller, faster, and more efficient products
+- Prioritizes content over aesthetic design, which may be desirable
+
+CONS:
+- The desktop version might feel overly empty and simplistic
+- More difficult and counterintuitive to develop
+- Less creative freedom, making it more difficult to create distinctive products
+- Clients are used to see a desktop version of a site as a prototype
+- Do your users even use the mobile internet?  What's the purpose of your website?
+
+**no matter what you do, always keep both desktop and mobile in mind**
+
+---
+## media queries
+---
+`max-width` = "maximum width at which media query still applies"
+`min-width` = "minimum width at which media query starts to apply"
+
+media queries only at the end since code order matters
+
+---
+## selecting breakpoinst
+---
+BAD - using screenwidth of apple devices.  DON"T USE SPECIFIC DEVICES
+
+GOOD - group similar devices into categories
+https://gs.statcounter.com/screen-resolution-stats#monthly-202110-202210-bar
+
+PERFECT - put your breakpoints wherever your design starts to look wrong and out of place (don't think about devices)
+
+---
+## Responsive Images
+---
+The goal of responsive images is to serve the right image to the right screen size and device, in order to avoid downloading unneccesary large images on smaller screens
+
+3 use cases of responsive images:
+1. resolution switching - decrease image resolution on small screen
+2. density switching - half the image resolution on a @1x screen
+3. art direction - different image on a smaller screen
+
+---
+### Density switching
+---
+for an img element, use `srcset=""` instead of `src=""` to declare the image path
+
+`<img srcset="img/logo-1x.png 1x, img/logo-2x.png 2x">` where the `1x` and `2x` refer to the screen density.  This allows the browser to choose which image to use based on device screen density resolution
+
+---
+### art direction
+---
+similar to a media query, we can select which image to render based on a user-provided conditional.
+To do so we need to use `<picture>` tag as a container and `<source>` tag with `media` attribute (like a media query)
+
+        <picture class="footer__logo">
+            <source srcset="img/logo-small-1x.png 1x, img/logo-small-2x.png 2x" media="(max-width: 37.5rem)">
+            <img srcset="img/logo-1x.png 1x, img/logo-2x.png 2x" alt="Full logo">
+        </picture>
+
+**Note:** we always need to include an <img> in our <picture> parent.
+
+---
+### switching using image width and sizes attribute
+---
+instaed of specifying density `1x` or `2x`, we can specify image width:  `srcset="img/face.png 300w, img/face-large.png 1000w"` 
+
+This isn't enough for the browser to know which image to choose.  We use the `sizes` attribute to inform the browser of the approximate width of the image at different viewport widths.
+
+<img srcset="img/face.png 300w, img/face-large.png 1000w"
+    sizes="(max-width: 900px) 20vw, (max-width:600px) 30vw, 300px"     // final default value if none of the conditions apply
+    alt="photo 1"
+    class="face_pic"
+    src="img/face-large.png">           // should always include `src` in case `srcset` isn't supported by browser

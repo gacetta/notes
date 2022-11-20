@@ -390,3 +390,84 @@ example `main.scss`
 
 @import "pages/home";
 ```
+
+---
+## media queries in SASS
+---
+media queries can be nested just like selectors
+
+    .story {
+      width: 75%;
+
+      @media (max-width: 600px) {
+        width: 50%;
+      }
+    }
+
+compiles to:
+
+    .story {
+      width: 75%;
+    }
+    @media (max-width: 600px) {
+      .story {
+        width: 75%;
+      }
+    }
+
+---
+### mixin media query with @content
+
+Declaration:
+
+    @mixin respond-phone {
+      @media (max-width: 600px) { @content }
+    }
+
+Call:
+
+    @include respond-phone {
+      font-size: 50%;
+    }
+
+// MEDIA QUERY MANAGER
+/*
+0-600px:    phone
+600-900px:  Tablet portrait
+900-1200px: Tablet landscape
+[1200-1800]: is where our normal styles apply
+1800px+:    Big Desktop
+*/
+
+/*
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+*/
+
+**`ems` and `rems`aren't affected by the root font-size setting.  They are always equal to the browser font-size (default 16px)**
+
+converting px to ems we get:
+
+    @mixin respond($breakpoint) {
+      @if $breakpoint == phone {
+        @media (max-width: 37.5em) { @content }   //600px
+      }
+      @if $breakpoint == tab-port {
+        @media (max-width: 56.25em) { @content }  //900px
+      }
+      @if $breakpoint == tab-land {
+        @media (max-width: 75em) { @content }     //1200px
+      }
+      @if $breakpoint == big-desktop {
+        @media (max-width: 112.5em) { @content }  //1800px
+      }
+    }
+
+---
+### Media query design / implementation approach
+---
+ORDER: Base + typography > general layout + grid > page layout > components
+
