@@ -989,3 +989,14 @@ smaller child { vertical-align: middle; }
 
 ## filter effects
 `backdrop-filter: blur(10px);  // requires -webkit for chrome`
+
+---
+## selection color effect
+---
+`::selection` can be used to modify the text selection color on the page
+
+---
+## media only screen
+---
+`@media only screen and (condition)` - `only screen` means the media query applies only to screens.  If someone were to print out the page, the query wouldn't apply.
+

@@ -166,3 +166,13 @@ backgroundimage: image-small.jpg
 @media (min-resolution: 1920dpi) and (min-width: 600px) {
     background-image: image-large.jpg
 }
+
+---
+## identify touch devices
+---
+max-width isn't the best way to check if we're on a mobile device or desktop (ipad pro landscape for example)...
+
+We can use the (hover: ) condition in the query.
+
+@media only screen and (max-width: 56%),
+only screen and (hover: none) {} . // opposite is hover: hover

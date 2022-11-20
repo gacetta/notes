@@ -306,3 +306,8 @@ It should always be the first child of `<table>` though it may be positioned usi
 `<th>` element indicates a header cell
 
 ---
+### meta tag name="viewport"
+---
+`<meta name="viewport" content="width=device-width, initial-scale=1.0">` tells the browser that the website should be rendered with a width of the device.
+
+if we don't specify this, the browser will zoom out to the largest possible version of the page.
