@@ -160,3 +160,43 @@ The CSS property `align-self` allows you to adjust each item's alignment individ
 ---
 ## JONAS FLEXBOX
 ---
+Spacing 4 items to item1/item2/space/item3/item4 you can use `margin-right: auto;` on item2.
+
+If you apply auto margins to a flex item, that item will automatically extend its specified margin to occupy the extra space in the flex container, depending on the direction in which the auto-margin is applied.
+
+Setting the `margin` property on a flex child will push the child away from that direction. Set `margin-left` to `auto`, the child will push right. Set `margin-top` to `auto` and the child will push to the bottom.
+
+---
+## adding svg icons as list decoration in CSS
+---
+use icon.svg instead of sprite.svg
+
+list-style: none;
+
+.list-item::before {
+  content='';
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  background-image: url(svg-icon-path/icon.svg);
+  background-size: cover;
+}
+
+### using masks
+.list-item::before {
+  content='';
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+
+  background-color: var(--color-primary);
+  -webkit-mask-image: url(svg-icon-path/icon.svg);
+  -webkit-mask-size: cover;
+}
+
+---
+## Border inside vs border outside
+---
+
+`box-sizing: border-box` - border is included on element sizing (border inside);
+`box-sizing: content-box` - border is added to element sizing (border outside);
