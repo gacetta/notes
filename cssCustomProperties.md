@@ -206,3 +206,8 @@ There are several possible strategies for forcing a recalc of the calculating ru
             --hue: var(--backInBlack);
         }
     } 
+
+---
+## Exceptions
+---
+CSS custom properties aren't supported in media queries conditionals.  Use SASS variables.
