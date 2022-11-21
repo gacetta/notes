@@ -41,7 +41,7 @@ The CSS property `align-items` specifies how to align and space items along the 
 * `flex-start` - aligns items to the start of the flex container.  Items are only as large as their content.
 * `flex-end` - aligns items to the end of the flex container.  Items are only as large as their content.
 * `center` - aligns items to the center. Items are only as large as their content.
-* `stretch` - stretch the items to fill the flex container.  Items are uniform in size.
+* `stretch` - stretch the items to fill the flex container.  Items are uniform in size.(**DEFAULT VALUE**)
 * `baseline` - align items to their baselines.  A text concept, this property aligns the baseline of the first line of text for each element.  
 
 ## ALIGN-CONTENT
@@ -54,7 +54,7 @@ The CSS property `align-content` determines the spacing between lines (while `al
 * `center` - lines are packed at the center of the container
 * `space-between` - lines display with equal spacing between them
 * `space-around` - lines display with equal spacing around them
-* `stretch` - lines are stretched to fit the container
+* `stretch` - lines are stretched to fit the container (**DEFAULT VALUE**)
 
 **NOTE:** if there is only one line, `align-content` has no effect.
 
@@ -112,6 +112,29 @@ For example:
 * `flex-shrink: 0;`
 * `flex-basis: 10px;`
 
+    /* Keyword values */
+    flex: auto;
+    flex: initial;
+    flex: none;
+
+    /* One value, unitless number: flex-grow
+    flex-basis is then equal to 0. */
+    flex: 2;
+
+    /* One value, width/height: flex-basis */
+    flex: 10em;
+    flex: 30%;
+    flex: min-content;
+
+    /* Two values: flex-grow | flex-basis */
+    flex: 1 30px;
+
+    /* Two values: flex-grow | flex-shrink */
+    flex: 2 2;
+
+    /* Three values: flex-grow | flex-shrink | flex-basis */
+    flex: 2 2 10%;
+
 The default property settings are: `flex: 0 1 auto`
 
 ## ORDER
@@ -121,12 +144,19 @@ The CSS property `order` is used to tell CSS the order of how flex items appear 
 
 The `order` property takes numbers as values, and negative numbers can be used.  The lower the value, the earlier that item will appear.
 
+(**DEFAULT VALUE**) is `0`.
+
 ## ALIGN-SELF
 _flex item property_
 
-The CSS property `align-self` allows you to adjust each item's alignment individually instead of setting them all at once.  
+The CSS property `align-self` allows you to adjust each item's alignment individually along the _cross axis_.
 
 **NOTE:** this is useful since `float`, `clear`, and `vertical-align` do not work on flex items. 
 
 `align-self` aceepts the same values as `align-items` and will override any value set by the `align-items` property.
 
+(**DEFAULT VALUE**) - `auto`
+
+---
+## JONAS FLEXBOX
+---

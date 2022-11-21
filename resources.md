@@ -7,8 +7,9 @@ https://coverr.co/ - free stock video footage
 <!-- TEXT -->
 https://loremipsum.io/ - lorem ipsum generator
 
-<!-- ICONS -->
-https://linea.io/ - free icons
+<!-- ICONS / SVG -->
+https://linea.io/ - free icons (icon-font)
+https://icomoon.io/ - free svg icons
 
 <!-- ANIMATIONS -->
 https://easings.net/ - animation timing functions

@@ -14,6 +14,12 @@ Custom properties are scoped to the element(s) they are declared on.  Thus, CSS 
 A **FALLBACK VALUE** can be assigned in the instance the variable isn't found: 
 * `background: var(--penguin-skin, black);`  
 
+why css variables vs sass variables?
+- can be manipulated in JS
+- can edit them in dev tools
+- easier to use css variables in the calc function 
+- css variables cascade and are inherited
+
 ---
 ## Browser Fallbacks
 ---

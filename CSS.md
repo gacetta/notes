@@ -551,6 +551,8 @@ by default, the element coming later in HTML markup will appear on top of the ot
 
 the `z-index` property can specify the order of stacking by assigning a `z-index` value (an integer).  The higher the value, the higher in the stack that element is.
 
+**NOTE:** z-index only works on an element with specified position
+
 **FLOAT PROPERTY**
 An alternative to position, the `float` property removes an element from the normal flow and pushes it either to the `left` or the `right` of it's containing parent element.  It is commonly used with `width` property to specify how much horizontal space the floated element requires
 
@@ -999,4 +1001,9 @@ smaller child { vertical-align: middle; }
 ## media only screen
 ---
 `@media only screen and (condition)` - `only screen` means the media query applies only to screens.  If someone were to print out the page, the query wouldn't apply.
+
+---
+## hover effect - Left Border Line -> Delayed Fill Sweep.  Close from top & bottom on remove.
+---
+create a left line using ::before.  scaleY(0) on initial state. scaleY(1) on :hover::before state
 

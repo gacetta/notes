@@ -1,5 +1,20 @@
 # Css Animations
 ---
+`transition:` a shorthand property to specify the transition properties `transition-property`, `transition-duration`, `transition-timing-function`, and `transition-delay`.
+
+  /* property name | duration | easing function | delay */
+
+all transition properties can be specified with `all`:
+
+  /* Apply to all changed properties */
+  transition: all 0.5s ease-out;
+
+multiple transition properties can be specified with comma-separated-list.  
+
+  /* Apply to 2 properties */
+  transition: margin-right 4s, color 1s;
+
+
 ## KEYFRAMES 
 ---
 The `@keyframes` rule controls what happens during an animation.  

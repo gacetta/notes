@@ -178,3 +178,55 @@ class ClassName {
       }
     }
 ---
+## instanceof
+---
+`instanceof` operator allows you to compare an object to a constructor, returning a boolean whether or not that object was created with the constructor
+
+---
+## constructor property
+---
+an object prototype has a `constructor` property that can be used, like `instanceof` to check how it was constructed.  However this property can be overridden, so it's best to use `instanceof`.
+
+If you manually set the prototype to a new object, it erases the `constructor` property so it can be useful to define the property when doing so.
+
+---
+## isPrototypeOf
+---
+`isPrototypeOf` method returns a boolean if the passed object inherits its prototype from the Prototype constructor function.
+
+`Bird.prototype.isPrototypeOf(duck);` // true
+
+---
+## Mixin
+---
+A mixin allows other objects to use a collection of functions.
+
+    let flyMixin = function(obj) {
+      obj.fly = function() {
+        console.log("Flying, wooosh!");
+      }
+    };
+
+The `flyMixin` takes any object and gives it the `fly` method.
+
+    let bird = {
+      name: "Donald",
+      numLegs: 2
+    };
+
+    let plane = {
+      model: "777",
+      numPassengers: 524
+    };
+
+    flyMixin(bird);
+    flyMixin(plane);
+
+Here bird and plane are passed into flyMixin, which then assigns the fly function to each object. 
+Now bird and plane can both fly:
+
+    bird.fly();   // Flying, wooosh!
+    plane.fly();  // Flying, wooosh!
+
+
+
