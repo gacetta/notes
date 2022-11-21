@@ -14,6 +14,8 @@ multiple transition properties can be specified with comma-separated-list.
   /* Apply to 2 properties */
   transition: margin-right 4s, color 1s;
 
+  **NOTE:** transition doesn't work on background-gradient.
+
 
 ## KEYFRAMES 
 ---

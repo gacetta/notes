@@ -1005,5 +1005,13 @@ smaller child { vertical-align: middle; }
 ---
 ## hover effect - Left Border Line -> Delayed Fill Sweep.  Close from top & bottom on remove.
 ---
-create a left line using ::before.  scaleY(0) on initial state. scaleY(1) on :hover::before state
+create a left line using ::before.  width: 3px, scaleY(0) on initial state. width:100%, scaleY(1) on :hover::before state
 
+---
+## button with slide text switch effect
+---
+create a button containing two spans, a visible and invisible class.
+both classes - display: inline-block
+invisible - position: absolute, top: -100%
+btn:hover visible - transform: translateY(100%);
+btn:hover invisible - top:0
