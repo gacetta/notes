@@ -6,6 +6,7 @@ https://coverr.co/ - free stock video footage
 
 <!-- TEXT -->
 https://loremipsum.io/ - lorem ipsum generator
+https://css-tricks.com/snippets/html/glyphs/ - html glpyhs
 
 <!-- ICONS / SVG -->
 https://linea.io/ - free icons (icon-font)
