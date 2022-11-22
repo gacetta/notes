@@ -10,6 +10,7 @@ The CSS property `display: grid` turns any HTML element into a grid container.
 _grid container property_
 
 ### GRID-TEMPLATE-COLUMNS
+_grid container property_
 The CSS property `grid-template-columns` will define the column structure of the grid.
 
 The following creates two columns 50px wide:
@@ -41,9 +42,9 @@ _grid container property_
 
 Absolute and relative units such as `px` or `em` can be used to define column and row size.  There are a few other units available in CSS grid:
 
-* `fr` - sets the column or row to a fraction of the available space
+* `fr` - fractional - sets the column or row to a fraction of the available space
 * `auto` - sets the column or row to the width or height of its content automatically
-* `%` - adjusts the column or row to the percent width of its container
+* `%` - adjusts the column or row to the percent width of its container.  Doesn't take into account the gap.
 
 ---
 
@@ -130,9 +131,8 @@ The above code will make the item start at the first horizontal line of the grid
     `grid-row: 1 / span 2;`
 
 ---
-
 ## HORIZONTAL AND VERTICAL ALIGNMENT
-
+---
 In CSS grid, the content of each item is located in a box which is referrred to as a _cell_.
 
 ### HORIZONTALLY: JUSTIFY-SELF
@@ -148,22 +148,19 @@ Likewise, the CSS property `align-self` is used to align the content's position 
 ### ALIGN ALL ITEMS HORIZONTALLY: JUSTIFY-ITEMS
 _grid container property_
 
-If `justify-self` is used to adjust the alignment of a single item, then the CSS property `justify-items` adjusts the alignment of all items in the CSS grid. 
+If `justify-self` is used to adjust the horizontal alignment of a single item, then the CSS property `justify-items` adjusts the horizontal alignment of all items in the CSS grid. 
 
 ### ALIGN ALL ITEMS VERTICALLY: ALIGN-ITEMS
 _grid container property_
 
-If `align-self` is used to adjust the alignment of a single item, then the CSS property `align-items` adjusts the alignment of all items in the CSS grid. 
+If `align-self` is used to adjust the vertical alignment of a single item, then the CSS property `align-items` adjusts the vertical alignment of all items in the CSS grid. 
 
 ### ACCEPTED VALUES
 There are several accepted values for `justify` and `align` properties:
 
-* `stretch` - **DEFAULT VALUE IF NOT DEFINED** makes the content fill the whole width of the cell.
-
+* `stretch` - **DEFAULT** content fills the whole width of the cell.
 * `start` - aligns the content at the left of the cell
-
 * `center` - aligns the content in the center of the cell
-
 * `end` - aligns the content at the right of the cell
 
 ---
@@ -340,3 +337,95 @@ If it is omitted, a "sparse" algorithm is used, where the placement algorithm on
         place-items: first baseline legacy;
         place-items: last baseline normal;
         place-items: stretch legacy;
+
+---
+## Naming Lines (or Tracks)
+---
+`grid-template-rows: [header-start] 1fr [header-end box-start] 3fr [box-end main-start] 5fr [main-end footer-start] 1fr [footer-end];`
+
+implementing with `repeat`
+
+`grid-template-columns: repeat(3, [col-start] 1fr [col-end]) 200px [grid-end];`
+
+this would create conflicting line names (multiple `col-start` columns).  So CSS automatically assigns numbers resulting in:
+`col-start 1` `col-end 1`
+`col-start 2` `col-end 2`
+`col-start 3` `col-end 3`
+
+**NOTE:** lines can have multiple names.  in the above convention, separate names with a space
+
+--
+### Using Line Names
+---
+  
+`grid-row: box-start / main-end;`
+`grid-column: col-start 1 / col-end 1` // selects just the first column (lines 1 / 2)
+
+---
+## Naming Grid Areas - Good for 4x4 or 5x5 layouts
+---
+Give EACH cell a name using strings.  
+The first string names the first row.  The next string names the next row.
+Each cell name is separated by a space.
+Don't forget `;` at the end.
+
+```
+grid-template-areas: "head head head head"
+                     "box box box side"
+                     "main main main side"
+                     ". foot foot .";
+```
+we can have empty or unnamed boxes in our grid using `.` in place of a name
+
+**NOTE:** if there isn't a name or `.` for EVERY cell, then the grid will break.
+
+then to position an item in a named area:
+.header {
+    grid-area: head;
+}
+
+---
+`grid-auto-flow` styles the flow of the filling of columns.
+- `row` will fill row 1 from L to R before moving to row 2
+- `column` will fill column 1 Top to Bottom before moving to column 2
+
+`row dense` and `column dense` will change the fill of cells to pack more densely.
+
+---
+## Implicit vs Explicit Grids
+---
+The `explicit grid` is the grid space that you create with `grid-template-rows` and `grid-template-column`
+
+If you have more items than you have space in the grid, CSS adds more space to fit the remaining items.  This added space is known as the `implicit grid`.
+
+To style the implicit grid, use `grid-auto-rows` and `grid-auto-columns`
+
+---
+## Aligning tracks
+---
+`justify-content` center | start | end | space-between | space-around | space-evenly
+`align-content:` center | start | end | space-between | space-around | space-evenly
+
+---
+## Min-content, Max-content, and MinMax
+---
+`max-content` makes largest size possible to fit content. (And minimize line breaks)
+`min-content` makes the minimum size possible to fit content (line breaks OK, not hyphenating words)
+
+`grid-template-rows: repeat(2, minmax(150px, min-content))` - specifies the min and max value for a track (in this case height).  minimum of 150px but as high as needed to fit content
+
+---
+## note about fractional unit
+---
+`fr` will fill up a fractional space but will never be smaller than the `min-content` of a row or column
+
+---
+## auto fit and auto fill
+---
+`auto-fit` and `auto-fill` are values that can replace the number value in the `repeat()` function.
+
+`auto-fill` FILLS the row with as many columns as it can fit. So it creates implicit columns whenever a new column can fit, because it’s trying to FILL the row with as many columns as it can. The newly added columns can and may be empty, but they will still occupy a designated space in the row.
+
+`auto-fit` FITS the CURRENTLY AVAILABLE columns into the space by expanding them so that they take up any available space. The browser does that after FILLING that extra space with extra columns (as with auto-fill ) and then collapsing the empty ones.
+
+`grid-template-columns: repeat(auto-fit, min-max(200px, 1fr));`
