@@ -400,6 +400,8 @@ If you have more items than you have space in the grid, CSS adds more space to f
 
 To style the implicit grid, use `grid-auto-rows` and `grid-auto-columns`
 
+**NOTE:** negative values in `grid-template-rows` and `grd-template-columns` target the last line of an explicity specified grid.  You can't target implicit lines.
+
 ---
 ## Aligning tracks
 ---
@@ -429,3 +431,17 @@ To style the implicit grid, use `grid-auto-rows` and `grid-auto-columns`
 `auto-fit` FITS the CURRENTLY AVAILABLE columns into the space by expanding them so that they take up any available space. The browser does that after FILLING that extra space with extra columns (as with auto-fill ) and then collapsing the empty ones.
 
 `grid-template-columns: repeat(auto-fit, min-max(200px, 1fr));`
+
+https://css-tricks.com/auto-sizing-columns-css-grid-auto-fill-vs-auto-fit/
+
+---
+## Designing with Grid
+---
+start big picture how many sections and how are the rows are defined
+keep it responsive by using `vh` `vw` and `min-content` to define track sizes
+for columns, it's helpful to have several columns so you can layout your grid on those
+`grid-template-columns: 8rem repeat(8, minmax(min-content 14rem));`
+
+Often we just define the columns, and not the rows.
+
+LOOK UP - grid `subgrids` value
