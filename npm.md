@@ -84,3 +84,6 @@ We have to have two terminals open to run both `watch:sass` and `live-server` co
 `"watch:sass": "node-sass sass/main.scss css/style.css -w"` // watches for changes in main.scss and compiles into style.css
 `"devserver": "live-server"`
 `"start": "npm-run-all --parallel devserver watch:sass" `
+
+we can use `--browser:` to tell this project to run live-server in a specific browser (if we want to use the firefox dev tools for grid, say)
+`"devserver": "live-server --browser:firefox"`
