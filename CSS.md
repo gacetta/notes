@@ -1015,3 +1015,9 @@ both classes - display: inline-block
 invisible - position: absolute, top: -100%
 btn:hover visible - transform: translateY(100%);
 btn:hover invisible - top:0
+
+---
+## Background img with color overlay effect
+---
+use a linear gradient with the same color as both properties
+background-image: linear-gradient(rgba($same-color, .5), rgba($same-color, .5)), url(img.jpg);
