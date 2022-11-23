@@ -820,8 +820,46 @@ clip-path: circle(50% at 50% 50%) // clips element to match the outside path
 ---
 ## filter properties
 ---
-similar to `transform`
+similar to `transform`, requires `filter:` followed by `filter function`
 `filter: blur(6px) brightness(80%)`
+
+---
+### blur
+
+`filter: blur(radius)` - applies a Gaussian blur to the input image. 
+`radius` is specified as `length` where larger value creates more blur, `0` leaves image unchanged.
+
+---
+### brightness
+`filter: brightness(amount)` - applies linear multiplier to the input image, making it appear brighter or darker.  
+`amount` is specified as `number` or `percentage`.  <100% darkens. > 100% brightens. (200% is double brightness).  0% completely black. 100% no effect.
+
+---
+### contrast
+`filter: contrast(amount)` - adjusts contrast of input image.
+`amount` is specified as a `number` or `percentage`. <100% decreases contrast. >100% increases. 0% completely gray. 100% no effect.
+
+---
+### drop-shadow
+`filter: drop-shadow(offset-x offset-y blur-radius color)` - applies drop shadow effect to input image.
+`parameter` is a `<shadow>` as defined in `box-shadow` property.
+
+`offset-x` and `offset-y` (REQUIRED) - `length` values to determine shadow offset
+`blur-radius` (OPTIONAL) - if unspecified, defaults to `0`.
+`color` (OPTIONAL) - if unspecified, uses value of `color` property.
+
+---
+### grayscale
+`filter: grayscale(amount)` - converts input image to grayscale.
+`amount` is specified as a `number` or `percentage`. 100% is completely grayscale. 0% no effect.
+
+---
+### hue rotate
+`filter: hue-rotate(angle)` - rotates the hue of an element and its content.
+`angle` - the relative change in hue of the input sample. 0deg no effect. Positive rotation increases `hue` value, negative rotation decreases `hue` value.
+
+---
+###
 
 ---
 ### background video effect
