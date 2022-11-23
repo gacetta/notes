@@ -10,7 +10,7 @@ https://css-tricks.com/snippets/html/glyphs/ - html glpyhs
 
 <!-- ICONS / SVG -->
 https://linea.io/ - free icons (icon-font)
-https://icomoon.io/ - free svg icons
+https://icomoon.io/app/#/select/ - free svg icons
 
 <!-- ANIMATIONS -->
 https://easings.net/ - animation timing functions
