@@ -821,6 +821,10 @@ clip-path: circle(50% at 50% 50%) // clips element to match the outside path
 ## filter properties
 ---
 similar to `transform`, requires `filter:` followed by `filter function`
+`filter: blur(6px)`
+
+filter effects can be combined by calling each filter function separated by a space.
+
 `filter: blur(6px) brightness(80%)`
 
 ---
@@ -859,7 +863,25 @@ similar to `transform`, requires `filter:` followed by `filter function`
 `angle` - the relative change in hue of the input sample. 0deg no effect. Positive rotation increases `hue` value, negative rotation decreases `hue` value.
 
 ---
-###
+### invert
+`filter: invert(amount)` - inverts the color samples in the input image.
+`amount` is specified as a `number` or `percentage`.  100% is completely inverted.  0% no effect.
+
+---
+### opacity
+`filter: opacity(amount)` - applies transparency to the samples in the input image.
+`amount` is specified as a `number` or `percentage`. 0% completely transparent. 100% no effect.
+
+---
+### saturate
+`filter: saturate(amount)` super-saturates or desaturates the input image.
+`amount` is specified as a `number` or `percentage`.  <100% desaturates image.  >100% super-saturates image. 0% completely unsaturated. 100% no effect.
+
+---
+### sepia
+`filter: sepia(amount)` converts the input image to sepia.
+`amount` is specified as a `number` or `percentage`.  100% completely sepia. 0% no effect.
+
 
 ---
 ### background video effect
