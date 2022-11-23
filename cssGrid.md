@@ -449,7 +449,7 @@ LOOK UP - grid `subgrids` value
 ---
 ## Overlapping
 ---
-define same grid cell for both elements (requires both row and column).  
+define same grid cell for both elements (requires both row and column for both elements).  
 set z-index as desired.
 
 ---
@@ -457,3 +457,6 @@ set z-index as desired.
 ---
 determine rows and columns based on smallest unit you want displayed
 images wrapped in containers with `width & height: 100%`, `object-fit: cover;` & `display: block`
+
+---
+grid or flex containers and items ignore certain properties: `float`, `display: inline-block`, `display: table-cell`, and `vertical-align`
