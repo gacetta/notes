@@ -445,3 +445,15 @@ for columns, it's helpful to have several columns so you can layout your grid on
 Often we just define the columns, and not the rows.
 
 LOOK UP - grid `subgrids` value
+
+---
+## Overlapping
+---
+define same grid cell for both elements (requires both row and column).  
+set z-index as desired.
+
+---
+## Grid Gallery
+---
+determine rows and columns based on smallest unit you want displayed
+images wrapped in containers with `width & height: 100%`, `object-fit: cover;` & `display: block`
