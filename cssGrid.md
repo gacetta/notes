@@ -35,6 +35,8 @@ The following would create 5 columns and 5 rows equally spaced:
 
     grid-template: 20% 20% 20% 20% 20% / 20% 20% 20% 20% 20%;
 
+**NOTE:** Jonas doesn't use... can get confusing with large grids.
+
 ---
 
 ## CSS GRID UNITS
