@@ -55,3 +55,24 @@ Maps can be iterated using `for...of` loops:
     });
     // 0 = zero
     // 1 = one
+---
+## methods
+---
+### clear
+`Map.prototype.clear()` removes all key-value pairs from the `Map` object
+
+###
+`Map.prototype.delete(key)` removes the specified element from a `Map` object by key.
+
+### has
+`Map.prototype.has(key)` returns a boolean indicating whether an element with the specified key exists or not.
+
+### keys
+`Map.prototype.keys()` returns a new Iterator object that contains keys for each element in `Map` object in insertion order
+
+### values
+`Map.prototype.values()` returns a new Iterator object that contains the value for each element in the `Map` object in insertion order.
+
+### entries
+`Map.prototype.entries()` Returns a new Iterator object that contains a two-member array of [key, value] for each element in the Map object in insertion order.
+
