@@ -316,3 +316,16 @@ if we don't specify this, the browser will zoom out to the largest possible vers
 ## Superscript Element
 ---
 `<sup>` gives us superscript like squared or exponents
+
+## Html Entities
+
+An HTML entitiy is a piece of text `string` that begins with ampersand and ends with semicolon.  They're used to display reserved characters which would otherwise be interpolated as HTML code or invisible characters.
+
+copyright symbol (©) is `&copy;`
+ampersand (&) is `&amp;`
+less than (<) is `&lt;`
+greater than (>) is `&gt;`
+quote (") is ``&quot;`
+non breaking space `&nbsp;`
+apostrophe (') `&apos;`
+registered trademark (®) `&reg;`

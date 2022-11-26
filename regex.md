@@ -6,6 +6,7 @@ Regex is short for `Regular Expression`. It helps to match, find or manage text.
 ## BASIC MATCHERS
 ---
 
+
 ### Basic Regex Search
 
 The character or word we want to find is written directly. It is similar to a normal search process. For example, to find the word `curious` in the text, type the same. (case sensitive)
