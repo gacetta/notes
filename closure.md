@@ -12,15 +12,24 @@ as soon as a function is created with a creator function, local memory is attach
 
 For example:
 Standard Version:
+    
+    function unCurried(x, y) {
+      return x + y;
+    }
 
-    const add = (a, b) => a + b
+Curried Version:
 
-Currried Version:
-
-    const createAdder = (a) => {
-      return (b) => {
-        return a + b;
+    function curried(x) {
+      return function(y) {
+        return x + y;
       }
     }
 
-    const add10 = createAdder(10);
+    const curried = x => y => x + y
+
+Sample calls:
+
+    curried(1)(2) // 3
+
+    const funcForY = curried(1);
+    console.log(funcForY(2)); // 3
