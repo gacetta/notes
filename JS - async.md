@@ -1,16 +1,35 @@
 # ASYNCRONOUS FUNCTIONS IN JAVASCRIPT
 
-**synchronous vs asynchronous**  
+JS is single threaded - one command runs at a time
+
+JS Engine has 3 main parts:
+1. Thread of execution
+2. Memory/Variable Environment
+3. Call Stack
+
+Need to add some new components
+- web browser APIs / Node background threads
+- Promises
+- Callback / Task queue and micro task queue
+- Event Loop
+
+---
+## synchronous vs asynchronous
+---
 _synchronous_ code runs in a sequence.  javascript is a single threaded code that can only execute one operation at any given time.  Thus, in _synchronous_ code, each operation must wait for the previous one to complete before executing
 
 _asynchronous_ code runs in parallel.  Although JS is single threaded, certain operations can run in the background.  Thus, an operation can occur while another one is still being processed.  Asynchronous code is preferable in situations where JS execution can be blocked indefinitely.  Examples of this are network requests, long-running calculations, etc.  Something like `setTimeout()` is executed in JS, and then when completed, is added to the callback queue, or task queue.  These are First-in-first-out data structures.  The event loop continually checks the call stack, the browser APIs, and the callback queue.  When the JS call stack is empty, empty the callback queue to the callstack.
 
 ---
 ## XML HTTP REQUEST
+---
+// request - what we want to do
+// response - what was actually done
+
 
 **XML, or Extensible Markup Language** is a markup language similar to HTML.  It doesn't _DO_ anything: `XML` is designed to carry and store data, wheras `HTML` is designed to display data
 
-There are several steps to creating a success request using XML Http Request:
+Steps for XML Http Request:
 
 1. **Create New XML Http Request**  
     `XMLHttpRequest()` used to request data from a web server.  This constructor must be used with the `new` keyword:
@@ -20,7 +39,7 @@ There are several steps to creating a success request using XML Http Request:
     **Note:** Capitalization is important
     
 
-2. **Create an event listener**
+2. **Create event listener**
     `addEventListener` takes two arguments (`event`, `function`).  
     
     In this case, we pass `'readystatechange'` as the first arg to execute code every time the status of the XMLHttpRequest object changes.
@@ -30,6 +49,7 @@ There are several steps to creating a success request using XML Http Request:
         request.addEventListener('readystatechange', (e) => {
             // code goes here to deal with successful or failed request
         })
+
 3. **Check for successful request**
 
     `if (e.target.readyState === 4 && e.target.status === 200)` checks `readyState` and `status` to determine if the request was successful.  
@@ -45,13 +65,9 @@ There are several steps to creating a success request using XML Http Request:
     The `readyState` of an `XMLHttpRequest` has 5 potential values.  State `4` is the readyState of completion.
 
     0 - Unsent - Client has been created.  `open()` not called yet.
-    
     1 - Opened - `open()` has been called.
-
     2 - Headers_Received - `send()` has been called, and headers & status are available.
-
     3 - Loading - Downloading; responseText holds partial data.
-
     4 - Done - The operation is complete.
 
     The complete eventListener code:
@@ -66,11 +82,11 @@ There are several steps to creating a success request using XML Http Request:
 4. **Open Request**  
     The `XMLHttpRequest` method `open()` initializes a newly-created request
 
-        open(method, url, async, user, password)
+        XMLHttpRequest.open(method, url, async, user, password)
 
     `method` - the HTTP request method to use.  `GET`, `POST`, `PUT`, `DELETE`, etc.  **NOTE:** must be all caps  
 
-    `url` - a string representing the URL to sent the request to  
+    `url` - a string representing the URL of where to send the request
 
     `async` - An **optional** Boolean parameter, defaulting to `true`, indicating whether or not to perform the operation asynchronously. If this value is `false`, the `send()` method does not return until the response is received. If `true`, notification of a completed transaction is provided using event listeners. This must be `true` if the `multipart` attribute is `true`, or an exception will be thrown.  
 
@@ -104,23 +120,40 @@ Complete code for XML request:
     request.send();
 ---
 ## PROMISES
+---
+Introduced in ES6 
 
-You use a promise to make a promise to do something, usually asynchronously.  When the task completes, you either fulfill your promise or fail to do so.
+The `Promise` object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
 
-`promise` is a constructor function, so you need to use the `new` keyword to create one.  It takes a function as its argument, with two parameters - `resolve` and `reject`.  These are methods used to determine the outcome of the promise:
+a two-pronged 'facade' function that both:
+1. initiates background web browser work
+2. returns a placehold object (`promise`) immediately in JS
+
+    const futureData = fetch('https://twitter.com/will/tweets/1')
+
+    futureData.then(display)
+
+    futureData.then(display).then(grabComments).then......etc
+
+`promise` is a constructor function, needs `new` keyword to create.  It takes a callback function as its argument, with two parameters - `resolve` and `reject`.  These are methods used to determine the outcome of the promise:
 
     const myPromise = new Promise((resolve, reject) => {
 
     });
 
-A `promise` has three (4) states:
-1. `fulfilled` - action related to the promise succeeded
-2. `rejected` - action related to the promise failed
-3. `pending` - promise state still undetermined, i.e. not fulfilled nor rejected yet
-4. `settled` - promise has fulfilled or rejected
+A promise object has three keys:
+1. value: the eventual value.  Until that is resolved, has value of `undefined`
+2. status: either `pending`, `fulfilled` or `settled`
+3. onFulfilled: `[ ]` //holds the function definition that will be handled once the status has changed from pending to fulfilled
 
-`resolve` is used when you want your promise to succeed  
-`reject` is used when you want your promise to fail
+Statuses or states:
+- `fulfilled` - action related to the promise succeeded
+- `rejected` - action related to the promise failed
+- `pending` - promise state still undetermined, i.e. not fulfilled nor rejected yet
+- `settled` - promise has fulfilled or rejected
+
+`resolve` is used when your promise succeeds  
+`reject` is used when your promise fails
 
     const myPromise = new Promise((resolve, reject) => {
     if(condition here) {
@@ -132,8 +165,9 @@ A `promise` has three (4) states:
 
 The example above uses strings for the argument of these functions, but it can really be anything.  Often, it might be an object, that you would use data
 
-### HANDLING A FULFILLED PROMISE WITH THEN
-
+---
+### then()
+---
 Promises are most useful when you have a process that takes an unknown amount of time to execute (i.e. something asynchronous) such as a server request.
 
 When you make a server request it takes some amount of time, and after it completes you usually want to do something with the response from the server.  This can be achieved by using the `then` method.  The `then` method is executed immediately after your promise is fulfilled with `resolve`:
@@ -144,9 +178,19 @@ When you make a server request it takes some amount of time, and after it comple
 
 `result` comes from the argument given to the `resolve` method.
 
----
-### HANDLING A REJECTED PROMISE WITH CATCH
 
+`Promise.prototype.then()` returns a Promise.  Takes two arguments: callback functions for onFulfilled and onRejected cases.
+
+        then(onFulfilled) . //one arg
+        then(onFulfilled, onRejected)  //both args
+
+        then(
+        (value) => { /* fulfillment handler */ },
+        (reason) => { /* rejection handler */ },
+        );
+---
+### catch()
+---
 `catch` is the method used when your promise has been rejected.  It's exectued immediately after a promise's `reject` method is called:
 
     myPromise.catch(error => {
@@ -156,8 +200,8 @@ When you make a server request it takes some amount of time, and after it comple
 `error` is the argument passed into the `reject` method
 
 ---
-### PROMISE CHAINS
-
+### Nested Callback Hell
+---
 To understand promise chains, it's helpful to see how using nested callbacks can get real ugly real fast.  
 
 Here's some code that multiplies the data received from a request by 2:
@@ -224,36 +268,37 @@ The above code using promises with `.then()` already looks cleaner, but nesting 
         console.log(err);
     })
 
-**PROMISE CHAINS** to the rescue
-
+---
+### PROMISE CHAINS
+---
 We can rewrite the above code without nesting our callbacks.  Instead we can chain them just like we chain methods.  The key difference being that our `resolve` function must `return`
 
 The syntax, though still complicated, is cleaner than nesting.  Everything is `flat` and the `.then()` calls are all on the same level:
 
     `Promise().then((resolve) => {
-
+        //code body
     }, (reject) => {
-
+        //code body
     }).then((resolve) => {
-
+        //code body
     }, (reject) => {
-
+        //code body
     }).then((resolve) => {
-
+        //code body
     }, (reject) => {
-        
+        //code body
     })  // and so on and so forth
 
 so for our code:
 
     getDataPromise('10').then((data) => {
-    return getDataPromise(data);
+        return getDataPromise(data);
     }).then((data) => {
-    return getDataPromise(data);
+        return getDataPromise(data);
     }).then((data) => {
-    console.log(data);
+        console.log(data);
     }).catch((err) => {
-    console.log(err);
+        console.log(err);
     })
 
 **NOTE:** this makes it easy to throw a `catch()` at the end of a chain. If we want to trigger the catch in an earlier `then()` block, we can `throw` an `error` in that black.
@@ -282,7 +327,9 @@ On the response we have json() method.  It will take the response body and parse
 `json()` returns a promise (not a JS object) which will resolve to an object in the future (when the request is complete)
 thus promise chaining is necessary in this moment (other option is nesting promises but that messy) 
 
+---
 ## HTTP REQUESTS
+---
 
 HTTP - Hypertext Transfer Protocol
 Request - What do we want to do
@@ -293,50 +340,15 @@ in the http address, add a query using `?key=value`
 so for our hangman example, the http address is: `http://puzzle.mead.io/puzzle`
 to search for a puzzle with two words, we add an http query: `http://puzzle.mead.io/puzzle?wordCount=2`
 
-### Status Codes:
-
-https://www.webfx.com/web-development/glossary/http-status-codes/
-
 ---
-## Codesmith Promises, Async & The Event Loop
+## Codesmith - Promises, Async & The Event Loop
 ---
-
-JS is single threaded - one command runs at a time
-
-JS Engine has 3 main parts:
-1. Thread of execution
-2. Memory/Variable Environment
-3. Call Stack
-
-Need to add some new components
-- web browser APIs / Node background threads
-- Promises
-- Callback / Task queue and micro task queue
-- Event Loop
-
-### Promises
-Promises - introduced in ES6
-
-use two-pronged 'facade' function that both:
-1. initiates background web browser work
-2. returns a placehold object (promise) immediately in JS
-
-    const futureData = fetch('https://twitter.com/will/tweets/1')
-
-    futureData.then(display)
-
-    futureData.then(display).then(grabComments).then......etc
-
-When you create a promise object, it has three keys:
-1. value: the eventual value.  Until that is resolved, has value of `undefined`
-2. status: either `pending`, `fulfilled` or `settled`
-3. onFulfilled: `[ ]` //holds the function definition that will be handled once the status has changed from pending to fulfilled
-
 ### Asynchronicity
-Once our async code has been off loaded to the web browser API, it can only come back when we are done with our synchronous code
+Once our async code has been off loaded to the web browser API, it can only come back when we are done with our synchronous code (when the call stack is empty)
 
+---
 ### The Event Loop
-Like a panicked wedding planner - They are just checking if everything is going according to plan
+Like a panicked wedding planner - They are always checking if everything is going according to plan
 
 When something is async, it's sent to the browser API.  When it is completed, it is pushed to the callback queue.  Only when the call stack is empty and all synchronous code is complete, the callback queue then empties to the call stack.
 
@@ -344,7 +356,3 @@ if using promises and thens...
 the value stored in `onFulfilled` will be pushed to the microtask queue NOT the callback queue
 
 The event loop will ALWAYS check the microtask queue before the callback queue
-
-### Microtask queue, Callback queue, and Web Browser features (APIs)
-
-
