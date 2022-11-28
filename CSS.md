@@ -1081,3 +1081,9 @@ btn:hover invisible - top:0
 ---
 use a linear gradient with the same color as both properties
 background-image: linear-gradient(rgba($same-color, .5), rgba($same-color, .5)), url(img.jpg);
+
+---
+## Creating custom icon for tab
+---
+
+in HTML doc, create a <link> in the <head>.  `href='image.png'` `rel='icon'`
