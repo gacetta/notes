@@ -47,6 +47,16 @@ The following selects the body element in the DOM, then adds our new element to 
 
   `document.querySelector('body').appendChild(newElement)`;
 
+
+---
+### adding classes
+---
+several ways:
+`element.setAttribute('class', 'class-name');`
+`element.classList.add('class-name');`
+`element.className('class-name');`
+
+
 ---
 ### handling user interaction
 ---
