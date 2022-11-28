@@ -244,13 +244,13 @@ These calls all rely on the previous request.  If we implement this using our ca
         if (err) {                      // 1st Error Check
             console.log(err);
         } else {                        // 1st Success Check
-            // SECOND CALLBACK REQUEST
+                                        // SECOND CALLBACK REQUEST
             getDataCallback(data, (err, data) => {  
-            if (err) {                  // 2nd Error check
-                console.log('err');
-            } else {                    // 2nd Success Check
-                console.log(data);
-            }
+                if (err) {                  // 2nd Error check
+                    console.log('err');
+                } else {                    // 2nd Success Check
+                    console.log(data);
+                }
             })
         }
     })
@@ -272,6 +272,8 @@ The above code using promises with `.then()` already looks cleaner, but nesting 
 ### PROMISE CHAINS
 ---
 We can rewrite the above code without nesting our callbacks.  Instead we can chain them just like we chain methods.  The key difference being that our `resolve` function must `return`
+
+use `then()` with one argument for `resolve` and `catch()` with one argument for `reject`
 
 The syntax, though still complicated, is cleaner than nesting.  Everything is `flat` and the `.then()` calls are all on the same level:
 
@@ -304,11 +306,13 @@ so for our code:
 **NOTE:** this makes it easy to throw a `catch()` at the end of a chain. If we want to trigger the catch in an earlier `then()` block, we can `throw` an `error` in that black.
 
 ---
-## FETCH
+## Fetch API
+---
+`fetch()` returns a `promise` which will resolve or reject ONLY when it is ready.  no more need to check `readystatechange` as we did for `XMLHttpRequest`
 
-`fetch()` returns a promise which will resolve or reject ONLY when it is ready.  no more need to check `readystatechange` as we did for XMLHttpRequest
+`fetch(resource, {options})` where `resource` is the URL.  `options` is an optional argument.  Refer to MDN
 
-We know request completed so we don't need to know IF it completed, only HOW it completed.  We can check this by checking the status.
+We know request completed so we don't need to know IF it completed, only HOW it completed.  We can check this by checking the `status`.
 
     fetch('http://puzzle.mead.io/puzzle', {}).then((response) => {
         if (response.status === 200) {
@@ -323,9 +327,34 @@ We know request completed so we don't need to know IF it completed, only HOW it 
     })
 
 
-On the response we have json() method.  It will take the response body and parse it as json and eventually return a JS object
+On the response we have `json()` method.  It will take the response body and parse it as json and eventually return a JS object.
 `json()` returns a promise (not a JS object) which will resolve to an object in the future (when the request is complete)
 thus promise chaining is necessary in this moment (other option is nesting promises but that messy) 
+
+---
+### Fetch Boilerplate
+---
+**Declaration**
+
+const getFunction = (index) {
+    return fetch('url').then((response) => {
+        if (response.status === 200) {
+            return // code here
+        } else {
+            throw new Error('here')
+        }
+    }).then((data) => {
+        return data.property //etc.
+    })
+}
+
+**Call**
+
+    getFunction(index).then((result) => {
+        // code for resolve
+    }, (err) => {
+        // code for error
+    })
 
 ---
 ## HTTP REQUESTS
@@ -356,3 +385,27 @@ if using promises and thens...
 the value stored in `onFulfilled` will be pushed to the microtask queue NOT the callback queue
 
 The event loop will ALWAYS check the microtask queue before the callback queue
+
+---
+## XML vs Promises
+---
+1. promise API is much easier to reason about / read. Clear semantics
+2. with callback, it's possible to call the callback twice.  With promises it's impossible to run more than one function one time.
+3. with promises we don't have to know what we're going to do with the code before we start the process of fetching the data.
+
+---
+## Async / Await
+---
+when creating a function we can choose to create a function as an `async` function.
+
+we do so by adding `async` before the function:
+    
+    const processData = async () => {}
+
+we can access the `async` data that we're waiting for using the `await` keyword
+
+    const processData = async () => {
+        let data = await asyncFunc(2);
+        data = await asyncFunc(data);
+        return data;
+    }
