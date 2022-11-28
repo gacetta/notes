@@ -22,3 +22,6 @@ https://caniuse.com/ - check browser support
 
 <!-- CSS -->
 https://css-tricks.com/ - ultimate CSS reference
+
+<!-- HTML -->
+https://www.webfx.com/web-development/glossary/http-status-codes/ - HTTP status codes
