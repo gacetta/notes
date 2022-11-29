@@ -1,9 +1,5 @@
 # Algorithms and Problem Solving Patterns
 
-## How to improve algos
-1. Devise a plan for solving problems
-2. Master common problem solving patterns
-
 ## Problem Solving Strategies
 1. understand the problem
 2. explore concrete examples
