@@ -409,3 +409,27 @@ we can access the `async` data that we're waiting for using the `await` keyword
         data = await asyncFunc(data);
         return data;
     }
+
+---
+## fetch()
+---
+two pronged facade function.  
+
+1st prong:
+
+returns a Promise object with several properties:
+
+`value: initially undefined`
+`onFulfilled: []`   // hidden property we cannot access using push().
+                    // to access this array, we use `then()`
+`onRejected: []`    // hidden property cannot access
+                    // to access this array, we use `catch()` OR the second arg of `then(onFullfilled, onRejected)`
+`status: pending`   // changes when Promise resolves or rejects
+
+2nd XHR - XMLHttpRequest
+
+in the background (browser), fetch sets up an XMLHttpRequest
+XML needs to know:
+1. main (twitter.com)
+2. path (/userName/1)
+3. what it's doing with the address... `GET`
