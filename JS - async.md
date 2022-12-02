@@ -16,9 +16,16 @@ Need to add some new components
 ---
 ## synchronous vs asynchronous
 ---
-_synchronous_ code runs in a sequence.  javascript is a single threaded code that can only execute one operation at any given time.  Thus, in _synchronous_ code, each operation must wait for the previous one to complete before executing
+_synchronous_ programming - also known as blocking architecture.  It is a single threaded model that follows a strict set of sequences meaning operations are performed one at a time, in perfect order.  While one operation is being performed, other operations' instructions are blocked.  In other words - only one thing is being done at any given time.  Thus, in _synchronous_ code, each operation must wait for the previous one to complete before executing.
+IDEAL FOR: reactive systems
+EXAMPLE: telephone call
 
-_asynchronous_ code runs in parallel.  Although JS is single threaded, certain operations can run in the background.  Thus, an operation can occur while another one is still being processed.  Asynchronous code is preferable in situations where JS execution can be blocked indefinitely.  Examples of this are network requests, long-running calculations, etc.  Something like `setTimeout()` is executed in JS, and then when completed, is added to the callback queue, or task queue.  These are First-in-first-out data structures.  The event loop continually checks the call stack, the browser APIs, and the callback queue.  When the JS call stack is empty, empty the callback queue to the callstack.
+_asynchronous_ programming - also known as non-blocking architecture.  It is a multithreaded model that doesn't block further execution while one or more operations are in progress.
+IDEAL FOR: networking and communications
+EXAMPLE: texting
+
+### async in JS
+Although JS is single threaded, certain operations can run in the background.  Thus, an operation can occur while another one is still being processed.  Asynchronous code is preferable in situations where JS execution can be blocked indefinitely.  Examples of this are network requests, long-running calculations, etc.  Something like `setTimeout()` is executed in JS, and then when completed, is added to the callback queue, or task queue.  These are First-in-first-out data structures.  The event loop continually checks the call stack, the browser APIs, and the callback queue.  When the JS call stack is empty, empty the callback queue to the callstack.
 
 ---
 ## XML HTTP REQUEST
