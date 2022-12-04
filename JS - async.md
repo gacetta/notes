@@ -440,3 +440,10 @@ XML needs to know:
 1. main (twitter.com)
 2. path (/userName/1)
 3. what it's doing with the address... `GET`
+
+---
+## Concurrency vs Parallelism
+---
+Concurrency is the task of running and managing multiple computations at the same time.  
+
+Parallelism is a specific kind of concurrency where tasks are really executed simultaneously.
