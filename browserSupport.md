@@ -1,4 +1,4 @@
-# browser support
+# browser support in CSS
 
 ## graceful degradation using supports
 

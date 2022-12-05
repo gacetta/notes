@@ -87,3 +87,63 @@ We have to have two terminals open to run both `watch:sass` and `live-server` co
 
 we can use `--browser:` to tell this project to run live-server in a specific browser (if we want to use the firefox dev tools for grid, say)
 `"devserver": "live-server --browser:firefox"`
+
+
+---
+## scripts
+---
+we can customize the scripts to be run in the package.json file.
+`script-name`: `babel src/index.js -o public/scripts/bundle.js --presets=@babel/preset-env`
+
+we can run these custom scripts using `npm run script-name`
+
+---
+## global modules
+---
+to uninstall:
+`npm uninstall -g package-name next-package-name-which-is-separated-by-space`
+
+---
+## webpack
+---
+current build process:
+`index.js` - code we write
+    |
+    V
+`Babel` - convert modern JS to work everytwhere
+    |
+    v
+`bundle.js` - code browser runs (**NOTE:** naming convention for this file)
+
+Introducing webpack
+`index.js` - code we write
+    |
+    V
+`Webpack` - 1. Enable modules 2. Run babel
+    |
+    v
+`bundle.js` - code browser runs (**NOTE:** naming convention for this file)
+
+### configure webpack
+---
+the file `webpack.config.js` must reside in the root directory of your site.
+
+`Node.js` is used for configuration so some boilerplate code:
+
+```
+const path = require('path')
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'public/scripts'),
+    filename: "bundle.js"
+  }
+}
+```
+
+  `entry` is the source file
+  `output.path` is the location out of the output file
+    `__dirname` is from node.js and is an environment varialbe that tells you the absolute path of the directory containing the currently executing file
+    `path.resolve` is a node function that concats `__dirfile` with the remaining path.
+  `output.filename` - sets the output filename
