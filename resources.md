@@ -25,3 +25,11 @@ https://css-tricks.com/ - ultimate CSS reference
 
 <!-- HTML -->
 https://www.webfx.com/web-development/glossary/http-status-codes/ - HTTP status codes
+
+<!-- SORTING ALGO INFO -->
+https://www.toptal.com/developers/sorting-algorithms - sorting animations
+https://www.youtube.com/watch?v=kPRA0W1kECg - youtube of sorting animations
+https://visualgo.net/en/sorting - 
+
+<!-- BIG O -->
+https://www.bigocheatsheet.com/ - time and space complexity info
