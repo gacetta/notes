@@ -349,3 +349,17 @@ arr;
 // [1, 4, 3, 2, 5, 7, 6, 8]
 // [3, 2, 1, 4, 5, 7, 6, 8]
 // [4, 1, 2, 3, 5, 6, 7, 8]
+
+const outerRecursive(arr) {
+    const outputArr = [];
+    innerRecursive(arr); // side-effects modify outputArr
+    return outputArr;
+
+    function innerRecursive(arr) {
+    // Base Case - currEl = flat element
+    // add currEl to outputArr
+
+    // Recursive Case - currEl = array
+    // call innerRecursive with currEl
+    }
+}
