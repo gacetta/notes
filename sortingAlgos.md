@@ -54,6 +54,11 @@ A sorting algorithm where the largest values "bubble" up to the top.
 
 Basically, the algo compares two elements, [a, b].  If `a` is larger than `b`, then those elements swap.  We continue to compare elements until we reach the end of the array.
 
+**NOTE:** each iteration we should be comparing one less pair of elements since the largest value should have bubbled up to the top.  This is acheived by iterating over the array first (with `i`) from the end to the front, and second (with `j`) from the front to the back.  Second iteration should stop on the element before the `i` index.  (`let j = 0; j < i - 1; j++>`)
+
+**NOTE:** there's a case when an array is properly sorted, either at the start or achieved while bubbleSort is still running, where we want to tell the function to stop iterating since the array is sorted.  We do this by introducing a `noSwaps` variable.
+
+
 [5, 3, 4, 1, 2]
  |  |
  compare  (5 is larger than 3 -> SWAP!)
@@ -92,14 +97,14 @@ Implementation:
       return arr;
     }
 
-**TIME COMPLEXITY:** - worst case O(n^2).  Best case (nearly sorted) - O(n)
+**TIME COMPLEXITY:** - worst case O(n^2).  Best case (nearly sorted using noSwap) - O(n)
 
 *WHEN IT'S GOOD* - Bubble Sort (with noSwaps) is potentially a good choice if the data set is nearly sorted.
 
 ---
 ### Selection Sort
 ---
-Similar to bubble sort, but instead of first placing large values into sorted position, it places small values into sorted position
+Similar to bubble sort, but instead of first placing large values into sorted position, it places small values into sorted position.  It does this by finding the smallest value in each iteration, storing that index, and swapping it with the first element after traversing the entire array.
 
 EXAMPLE - single pass
 go through array looking for minimum value, then swap that to the front
@@ -170,19 +175,21 @@ Implementation:
     function insertionSort(arr) {
       for (let i = 1; i < arr.length; i++) {
         const currEl = arr[i];
-        for (let j = i - 1; j >= 0 && arr[j] > currEl; j--) {
+        let j = i - 1;
+        while(j >= 0 && arr[j] > currEl) {
           const sortedEl = arr[j];
           arr[j + 1] = sortedEl;
-          arr[j] = currEl;
+          j--;
         }
+        arr[j + 1] = currEl;
       }
       return arr;
     }
 
-**TIME COMPLEXITY:** worst case - O(n^2)
+**TIME COMPLEXITY:**  worst case - O(n^2).  Best case (data is all sorted and we're inserting a value) - O(n)
 
 *WHEN IT'S GOOD* - for a nearly sorted list this excels.  Also, if you need to continuously sort data, such as data that is coming in live, this can be a good method for sorting as long as new elemet is pushed to the correct side of the array.
-*WHEN IT FAILS* - then the list is 100% opposite of the goal
+*WHEN IT FAILS* - when the list is 100% opposite of the goal
 
 ---
 ### Comparing Bubble, Insertion and Selection Sort
