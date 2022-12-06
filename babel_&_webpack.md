@@ -171,3 +171,74 @@ devServer.static.directory - specifies the directory of the static files.  In th
 devServer.compress - compresses file?  Not 100% sure but some help I found included it so why not.  It works….
 devServer.port - I’m setting a port for devServer to serve the site to.  That way I can access it in my browser
 devServer.devMiddleware.publicPath - THIS WAS KEY.  Since webpack-dev-server stores the updated compiled file in memory (rather than writing it to disk where we specified in ouput), this tells webpack-dev-server where to look for the updated compiled file.  So rather than access the bundle.js file in the local directory on the computer, it accesses it via the file that is served from memory via express.
+
+---
+## mode option
+---
+`mode` option is asking to set the use of `webpack` as a developer or production.
+- developer doesn't compress files and is much faster since it's used often
+- production optimizes files for production, and thus is much slower since it's used much less often
+
+to set:
+in `package.json`, in the calling script, add a `--mode development` or `--mode production` flag.
+
+---
+## source-map
+---
+when `webpack` compiles code using babel, it expands the file from the input file, thus errors don't correspond to the correct lines from the input file.  This creates problems while debugging, so adding `devtool: 'source-map'` to the `webpack.config.js` file fixes that issue
+
+---
+## third party libraries
+---
+
+1. check documentation:
+- how to install package (save or save-dev?)
+- how to import
+- how to call?
+
+---
+## semantic versioning
+---
+semantic versioning  - `major-release.minor-release.patch-release` - e.g. `1.0.0`
+
+**As a publisher of a package**
+
+version should always start a `1.0.0`.  (`0.0.0` is used historically when a package isn’t yet stable for initial release) 
+
+`patch-release`: a change that doesn’t break anything, doesn’t add any functionality.  a minor bug fix
+`minor-release`: a change that doesn’t break anything but adds functionality.
+`major-release`: a change that breaks things.  A change to the API that is not backward compatible.
+
+**As the user of a package:**
+
+Patch releases only: `1.0.0 -> 1.0.1` but not `1.0.0 -> 1.1.0` ? How to specify in package.json :
+- `1.0`
+- `1.0.x`
+- `~1.0.4` ( (any version compatible with 1.0.4  AKA any version up but not including the next minor update)
+
+Minor releases only: `1.0.0 -> 1.1.0` but not `1.0.0 -> 2.0.0` ? How to specify in package.json :
+- `1`
+- `1.x` 
+- `^1.0.4` (any version compatible with 1.0.4 AKA any version up to but not including the next major update)
+
+Major releases too: `1.0.0 -> 2.0.0`
+- `*`
+- `x`
+
+https://www.youtube.com/watch?v=kK4Meix58R4
+
+---
+## multiple html pages in webpack
+---
+create a .js page for each .html page.  `index.html index.js` and `edit.html edit.js`
+
+do this with the `entry` and `output` fields of `webpack`
+
+entry: {
+    index: ['regenerator-runtime/runtime.js', './src/index.js'],
+    edit: ['regenerator-runtime/runtime.js', './src/edit.js']
+  },
+  output: {
+    path: path.resolve(__dirname, 'public/scripts'),
+    filename: "[name]-bundle.js"
+  },
