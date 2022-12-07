@@ -228,12 +228,54 @@ Notice that the syntax used to invoke the getter and setter doesn't even look li
 
 **BEST PRACTICE -** it is convention to precede the name of a private variable with an underscore (`_`).  However, the practice itself does not make a variable private.
 
+---
+## Object Destructuring
+---
+Working with complex objects can result in many lines to declare variables:
 
+const obj {
+    prop1: 'prop1-value"
+    prop2: 'prop2-value"
+    prop3: 'prop3-value"
+}
+
+const prop1 = obj.prop1;
+const prop2 = obj.prop2;
+const prop3 = obj.prop3; //etc.
+
+Enter destructuring:
+const { prop1, prop2, prop3 } = obj
+
+### custom variable naming with object destructuring
+const { prop1:customName, prop2, prop3 } = obj
+
+customName === obj.prop1 // true
+
+### setting default value if property isn't found
+const { prop1:customName, prop2, prop3, prop4 = 'obj doesn't contain prop' } = obj
+
+- looks in `obj` for the property `prop4`
+- if found, assigns its value to the variable `prop4`
+- if not found, assigns default value to variable `prop4`
+
+obj.hasOwnProperty(prop4) // false
+prop4 // 'obj doesn't contain prop'
+
+### using custom variable naming and default value
+
+const { prop1:customName, prop2, prop3, prop4:customNameWithDefaultValue = 'obj doesn't contain prop' } = obj
+
+- looks in `obj` for the property `prop4`
+- if found, assigns its value to the variable `customNameWithDefaultValue`
+- if not found, assigns default value to variable `customNameWithDefaultValue`
 
 ---
-## Rest and Spread Operator in Objects
+## Rest and Spread Operators in Objects
 ---
+Object destructuring allows us to use the rest operator in objects
+
 ### Clone object using spread operator
+
 use spread syntax to create shallow copy of an object: `const clone = { ...object }`
 
     const hero = {
@@ -264,8 +306,44 @@ use spread syntax to create shallow copy of an object: `const clone = { ...objec
     heroEnhancedClone; 
     // { name: 'Batman Clone', city: 'Gotham', realName: 'Bruce Wayne' }
 
----
+### Updating nested object with spread
+spread can be used to updated nested objects, though it takes additional syntax:
+
+given an object with nested properties:
+
+    const user = { 
+        'employee': 'Alex',
+        'department':{
+            'name': 'Sales',
+        }
+    }
+
+INCORRECT syntax - since spread makes shallow copies, nested object is overwritten
+
+    const updated = {
+        ...user, 
+        department: {'number': 7}        //   department: {
+        }                                //       number: 7
+    }                                    //   }
+
+To add/update nested objects:
+
+    const updated = {
+        ...user, 
+            ...user.department,         // employee: 'Alex',
+        department: {                   // department: {
+            'number': 7                 //      name: 'Sales',
+        }                               //      number: 7
+    };                                  // }
+
+
+
+### Combine (merge) two objects with spread
+spread syntax can be used to combine two objects into one
+`const completeObj = {...obj1, ...obj2};`
+
 ### Clone object using rest
+
 use rest operator to make shallow clone of an obj: `const {...clone} = object`
 
     const hero = {
@@ -288,7 +366,9 @@ use rest operator to make shallow clone of an obj: `const {...clone} = object`
     const { city, ...heroClone } = hero;
     heroClone; // { name: 'Batman' }
 
+
 ### Combining object spread and rest
+
 - object spread - bonus of updating/adding new properties
 - object rest - bonus of skipping properties in resulting clone
 - combine to do both!
@@ -304,3 +384,6 @@ use rest operator to make shallow clone of an obj: `const {...clone} = object`
     };
 
     heroClone; // { name: 'Batman', realName: 'Bruce Wayne' }
+
+
+
