@@ -116,7 +116,7 @@ _Destructuring assignment_ is a special syntax introduced in ES6 for neatly assi
 
     Destructuring arrays is as easy as destructuring objects!
 
-    A key difference between the `spread` operator and `array destructuring` is that the spraead operator unpacks all contents of an array into a comma-separated list.  Consequently, you cannot pick or choose which elements you want to sassign to variables.
+    A key difference between the `spread` operator and `array destructuring` is that the spread operator unpacks all contents of an array into a comma-separated list.  Consequently, you cannot pick or choose which elements you want to assign to variables.
 
     Destructuring lets us do just that:
 
@@ -228,3 +228,79 @@ Notice that the syntax used to invoke the getter and setter doesn't even look li
 
 **BEST PRACTICE -** it is convention to precede the name of a private variable with an underscore (`_`).  However, the practice itself does not make a variable private.
 
+
+
+---
+## Rest and Spread Operator in Objects
+---
+### Clone object using spread operator
+use spread syntax to create shallow copy of an object: `const clone = { ...object }`
+
+    const hero = {
+    name: 'Batman',
+    city: 'Gotham'
+    };
+
+    const heroClone = {
+    ...hero
+    };
+
+    heroClone;          // { name: 'Batman', city: 'Gotham' }
+    hero === heroClone; // => false
+
+**SPREAD BONUS:** update or add new properties to cloned object in place if needed:
+
+    const hero = {
+    name: 'Batman',
+    city: 'Gotham'
+    };
+
+    const heroEnhancedClone = {
+    ...hero,
+    name: 'Batman Clone',
+    realName: 'Bruce Wayne'
+    };
+
+    heroEnhancedClone; 
+    // { name: 'Batman Clone', city: 'Gotham', realName: 'Bruce Wayne' }
+
+---
+### Clone object using rest
+use rest operator to make shallow clone of an obj: `const {...clone} = object`
+
+    const hero = {
+    name: 'Batman',
+    city: 'Gotham'
+    };
+
+    const { ...heroClone } = hero;
+
+    heroClone;          // { name: 'Batman', city: 'Gotham' }
+    hero === heroClone; // => false
+
+**REST BONUS:** skip cloned properties if needed by naming properies you want to skip before `...`
+
+    const hero = {
+    name: 'Batman',
+    city: 'Gotham'
+    };
+
+    const { city, ...heroClone } = hero;
+    heroClone; // { name: 'Batman' }
+
+### Combining object spread and rest
+- object spread - bonus of updating/adding new properties
+- object rest - bonus of skipping properties in resulting clone
+- combine to do both!
+
+    const hero = {
+    name: 'Batman',
+    city: 'Gotham'
+    };
+
+    const { city, ...heroClone } = {
+    ...hero,
+    realName: 'Bruce Wayne'
+    };
+
+    heroClone; // { name: 'Batman', realName: 'Bruce Wayne' }
