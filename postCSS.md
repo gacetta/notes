@@ -46,8 +46,13 @@ we could remove the inline `require`:
 
 **NOTE:** whenever you change your config file, you need to re-run a watch script
 
+## Plugins
+- cssnano
+- preset-env
+- autoprefixing
 
-## Resources:
+
+### Resources:
 
 quick tutorial: https://www.youtube.com/watch?v=Kn2SKUOaoT4
 good tutorial: https://www.youtube.com/watch?v=ohJcZW60br0
