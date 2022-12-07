@@ -262,16 +262,32 @@ obj.hasOwnProperty(prop4) // false
 prop4 // 'obj doesn't contain prop'
 
 ### using custom variable naming and default value
-
 const { prop1:customName, prop2, prop3, prop4:customNameWithDefaultValue = 'obj doesn't contain prop' } = obj
 
 - looks in `obj` for the property `prop4`
 - if found, assigns its value to the variable `customNameWithDefaultValue`
 - if not found, assigns default value to variable `customNameWithDefaultValue`
 
+### destructuring objects as function parameters
+destructuring allows us to extract values from objects in function parameters as well:
+
+Take this code using destructuring inside the function body:
+
+  const function = (obj) => {
+    const {prop1, prop2} = obj;
+    console.log(`${prop1}, ${prop2}`) .  // obj.prop1, obj.prop2
+  }
+
+We can destructure from inside the function parameters condensing our code:
+
+  const function = ({prop1, prop2}) => {
+    console.log(`${prop1}, ${prop2}`) .  // obj.prop1, obj.prop2
+  }
+
 ---
 ## Rest and Spread Operators in Objects
 ---
+
 Object destructuring allows us to use the rest operator in objects
 
 ### Clone object using spread operator
@@ -343,7 +359,6 @@ spread syntax can be used to combine two objects into one
 `const completeObj = {...obj1, ...obj2};`
 
 ### Clone object using rest
-
 use rest operator to make shallow clone of an obj: `const {...clone} = object`
 
     const hero = {
@@ -368,7 +383,6 @@ use rest operator to make shallow clone of an obj: `const {...clone} = object`
 
 
 ### Combining object spread and rest
-
 - object spread - bonus of updating/adding new properties
 - object rest - bonus of skipping properties in resulting clone
 - combine to do both!
