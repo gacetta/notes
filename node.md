@@ -27,3 +27,10 @@ NODE:
 ---
 because node uses a non-blocking I/O model, it's fast and efficient which is useful for backend work.
 
+---
+## require
+---
+we need to load in functionality before using them
+the `require()` function in node does this for us.
+
+`const fs = require('fs');`
