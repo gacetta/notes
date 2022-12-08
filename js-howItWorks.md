@@ -28,3 +28,9 @@ Hidden classes - assign variables in objs in the the same order
 Inline caching
 
 We should write code that is predictable for humans, AND machines.
+
+---
+## Garbage Collection
+---
+memory is freed up automatically by JS.
+Mark and Sweep.  Mark what we need, sweep (delete) what we don't (unmarked)
