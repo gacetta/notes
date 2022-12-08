@@ -42,10 +42,22 @@ We can load in our own files by specifying a path name:
 ---
 ## exports
 ---
-to export funtionality we can use `module.exports`
+pre ES6, to export funtionality we can use `module.exports`
 
  `module.exports = funcOrVariableName`
 
  we then store that export in the function that is accessing it:
 
  `const funcOrVariableName = require('filePath')`
+
+ ---
+ ## importing npm packages
+ ---
+ create a `package.json` file by running `npm init` from the project folder.  (OPTIONAL use the `-y` to generate it without having it ask any questions:)
+
+ install a given package by running `npm install <package-name>` or `npm i <package-name>` for short.  
+ OPT flags: 
+ `--save-dev` to save in `devDependencies`
+ `--save` to save in `dependencies` (default)
+ `<package-name>@versionNumber` to install specific version
+ 
