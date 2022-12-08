@@ -19,6 +19,7 @@ https://cubic-bezier.com/ - to preview, compare and customize animation timings
 <!-- BROWSER INFO -->
 https://gs.statcounter.com/screen-resolution-stats - screen resolution stats worldwide (for determining breakpoints)
 https://caniuse.com/ - check browser support
+https://astexplorer.net/ - see how a JS engine parses JS into an AST
 
 <!-- CSS -->
 https://css-tricks.com/ - ultimate CSS reference
