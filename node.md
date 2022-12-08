@@ -34,3 +34,7 @@ we need to load in functionality before using them
 the `require()` function in node does this for us.
 
 `const fs = require('fs');`
+
+We can load in our own files by specifying a path name:
+
+`require('./utils')` will load in and run the utils.js file.  The file-path is required to specify where our path is in relation to the current file. `./` means the directory of the current file.
