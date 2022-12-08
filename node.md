@@ -38,3 +38,14 @@ the `require()` function in node does this for us.
 We can load in our own files by specifying a path name:
 
 `require('./utils')` will load in and run the utils.js file.  The file-path is required to specify where our path is in relation to the current file. `./` means the directory of the current file.
+
+---
+## exports
+---
+to export funtionality we can use `module.exports`
+
+ `module.exports = funcOrVariableName`
+
+ we then store that export in the function that is accessing it:
+
+ `const funcOrVariableName = require('filePath')`
