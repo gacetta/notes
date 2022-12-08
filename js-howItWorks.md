@@ -14,3 +14,15 @@ V8 Javascript Engine - 'translates JS to bytecode for computer'
 JIT COMPILER - just in time compiler - combo of interpreter and compiler
 
 **HOW CAN WE HELP THE COMPILER WITH THIS KNOWLEDGE**
+Things to avoid or be careful of that result in de-optimized code:
+- eval()
+- arguments
+- for in (object.keys and iterate over that can be better)
+- with
+- delete
+
+Reasons:
+Hidden classes - assign variables in objs in the the same order
+Inline caching
+
+We should write code that is predictable for humans, AND machines.
