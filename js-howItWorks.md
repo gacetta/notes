@@ -34,3 +34,13 @@ We should write code that is predictable for humans, AND machines.
 ---
 memory is freed up automatically by JS.
 Mark and Sweep.  Mark what we need, sweep (delete) what we don't (unmarked)
+
+---
+## Memory Leaks
+---
+memory leaks are pieces of memory that the application used in the past but is no longer needed but has not yet been returned back to us to the pool of free memory (garbage collected)
+
+Three common leaks:
+1. Global Variables
+2. Event Listeners - created but rarely removed
+3. setInterval - references object
