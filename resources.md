@@ -37,3 +37,6 @@ https://visualgo.net/en/sorting -
 
 <!-- BIG O -->
 https://www.bigocheatsheet.com/ - time and space complexity info
+
+<!-- JAVASCRIPT -->
+https://doesitmutate.xyz/ - do various methods mutate arrays?
