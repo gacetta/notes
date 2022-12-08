@@ -67,3 +67,8 @@ Web APIs are asynchronous
 **NOTE** - Promises are added to the microtask queue
 5. When the call stack is empty, if there is a task in microtask queue, it is added to call stack.  If  microtask is empty, then check callback queue.  Any task there is added to call stack.  
 **NOTE** - microtask and callback queues are first-in-first-out structures.
+
+---
+## Node.js - est 2009
+---
+A JS runtime that allows us to run JS outside of the browser.
