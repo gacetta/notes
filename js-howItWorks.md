@@ -1,5 +1,9 @@
 # JAVASCRIPT - est. 1995
 
+---
+## Javascript Engine
+---
+
 V8 Javascript Engine - 'translates JS to bytecode for computer'
 - parser (breaks js into tokens)
 - AST (abstract syntax tree based on tokens)
@@ -44,3 +48,22 @@ Three common leaks:
 1. Global Variables
 2. Event Listeners - created but rarely removed
 3. setInterval - references object
+
+---
+## JS Runtime / Event loop
+---
+Browser provides Web API.  Does a variety of things - send http requests, fetch(), DOM listening, setTimeout(), caching, etc.
+
+we can access the web API with `window` in dev tools
+
+Web APIs are asynchronous
+
+**EVENT LOOP**
+
+1. JS runs synchronously adding functions to call stack as needed.
+2. When it encounters a function that can be handled by the web API, it passes it off
+3. JS continues running its code while web API does its business
+4. When web API is complete, the result is added to the callback queue to be handled by JS
+**NOTE** - Promises are added to the microtask queue
+5. When the call stack is empty, if there is a task in microtask queue, it is added to call stack.  If  microtask is empty, then check callback queue.  Any task there is added to call stack.  
+**NOTE** - microtask and callback queues are first-in-first-out structures.
