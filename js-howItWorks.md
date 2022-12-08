@@ -1,3 +1,5 @@
+# JAVASCRIPT - est. 1995
+
 V8 Javascript Engine - 'translates JS to bytecode for computer'
 - parser (breaks js into tokens)
 - AST (abstract syntax tree based on tokens)
