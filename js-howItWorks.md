@@ -72,3 +72,13 @@ Web APIs are asynchronous
 ## Node.js - est 2009
 ---
 A JS runtime that allows us to run JS outside of the browser.
+
+---
+## execution context
+---
+1. Initially - global execution context and global memory
+2. each time a function is added to call stack, we open a new local execution context and local memory
+
+`lexical environment` - each function is like a separate universe.  If we do lexical analysis - we're asking, where did we write the function?  In what universe?  In other words: `execution context tells you which lexical environment is currently running`.
+
+In JS - our `lexical scope` (available data + variables where the function was defined) determines our available variables.  Not where the function is called (`dynamic scope`)
