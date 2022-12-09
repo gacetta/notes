@@ -76,23 +76,23 @@ A JS runtime that allows us to run JS outside of the browser.
 ---
 ## execution context
 ---
-1. Initially - global execution context and global memory
-2. each time a function is added to call stack, we open a new local execution context and local memory
-
-`lexical environment` - each function is like a separate universe.  If we do lexical analysis - we're asking, where did we write the function?  In what universe?  In other words: `execution context tells you which lexical environment is currently running`.
-
-In JS - our `lexical scope` (available data + variables where the function was defined) determines our available variables.  Not where the function is called (`dynamic scope`)
+1. initially - a global execution context is created with global memory
+2. each time a function is added to call stack, a new local execution context is created with local memory
 
 Creation of a new execution context consists of two phases:
 1. Creation Phase
 2. Execution Phase
 
-Creation Phase
+Global Execution Context - Creation Phase
 - Given access to the `global object` and `this`
 - JS takes a pass over the code to allocate memory space for functions and variables.  (Hoisting)
 
 Execution Phase
 - JS executes our code line by line.
+
+`lexical environment` - each function is like a separate universe.  If we do lexical analysis - we're asking, where did we write the function?  In what universe?  In other words: `execution context tells you which lexical environment is currently running`.
+
+In JS - our `lexical scope` (available data + variables where the function was defined) determines our available variables.  Not where the function is called (`dynamic scope`)
 
 ---
 ## Hoisting
@@ -101,3 +101,51 @@ During the creation phase of the execution context, JS allocates memory space fo
 In the case of functions, the whole function body is stored
 In the case of variables, they are declared and assigned a default value of `undefined`
 This phenomena is called `hoisting`
+
+---
+## Function Invocation
+---
+When creating a function execution context (instead of global execution context)
+- We're given access to `this` and `arguments`
+
+`arguments` is dangerous to use.  It looks like an array, but it's not.  
+Ways to accomplish the same thing with ES6 and avoid `arguments`:
+- create an actual array using `Array.from(arguments)`
+- create an actual array using `rest parameters` to create our own quasi `argsArr`.
+
+---
+## scope chain
+---
+a `scope chain` links an execution context to its parent execution context.  We (and the compiler) and determine what the `scope chain` is due to `Static scope` 
+
+This is the way a function on the top of the call stack has access to a global variable defined in the global lexical environment (CodeSmith says global memory)
+
+TERMS: 
+`global lexical environment` - AKA global execution context
+`function lexical environment` - AKA local execution context
+
+---
+## [[scope]]
+---
+Lexical Environment === [[scopes]]
+
+The way the scope is stored in JS which We can see in console log.  If JS searches for a variable and can't find it in the current scope, it references [[scopes]] to move up the scope chain and check the next location.
+
+---
+## function scope vs block scope
+---
+`var` has function scoping, meaning it's accessible from outside a block unless the block is a function block:
+
+    if (5 < 4) {
+      var secret = '54321';
+    }
+
+    console.log(secret) // '54321'
+
+`let` and `const`, like variables from most other languages, have block scoping, meaning variables are only accessible from within the block they're declared.  (inside the block meaning inside `{}`)
+
+    if (5 < 4) {
+      let secret = '54321';
+    }
+
+    console.log(secret) // reference error: secret is not defined
