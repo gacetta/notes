@@ -149,3 +149,56 @@ The way the scope is stored in JS which We can see in console log.  If JS search
     }
 
     console.log(secret) // reference error: secret is not defined
+
+---
+## Global Variables
+---
+`Variable Collision` - when global variables are reassigned 
+
+IIFE - Immediately Invoked Function Expression - prevents global variable leak
+
+(function() {
+  var a = 89
+})();
+
+console.log(a) // reference error
+
+Trick for preventing variable leak - 
+Create a quasi "global environment"
+
+function a() {
+  return 5;
+}
+a() // 5
+
+function a() {
+  return 5;
+}
+function a() {
+  return 'hahaha'
+}
+a() // 'hahaha'
+
+use `IIFE`:
+
+var script = (function () {
+  return 5;
+})();
+function a() {
+  return 'hahaha'
+}
+a() // 'hahaha'
+
+var script1 = (function () {
+  function a() {
+    return 5
+  }
+  return {
+    a: a
+  }
+})()
+function a() {
+  return 'hahaha'
+}
+
+script1.a() // 5
