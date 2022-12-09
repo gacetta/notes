@@ -63,15 +63,24 @@ pre ES6, to export funtionality we can use `module.exports`
 
  **NOTE** the contents of node_module folder are downloaded when we run `npm install`.  The computer knows what to install based on the configuration of `package.json` file.  It's a good idea to add `node_module` to the `.gitignore` global file.
 
- ---
- ## passing variables into node
- ---
- on the node process object, we have access to process.argv.
+---
+## nodemon
+---
+npm package to run node and continuously watch for changes in your .js file
 
- the first two arguments are always provided:
- - the first: the path to the location of node on your machine
- - the second: the path to the .js file you're executing
- 
- This means we can pass arguments in on the CLI when running node:
+---
+## passing variables into node
+---
+on the node process object, we have access to process.argv.
 
- `node app.js Michael` passes a third argument, 'Michael' that is accessible using `process.argv[2]`
+the first two arguments are always provided:
+- the first: the path to the location of node on your machine
+- the second: the path to the .js file you're executing
+
+This means we can pass arguments in on the CLI when running node:
+
+`node app.js Michael` passes a third argument, 'Michael' that is accessible using `process.argv[2]`
+
+---
+## yargs
+---
