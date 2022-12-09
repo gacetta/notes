@@ -200,5 +200,6 @@ var script1 = (function () {
 function a() {
   return 'hahaha'
 }
-
 script1.a() // 5
+
+script1 becomes the global namespace.  But we can have one name for an object that contains many properties we might want to use.
