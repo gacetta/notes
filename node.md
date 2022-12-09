@@ -84,3 +84,34 @@ This means we can pass arguments in on the CLI when running node:
 ---
 ## yargs
 ---
+a npm package that helps handle arguments.  For it to work, we must access the `argv` property on yargs.  `console.log(yargs.argv)`.  A better way is to use `yargs.parse()`
+
+rather than access arguments with `process.argv`, now we can access them via `yargs.argv`
+
+**Setup first arg to be a command**
+
+  yargs.command({
+    command: 'add',
+    describe: 'Add a new note',
+    handler: function () {
+      console.log('adding a new note')
+    }
+  })
+
+**Adding a title argument**
+use `builder:`   The following configs the building of --title as a required value of type string:
+
+  yargs.command({
+    command: 'add',
+    describe: 'Add a new note',
+    builder: {
+      title: {
+        describe: 'Note title',
+        demandOption: true,
+        type: 'string'
+      }
+    },
+    handler: function (argv) {
+      console.log('title:', argv.title)
+    }
+  })
