@@ -62,3 +62,5 @@ pre ES6, to export funtionality we can use `module.exports`
  `<package-name>@versionNumber` to install specific version
 
  **NOTE** the contents of node_module folder are downloaded when we run `npm install`.  The computer knows what to install based on the configuration of `package.json` file.  It's a good idea to add `node_module` to the `.gitignore` global file.
+
+ 
