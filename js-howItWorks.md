@@ -82,3 +82,22 @@ A JS runtime that allows us to run JS outside of the browser.
 `lexical environment` - each function is like a separate universe.  If we do lexical analysis - we're asking, where did we write the function?  In what universe?  In other words: `execution context tells you which lexical environment is currently running`.
 
 In JS - our `lexical scope` (available data + variables where the function was defined) determines our available variables.  Not where the function is called (`dynamic scope`)
+
+Creation of a new execution context consists of two phases:
+1. Creation Phase
+2. Execution Phase
+
+Creation Phase
+- Given access to the `global object` and `this`
+- JS takes a pass over the code to allocate memory space for functions and variables.  (Hoisting)
+
+Execution Phase
+- JS executes our code line by line.
+
+---
+## Hoisting
+---
+During the creation phase of the execution context, JS allocates memory space for the functions and variables.
+In the case of functions, the whole function body is stored
+In the case of variables, they are declared and assigned a default value of `undefined`
+This phenomena is called `hoisting`
