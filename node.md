@@ -115,3 +115,21 @@ use `builder:`   The following configs the building of --title as a required val
       console.log('title:', argv.title)
     }
   })
+
+---
+## File System
+---
+*Writing*
+`file_system.writeFileSync('output-file-name.json', 'data')` to write a new file
+
+*Reading*
+`file_system.readFileSync('file-name')` to read a new file.  
+
+**NOTE:** returns a buffer.  To parse as a string use `buffer.toString()`
+
+
+---
+## storing data with json
+---
+we can use the file system functions to store our data as a json object in a separate file.
+
