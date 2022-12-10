@@ -38,3 +38,8 @@ understanding in detail:
 - `%an` is the author name
 - `--graph` informs git to display the commit tree in an ASCII graph layout
 - `--date=short` keeps the date format nice and short
+
+---
+## Common aliases
+---
+defined in .gitconfig file in the home directory
