@@ -60,6 +60,25 @@ checkout is also used for switching branches.
 
 tags will be listed in `log` as well
 
+---
+## revert changes
+---
+`git checkout <file-name>` BEFORE an `add` will discard changes.
+
+---
+## undoing staged changes before committing
+---
+`git restore --staged <file>` is the current way
+`git reset HEAD <file>` was the old way
+
+---
+## Undoing commited changes
+---
+Sometimes you realized that a change that you have already committed was not correct and you wish to undo that commit. There are several ways of handling that issue, and the way we are going to use in this lab is always safe.
+
+Essentially we will undo the commit by creating a new commit that reverses the unwanted changes.
+
+`git revert HEAD` will generate a new commit that removes the changes introduced by our unwanted commit
 
 ---
 ## Questions
