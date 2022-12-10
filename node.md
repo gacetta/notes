@@ -133,3 +133,18 @@ use `builder:`   The following configs the building of --title as a required val
 ---
 we can use the file system functions to store our data as a json object in a separate file.
 
+---
+## debugging in node
+---
+Two types of errors:
+1. When things go wrong and there is an explicit error message
+2. When things go wrong and there is no error message
+
+we can add `debugger` into our code but for node to recognize it we need to tell it to look using `inspect`:  The CLI: `node inspect file-name (etc.)`
+
+When we run `node` with `inspect` and it finds a `debugger`, it stops the code.
+
+We can inspect it using the chrome browser (since Node uses V8 and so does chrome).  Go to chrome://inspect and click on `inspect` under the REMOTE tab.
+
+If we step through our program and still want to continue debugging, just type `restart` in the terminal.   CLI: `debug> restart`
+
