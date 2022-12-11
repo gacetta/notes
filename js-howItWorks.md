@@ -302,3 +302,18 @@ Bind is useful for us to call functions later on with a certain context (or cert
   wizard.heal.bind(archer, 30, 70) //archer.health = 30
   const healArcher = wizard.heal.bind(archer, 30, 70) // archer.health = 30
   healArcher() // archer.health = 130
+
+---
+## function currying and bind()
+---
+we can use bind to split our function into multiple parts
+
+function multiply(a,b) {
+  return a*b;
+}
+
+function multiplyByTwo = multiply.bind(this, 2);
+function multiplyByTen = multiply.bind(this, 10);
+multiplyByTwo(4) //8
+multiplyByTen(4) //40
+
