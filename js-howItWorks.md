@@ -209,3 +209,65 @@ script1 becomes the global namespace.  But we can have one name for an object th
 ---
 `this` is the object that the function is a property of
 
+often that means `this` is whatever is to the left of the `.` in a method call
+
+`this` is dynamically scoped.  It doesn't matter where it was written, it matters how it was called.
+
+---
+## this methods
+---
+`call()` - automatically invoked under the hood.
+
+  function a() {
+    console.log('hi')
+  }
+
+  a() //'hi'
+  a.call() //'hi'  (everything is an object - this is what's actually happening under the hood.)
+
+We can invoke `call()` with additional arguments. `call(thisArg, arg1, arg2, ...argN)`
+Using the arguments allows us to pass `this` to the call.
+
+  const wizard = {
+    health: 50,
+    heal() {
+      return this.health = 100;
+    }
+  }
+
+  const archer = {
+    health: 30
+  }
+
+  wizard.heal() // wizard.health = 100;
+  wizard.heal.call() // wizard.health = 100;
+  wizard.heal.call(archer) // archer.health = 100;
+
+Now lets say heal() takes arguments.  We can pass those into the `call()` function as well (after the `thisArg`):
+
+  const wizard = {
+    health: 50,
+    heal(num1, num2) {
+      return this.health += num1 + num2;
+    }
+  }
+
+  const archer = {
+    health: 30
+  }
+
+  wizard.heal.call(archer, 30, 70) //archer.health = 130
+
+
+
+
+`apply()`
+
+  function a() {
+    console.log('hi')
+  }
+
+  a() //'hi'
+  a.apply() //'hi'
+
+`bind()`
