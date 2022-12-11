@@ -216,7 +216,8 @@ often that means `this` is whatever is to the left of the `.` in a method call
 ---
 ## this methods
 ---
-`call()` - automatically invoked under the hood.
+`call()` method calls the function with the given `this` value and individually provided arguments (comma separated list). 
+In a way, automatically invoked under the hood.
 
   function a() {
     console.log('hi')
@@ -261,13 +262,43 @@ Now lets say heal() takes arguments.  We can pass those into the `call()` functi
 
 
 
-`apply()`
+`apply()` method calls the specified function with a given `this` value and `arguments` provided as an array.
+the difference between `call()` and `apply()` is how arguments are provided.
+`call()` - arguments as a comma-separated list
+`apply()` - arguments as array
 
-  function a() {
-    console.log('hi')
+  const wizard = {
+      health: 50,
+      heal(num1, num2) {
+        return this.health += num1 + num2;
+      }
+    }
+
+  const archer = {
+    health: 30
   }
 
-  a() //'hi'
-  a.apply() //'hi'
+  wizard.heal.apply(archer, [30, 70]) //archer.health = 130
 
-`bind()`
+`bind()` method creates and returns a new function that, when called, has its `this` keyword set to the provided value.
+Arguments may also be provided as a comma-separated list.
+
+Bind is useful for us to call functions later on with a certain context (or certain `this` keyword)
+
+`bind(thisArg)`
+`bind(thisArg, arg1, arg2, /* …, */ argN)`
+
+  const wizard = {
+      health: 50,
+      heal(num1, num2) {
+        return this.health += num1 + num2;
+      }
+    }
+
+  const archer = {
+    health: 30
+  }
+
+  wizard.heal.bind(archer, 30, 70) //archer.health = 30
+  const healArcher = wizard.heal.bind(archer, 30, 70) // archer.health = 30
+  healArcher() // archer.health = 130
