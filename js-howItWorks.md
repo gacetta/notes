@@ -317,3 +317,16 @@ function multiplyByTen = multiply.bind(this, 10);
 multiplyByTwo(4) //8
 multiplyByTen(4) //40
 
+---
+## Context vs Scope
+---
+SCOPE: function based
+- "what is the variable access of a function when it is invoked"
+- "what is in the variable environment"
+
+refers to the visibility of variables
+
+CONTEXT: object based
+- "what's the value of the `this` keyword which is a reference to the object that owns that current executing code"
+
+most often determined by HOW a function is invoked with the value of `this` keyword
