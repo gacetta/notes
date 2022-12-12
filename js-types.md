@@ -64,3 +64,12 @@ if a program throws an error when mixing data types, that is an example of stron
 ---
 ## typescript
 ---
+several ways to add static type checking to JS: `flow` (facebook), `typescript`(microsoft), `reasonML`, `elm`
+- `typescript` is based on the JS language and has its own compiler
+- `flow` static type checker relies on external compiler such as babel to remove type conflicts. Included in react.
+- `reasonML` is an entirely different language than JS and has its own compiler
+- `elm` is an entirely different language than JS and has its own compiler
+
+Angular is built using typescript.  
+
+Why use typescript: project grows larger and larger, you already have tests written, as team grows you want the code to be self documenting, and avoid bugs.  Also, have budget to train employees on TS.  Finally, be aware that development is going to slow slightly as we're writing more code.
