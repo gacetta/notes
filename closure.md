@@ -4,7 +4,7 @@ Also known as:
 - closure
 - "backpack"
 - C.O.V.E. or _Closed Over Variable Environment_
-- P.L.S.R.D or _Persistent Lexically Scoped Referece Data_
+- P.L.S.R.D or _Persistent Lexically Scoped Reference Data_
 
 as soon as a function is created with a creator function, local memory is attached to the function definition with hidden property `[[scope]]`
 
