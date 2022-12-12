@@ -56,5 +56,11 @@ Cons:
 - slower development process
 
 ---
-## strong vs weak language
+## strong vs weak typing
+---
+type coercion ("string" + number = "string17") is an example of weak typing 
+if a program throws an error when mixing data types, that is an example of strong typing
+
+---
+## typescript
 ---
