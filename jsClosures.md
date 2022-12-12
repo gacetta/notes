@@ -29,3 +29,7 @@ somefunc() object contains: code(), name(optional), properties
 ---
 we can use closures to make programs more efficiant.  Rather than run heavy duty, time consuming memory heavy operations repeatedly, we can run them once and access the results via closure.
 
+---
+## encapsulations
+---
+encapsulation allows us to keep certain data private and inaccessible from the outside.  Data is stored in the closure and only accessible by the returned functions that need that data.
