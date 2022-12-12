@@ -38,3 +38,23 @@ https://dorey.github.io/JavaScript-Equality-Table/
 `===` is much more predictable.  USE THIS
 `if ()` behavior can be odd in some cases
 `Object.is()` is a way of comparing that handles `NaN === Nan // true` and `-0 === +0 //false`
+
+---
+## statically typed vs dynamically typed language
+---
+STATIC
+Pros:
+- **less bugs and better error prevention**
+- documentation of type
+- helps while developing - autocompletion by IDE or text editor
+- less bugs in production - they're all caught earlier on
+
+Cons:
+- **more flexible / write software faster**
+- code is more complex / harder to read
+- could be unneccessary if we write better tests
+- slower development process
+
+---
+## strong vs weak language
+---
