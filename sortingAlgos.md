@@ -1,6 +1,6 @@
 # Sorting Algorithms
 
-**WHAT IS SORTING?**
+## WHAT IS SORTING?
 `Sorting` is the process of rearranging the items in a collection (e.g an array) so that the items are in some sort of order.
 
 Examples:
@@ -213,9 +213,9 @@ There is a trade off of efficiency and simplicity.
 These faster algorithms are much more complex.
 
 ---
-## MergeSort
+### MergeSort
 ---
-### How It Works
+#### How It Works
 Combination of three things:
 1. splitting up
 2. sorting
@@ -242,7 +242,7 @@ Combination of three things:
 
 - In order to implement merge sort, it's useful to first implement a function responsible for merging two sorted arrays
 - Given two arrays which are sorted, this helper function should create a new array which is also sorted, and consists of all the elements in the two input arrays
-- This function should run in `O(n + m)` time and `O(n + m)` space and should not modify the parameters passed to it
+- This function should run in `O(n + m)` time and `O(n + m)` space and should not modify the parameters passed to it.  `n` and `m` refer to the TWO inputs we have, arr1 and arr2.
 
 Implementation:
 
