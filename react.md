@@ -73,3 +73,15 @@ For example, we could call a function that renders a phrase if a string or numbe
   const testFunc = (text) => text ? <p>{text}<p> : undefined;
   {testFunc('I am the walrus')} // 'I am the walrus'
   {testFunc()}                  // renders nothing
+
+---
+## JSX attributes
+---
+Some attributes work as expected (`id`).  
+Others have been renamed (`class` = `className`).  This is due to the fact that certain words in JS are reserved keywords.
+
+For a list of what is supported and what is slightly different: https://reactjs.org/docs/dom-elements.html
+
+**NOTE:** attributes are named using camelCase in JSX.  so something like `maxlength` in HTML is referred to as `maxLength` in JSX.
+
+We can use variables to assign attributes using the same `{}` as before.
