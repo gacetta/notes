@@ -68,8 +68,12 @@ All require a closing tab unless otherwise indicated:
     * can take `placeholder=""` attribute to add placeholder text to the empty input field
     * can take `required` attribute to make the input from a certain field required
     * can take the `name=""` attribute for clarity and allow for grouping / reference
-* `<form>` - an element that creates a documnent section containing controls to submit information
-    * can take `action=""` attribute to tell the form where to submite data
+---
+* `<form>` - an element that creates a document section containing controls to submit information
+    * can take `action=""` attribute to tell the form where to submit data
+
+    a button inside of a form will submit data and refresh the page on click.  To prevent this behavior we can use `e.preventDefault()`
+---
 * `<button>` - creates a button.  There are many types:
     * can take `type=""` argument to specify what type of button.  There are three types:
         * `type="submit"` - button sends form data to the server.  Default value
