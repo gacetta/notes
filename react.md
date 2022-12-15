@@ -64,7 +64,7 @@ Function call:
   <p>testFunc('hey boobie')</p> 
 
 ---
-## booleans, undefined, null in JSX
+## JSX - booleans, undefined, null
 ---
 booleans, undefined and null are all ignored in JSX.
 
@@ -75,7 +75,7 @@ For example, we could call a function that renders a phrase if a string or numbe
   {testFunc()}                  // renders nothing
 
 ---
-## JSX attributes
+## JSX - attributes
 ---
 Some attributes work as expected (`id`).  
 Others have been renamed (`class` = `className`).  This is due to the fact that certain words in JS are reserved keywords.
@@ -87,10 +87,40 @@ For a list of what is supported and what is slightly different: https://reactjs.
 We can use variables to assign attributes using the same `{}` as before.
 
 ---
-## data binding
+## JSX - data binding
 ---
 JSX does not have built in data binding.
 We build a DOM structure based on the variable data at the time of construction, and render that DOM to the screen.
 If it changes, the DOM is not re-rendered.
 
 To properly update and render, we have to re-render each time a function is called.  React is very efficient with "re-rendering the entire page".  It doesn't actually erase, re-construct and re-render.  Instead, it figures out the minimum amount of elements that need to be re-rendered and only updates those elements.
+
+---
+## JSX - arrays
+---
+Numbers are valid datatype in JSX:
+```
+{
+  [99, 98, 97]
+}
+```
+is equivalent to `{99}{98}{97}`   //999897 is rendered
+
+Strings are valid datatype in JSX:
+{
+  [99, 'Mike Mike Mike Mike Mike']  //99Mike Mike Mike Mike Mike
+}
+
+Booleans are valid but ignored in JSX:
+{
+  [99, 'Bananahands', false]    //99Bananahands
+}
+
+Can we render an array of JSX in JSX?
+{
+  [{<p>a</p>},{<p>b</p>},{<p>c</p>}]    // valid but react throws an error - it has no way to reference each element
+}
+
+{
+  [{<p key='1'>a</p>},{<p key='2'>b</p>},{<p key='3'>c</p>}]    // no error, in the future, they will have id
+}
