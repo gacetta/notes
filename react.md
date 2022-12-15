@@ -124,3 +124,38 @@ Can we render an array of JSX in JSX?
 {
   [{<p key='1'>a</p>},{<p key='2'>b</p>},{<p key='3'>c</p>}]    // no error, in the future, they will have id
 }
+
+---
+## components
+---
+react uses component based architecture
+
+one component might responsible for rendering the header, another for the rendering the user profile, another for rendering a form and handling form submission.
+
+Each component is responsible for defining the JSX when that compoenent is used and responsible for handling interaction with that component.
+
+---
+### component implementation
+---
+**To create**
+extend the `React.Component` class:
+
+  class Header extends React.Component {
+    render() {
+      return <p>Test element</p>
+    }
+  }
+
+**NOTE:** extended class name must have capitalized naming convention to work properly (e.g. Header vs header).  If not properly capitalized, program won't crash, but React won't recognize the component.
+
+**To use**
+
+    const jsx = (
+      <div>
+        <Header />
+      </div>
+    )
+
+    ReactDOM.render(jsx, document.getElementById('app'));
+
+These components can be nested as needed so one Component might contain other components.
