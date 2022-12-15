@@ -85,3 +85,12 @@ For a list of what is supported and what is slightly different: https://reactjs.
 **NOTE:** attributes are named using camelCase in JSX.  so something like `maxlength` in HTML is referred to as `maxLength` in JSX.
 
 We can use variables to assign attributes using the same `{}` as before.
+
+---
+## data binding
+---
+JSX does not have built in data binding.
+We build a DOM structure based on the variable data at the time of construction, and render that DOM to the screen.
+If it changes, the DOM is not re-rendered.
+
+To properly update and render, we have to re-render each time a function is called.  React is very efficient with "re-rendering the entire page".  It doesn't actually erase, re-construct and re-render.  Instead, it figures out the minimum amount of elements that need to be re-rendered and only updates those elements.
