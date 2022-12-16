@@ -172,3 +172,20 @@ to access the properties from within the Component, use `this.props.propName`
 variables can be passed as well:
 `const title = 'Test Title By Variable'`
 `<Header title={title}>`  //title: Test Title By Variable
+
+---
+## this binding in event listeners
+---
+`this` binding is lost in an event listener.  To workaround, we can use `bind()`
+
+this can be done in two ways:
+1. in line: `onClick={this.eventHandler.bind(this)}` however this is inefficient since bind will be called every time we click the button
+2. modify the constructor function.  This way `bind` is only called once and the function is properly bound to the component no matter where it is called (including event listener)
+
+    class Name extends React.Component {
+      constructor(props) {
+        super(props);
+        this.eventHandler = this.eventHandler.bind(this)
+      }
+    }
+
