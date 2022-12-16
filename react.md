@@ -250,3 +250,13 @@ componentFunc() {
 }
 
 this is due to the fact that react is doing a lot in the background with `setState`.  It bundles all the setState state updates in one step and the `state` object isn't updated until the end.  So the second `setState` call is referencing the old `count` value instead of the updated `0` count.
+
+---
+## props vs state
+---
+Props                                   State
+- an object                             - an object
+- can be used when rendering            - can be used when rendering
+- changes from above cause re-render    - changes cause re-render
+- comes from above                      - defined in component itself
+- can't be changed by component itself  - can be changed by component itself
