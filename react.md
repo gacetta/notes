@@ -235,4 +235,18 @@ we use `this.setState` to update state.  When we're finished, it will render aut
 
 `this.setState` doesn't have to include all properties from `state` object, only the properties that are being modified.  When we're defining the updates in our `this.setState` function, we're not overriding the state object completely, we are just changing specific values.
 
+---
+### alternate setState syntax - OLD OUTDATED
+---
+`this.setState` can take an object as an argument (instead of using arrow function with `prevState` to return an updated object).  In this way, we can declare a new `state` object to update our values.  However, this can cause issues as `setState` is an `async` func in React.
 
+componentFunc() {
+  this.setState({
+    count: 0                      // never updates count = 0
+  });
+  this.setState({
+    count: this.state.count + 1   // updates count + 1 
+  })
+}
+
+this is due to the fact that react is doing a lot in the background with `setState`.  It bundles all the setState state updates in one step and the `state` object isn't updated until the end.  So the second `setState` call is referencing the old `count` value instead of the updated `0` count.
