@@ -189,3 +189,50 @@ this can be done in two ways:
       }
     }
 
+---
+## component state
+---
+`state` is an object within the class that stores values we need to reference and modify.
+
+A general overview of the big picture implementation:
+
+1. Setup default state object
+2. Component rendered with default state values (implicit - behind the scenes)
+3. Change state based on event
+4. Component re-rendered using updated state values (implicit - behind the scenes)
+5. Start again at 3
+
+---
+### create component state
+---
+
+CREATING A COMPONENT STATE - is relatively simple.  We just declare the `state` object with any properties we want inside the constructor:
+
+    class ComponentCounter extends React.Component {
+      constructor(props) {
+        super(props);
+        this.componentFunc = this.componentFunc.bind(this);
+        this.state = {
+          count: 0
+        };
+      }
+    }
+
+---
+### updating component state with this.setState
+---
+we use `this.setState` to update state.  When we're finished, it will render automatically.
+
+`this.setState` gives us access to the previous state object.  We can use this to update the state object with our modified values.
+
+  componentFunc() {
+    this.setState((prevState) => {
+      return {
+        count: prevState.count + 1
+      };
+    });
+  }
+
+`this.setState` doesn't have to include all properties from `state` object, only the properties that are being modified.  When we're defining the updates in our `this.setState` function, we're not overriding the state object completely, we are just changing specific values.
+
+
