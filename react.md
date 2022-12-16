@@ -159,3 +159,16 @@ extend the `React.Component` class:
     ReactDOM.render(jsx, document.getElementById('app'));
 
 These components can be nested as needed so one Component might contain other components.
+
+---
+## component props
+---
+we can pass values into our Components as property/value pairs.
+`<Header title="test-title">` //title: test-title
+
+to access the properties from within the Component, use `this.props.propName`
+`console.log(this.props.title)` // test-title
+
+variables can be passed as well:
+`const title = 'Test Title By Variable'`
+`<Header title={title}>`  //title: Test Title By Variable
