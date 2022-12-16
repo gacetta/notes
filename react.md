@@ -179,7 +179,7 @@ variables can be passed as well:
 `this` binding is lost in an event listener.  To workaround, we can use `bind()`
 
 this can be done in two ways:
-1. in line: `onClick={this.eventHandler.bind(this)}` however this is inefficient since bind will be called every time we click the button
+1. in line: `onClick={this.eventHandler.bind(this)}` however this is inefficient since `bind` will be called every time we click the button
 2. modify the constructor function.  This way `bind` is only called once and the function is properly bound to the component no matter where it is called (including event listener)
 
     class Name extends React.Component {
