@@ -260,3 +260,40 @@ Props                                   State
 - changes from above cause re-render    - changes cause re-render
 - comes from above                      - defined in component itself
 - can't be changed by component itself  - can be changed by component itself
+
+---
+## Stateless Functional Components
+---
+Components can also be written as functions.  These functional components do not have access to state (or `this` in an arrow function).  The function implies `render()` so we can just return what we want to render.
+
+    const ComponentName = (props) => {
+      return (
+        <div>
+          {props.optionText}
+        </div>
+      )
+    }
+
+**NOTE:** we don't have access to `this` with an arrow function, so we use the `props` parameter to access `props` instead of `this.props`.
+
+Advantages: 
+- faster than class based components (since they don't include all the class functionality and state functionality).
+- easier to read and write
+- easier to test
+
+---
+## adding defaultProps to functional components
+---
+we can add default properties after we define a component.  We can use these property values (or not) for each instance of our component.  If a property isn't defined -> grab the value from the default properties.  OR if a property is defined, overwrite the default property.  OR if a property isn't defined -> don't display the property at all. 
+
+  const Header = (props) => {
+    return (
+      <div>
+        <h1>{props.title}</h1>
+      </div>
+    )
+  }
+
+  Header.defaultProps = {
+    title: 'Default Value Here!'
+  }
