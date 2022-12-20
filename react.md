@@ -281,9 +281,9 @@ Advantages:
 - easier to read and write
 - easier to test
 
----
+----------------------------------------------------------
 ## adding defaultProps to functional components
----
+----------------------------------------------------------
 we can add default properties after we define a component.  We can use these property values (or not) for each instance of our component.  If a property isn't defined -> grab the value from the default properties.  OR if a property is defined, overwrite the default property.  OR if a property isn't defined -> don't display the property at all. 
 
   const Header = (props) => {
@@ -297,3 +297,23 @@ we can add default properties after we define a component.  We can use these pro
   Header.defaultProps = {
     title: 'Default Value Here!'
   }
+
+-----------------------------
+## lifecycle methods
+-----------------------------
+these are methods that are invoked at certain times in the lifecycle of a component: when component updates, when component loads, when component is deleted, when component is changed, etc.
+
+we never call these functions directly.  They are always invoked behind the scenes at specific times in the lifecycle - thus naming is important as these are reserved names that JS/React will reference
+
+**NOTE:** lifecycle methods are only accessible for our class based components (another reason functional components are faster)
+
+### componentDidMount
+`componentDidMount` is invoked immediately after a component is mounted (inserted into the tree)
+
+### componentDidUpdate
+`componentDidUpdate` is invoked immediately after updating occurs.  This method is not called for the initial render.
+
+`componentDidUpdate(prevProps, prevState)` has access to both the previousProps and previousState variables
+
+### componentWillUnmount
+`componentWillUnmount` is invoked immediately before a component is unmounted and destroyed.  
