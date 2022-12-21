@@ -24,3 +24,18 @@ ARRAYS
 - indexed in order
 - insertion and deletion can be expensive (shift and unshift)
 - can quickly be accessed at a specific index
+
+### Big O Notation:
+INSERTION - O(1)
+REMOVAL - it depends, O(1) or O(N)
+SEARCHING - O(N)
+ACCESS - O(N)
+
+### Advantages and Disadvantages
+- Singly Linked Lists are excellent alternative to arrays when insertion and deletion at the beginning are frequently required
+- Arrays contain a built in index whereas Linked Lists do not
+- The idea of a list data structure that consists of nodes is the foundation for other data structures like Stacks and Queues
+
+----------------------------------------
+## Doubly Linked List
+----------------------------------------
