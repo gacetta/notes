@@ -10,7 +10,7 @@ Modules are reusable chunks of code built from JS, node_modules, images, and CSS
 To use webpack properly, we create a `webpack.config.js` file in the root directory of the project (like `package.json`).
 The webpack config file is a JS file, that exports a JS object containing all of the configuration info for webpack.
 
-It uses node syntax: `module.exports = {}`
+More specifically it is a node script that is exporting a module: `module.exports = {}`
 
 `webpack` can be broken down into 5 principals:
 - Entry
