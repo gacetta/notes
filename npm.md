@@ -1,177 +1,104 @@
 # NPM - Node Package Manager
+------------------------------
 
-`npm` is a package manager for the JS programming language and the default package manager for `Node.js`.  It consists of a command line client (`npm`) and an online database of public and paid-for private packages called the `npm registry`.  The registry is accessed via the client and the available packages can be browsed and searched via the npm website.  `npm` is the world's largest software registry.
+`npm` is a package manager for the JS programming language and the default package manager for `Node.js` runtime environment.  It consists of a command line client (`npm`) and an online database of public and paid-for private packages called the `npm registry`.  The registry is accessed via the client and the available packages can be browsed and searched via the npm website.  `npm` is the world's largest software registry.
 
----
-## initializing npm
----
-1. In CLI, navigate to root directory of project.
-2. run `npm init` - initializes the project and creates a `package.json` file in the current directory. **NOTE:** `npm init -y` will skip all the questions.
+------------------------------
+## package.json
+------------------------------
+the `package.json` file contains all the information about a project.  This includes `name`, `version` and `license` information as well as information about how to interact with and run the application.  It is created using the `npm init` command.
 
----
-## installing packages
----
-**Install**
+### name
+`name:` defines the name of the package
+
+### version
+`version:` defines the current version of the software `package.json` is describing
+Semantic Versioning isn't required, but is best practice
+
+### license
+`license:` defines what license applies to the code
+
+### author and contributors
+`author:` for a single person
+`contributors:` is an array of people
+
+### description
+`description:` describes what the package is for
+
+### keywords
+`keywords:` an array of keywords to help for searching the npm registry
+
+### main
+`main:` defines the entry point into your project and commonly the file used to start the project
+
+  "main": "src/index.js",
+
+### scripts
+`scripts:` takes an object with its keys being scripts we can run using `npm run <scriptName>`, and the value is the actual command which is run
+
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon"
+  }
+
+To run in CLI:
+
+  npm run start //runs node index.js
+
+### repository
+`repository:` takes an object which defines the repo type and location for the project.
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/osiolabs/example.git"
+  }
+
+### dependencies
+This is one of the most important fields in your `package.json`, and likely the entire reason you need one. All of the dependencies your project uses (the external code that the project relies on) are listed here. When a package is installed using the npm CLI, it is downloaded to your `node_modules/` folder and an entry is added to your dependencies property, noting the name of the package and the installed version.
+
+`dependencies:` takes an object with package names as keys, and a version or version range as a value. From this list, npm knows what packages to fetch and install (and at what versions) when `npm install` is run in the directory. The dependency field of your package.json is at the heart of your project, and defines the external packages your project requires.  See semantic versioning (SemVer) for more info.
+
+  "dependencies": {
+    "express": "^4.16.4",
+      "compression": "~1.7.4"
+  }
+
+### devDependencies
+Similar to the `dependencies` field, but for packages which are only needed during development, and aren't needed in production.  An example would be `nodemon` which is used to reload a project during development, but has no use one the application is deployed and in production.
+
+`devDependencies:` takes an object similarly to `dependencies`
+
+To specify that a package is installed to `devDependencies`, use the `--save-dev` or `-D` flag when running `npm install <package-name> --save-dev`
+
+------------------------------
+## npm commands
+------------------------------
+### npm init
+------------------------------
+`npm init` creates a `package.json` file in the directory it is run from
+ **NOTE:** `npm init -y` will skip all the questions.
+
+------------------------------
+### npm install
+------------------------------
 `npm install [<package-spec> ...]` will install the specified package
-aliases: `add`, `i`, `in`, `ins`, `inst`, `insta`, `instal`, `isnt`, `isnta`, `isntal`, `isntall`
+common aliases:
+`npm i [<package-spec> ...]`
+`npm add [<package-spec> ...]`
+also: (`in`, `ins`, `inst`, `insta`, `instal`, `isnt`, `isnta`, `isntal`, `isntall`)
 
 Flags:
 
   `-D` is equivalent to `--save-dev`.  Package will appear in your `devDependencies`
 
----
-## Global Install
----
+**NOTE: about global install**
 why we should avoid global install
 1. a global install doesn't keep track of what is needed for your project in package.json file
 2. having a global install doesn't allow for different versioning for each project
 3. we have to type out the entire command in the CLI.  no alias ability
-
-
----
-## SAMPLE SASS SETUP
----
-
-1. in CLI navigate to project root folder
-2. run `npm init` to create `package.json` file
-3. `npm install node-sass --save-dev` to install node-sass and save it as a development dependency.  This will update the `package.json` file.  By saving that info in the `package.json` file, it tells the program what npm functionality is needed for runtime.  Thus making it easier to share a project with others.  Like sharing a recipe rather than giving someone all the ingredients.
-4. To share our project with someone, share the appropriate files, including `package.json`, but NOT the `node-modules` folder.  The user can run `npm install` to download all necessary files based on the `package.json` information.
-
----
-## Implementing Sass into our workflow
----
-1. **CREATING A SCRIPT**
-We can write our own scripts in the `package.json` file.
-In our case, we want to compile the `.scss` file to convert it to `.css` to be rendered by the browser.  
-
-We do this with the following code:
-
-    "scripts": {
-        "compile:sass": "node-sass sass/main.scss css/style.css"
-
-We have written a script called `compile:sass`.  It specificies the name of the package, `node-sass`, then the location of the source file, `sass/main.scss`, and the location of the output file, `css/style.css`.
-
-2. ***RUNNING THE SCRIPT***
-To run the script, we have to use the terminal:
-
-`npm run compile:sass`
-
-This works as expected - runs the script we have named `compile:sass` which compiles the .scss file to .css file!  
-
-However, every time we make changes, we have to run the script again in the CLI to see the results in the browser.
-
-To avoid this, we can add a `watch` flag to the end of the script, which tells the script to watch the source file and to run every time the source file is updated.  This is done using `-w`:
-
-    "scripts": {
-        "compile:sass": "node-sass sass/main.scss css/style.css -w"
-
----
-## CLI commands and flags
----
-**Install**
-`npm install [<package-spec> ...]` will install the specified package
-aliases: `add`, `i`, `in`, `ins`, `inst`, `insta`, `instal`, `isnt`, `isnta`, `isntal`, `isntall`
-
-Flags:
-
-  `-D` is equivalent to `--save-dev`.  Package will appear in your `devDependencies`
-
-
----
-## npm build process
----
-main.sass
-|   //COMPILATION
-v
-style.comp.css    icon-font.css
-|  //CONCATENATION  |
-v                   |
-style.concat.css  <-
-|  //PREFIXING
-v
-style.prefix.css
-| //COMPRESSING
-v
-style.css (production code)
-
-modify "scripts" in `package.json`
-`"watch:sass": "node-sass sass/main.scss css/style.css -w"` // watches for changes in main.scss and compiles into style.css
-`"compile:sass": "node-sass sass/main.scss css/style.comp.css"` //compiles all scss files into .comp.css file
-`"concat:css": "concat -o css/style.concat.css css/icon-font.css css/style.comp.css"` //concat icon-font.css and style.comp.css files
-`"prefix:css": "postcss --use autoprefixer -b 'last 10 versions' css/style.comp.css -o css/style.prefix.css"` //POSTCSS autoprefixes for compatibility (`-webkit`, `moz`, etc.)
-`"compress:css": "node-sass css/style.prefix.css css/style.css --output-style compressed"`
-
-NOW that we've set up each step of the build process, we can combine them into one command using the npm package, npm-run-all
-`"build:css": "npm-run-all compile:sass concat:css prefix:css compress:css"`
-
----
-## combining watch and live-server
----
-We have to have two terminals open to run both `watch:sass` and `live-server` concurrently.  We can do better:
-
-`"watch:sass": "node-sass sass/main.scss css/style.css -w"` // watches for changes in main.scss and compiles into style.css
-`"devserver": "live-server"`
-`"start": "npm-run-all --parallel devserver watch:sass" `
-
-we can use `--browser:` to tell this project to run live-server in a specific browser (if we want to use the firefox dev tools for grid, say)
-`"devserver": "live-server --browser:firefox"`
-
-
----
-## scripts
----
-we can customize the scripts to be run in the package.json file.
-`script-name`: `babel src/index.js -o public/scripts/bundle.js --presets=@babel/preset-env`
-
-we can run these custom scripts using `npm run script-name`
 
 ---
 ## global modules
 ---
 to uninstall:
 `npm uninstall -g package-name next-package-name-which-is-separated-by-space`
-
----
-## webpack
----
-current build process:
-`index.js` - code we write
-    |
-    V
-`Babel` - convert modern JS to work everytwhere
-    |
-    v
-`bundle.js` - code browser runs (**NOTE:** naming convention for this file)
-
-Introducing webpack
-`index.js` - code we write
-    |
-    V
-`Webpack` - 1. Enable modules 2. Run babel
-    |
-    v
-`bundle.js` - code browser runs (**NOTE:** naming convention for this file)
-
-### configure webpack
----
-the file `webpack.config.js` must reside in the root directory of your site.
-
-`Node.js` is used for configuration so some boilerplate code:
-
-```
-const path = require('path')
-
-module.exports = {
-  entry: './src/index.js',
-  output: {
-    path: path.resolve(__dirname, 'public/scripts'),
-    filename: "bundle.js"
-  }
-}
-```
-
-  `entry` is the source file
-  `output.path` is the location out of the output file
-    `__dirname` is from node.js and is an environment varialbe that tells you the absolute path of the directory containing the currently executing file
-    `path.resolve` is a node function that concats `__dirfile` with the remaining path.
-  `output.filename` - sets the output filename

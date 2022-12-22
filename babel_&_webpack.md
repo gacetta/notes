@@ -9,18 +9,6 @@ Documentation here: https://babeljs.io/
 `babel source.js -o output.js --presets=@babel/preset-env`
 
 ---
-## Webpack
----
-Webpack is a module bundler
-
----
-## webpack dev server
----
-Two methods of streamlining our workflow to avoid running `webpack` in the terminal constantly:
-1. (5 seconds) - add `--watch` flag to the webpack script in package.json.
-2. (5 minutes) - use webpack dev server
-
----
 ## webpack example
 ---
 package.json:
@@ -141,37 +129,6 @@ when `webpack` compiles code using babel, it expands the file from the input fil
 - how to call?
 
 ---
-## semantic versioning
----
-semantic versioning  - `major-release.minor-release.patch-release` - e.g. `1.0.0`
-
-**As a publisher of a package**
-
-version should always start a `1.0.0`.  (`0.0.0` is used historically when a package isn’t yet stable for initial release) 
-
-`patch-release`: a change that doesn’t break anything, doesn’t add any functionality.  a minor bug fix
-`minor-release`: a change that doesn’t break anything but adds functionality.
-`major-release`: a change that breaks things.  A change to the API that is not backward compatible.
-
-**As the user of a package:**
-
-Patch releases only: `1.0.0 -> 1.0.1` but not `1.0.0 -> 1.1.0` ? How to specify in package.json :
-- `1.0`
-- `1.0.x`
-- `~1.0.4` ( (any version compatible with 1.0.4  AKA any version up but not including the next minor update)
-
-Minor releases only: `1.0.0 -> 1.1.0` but not `1.0.0 -> 2.0.0` ? How to specify in package.json :
-- `1`
-- `1.x` 
-- `^1.0.4` (any version compatible with 1.0.4 AKA any version up to but not including the next major update)
-
-Major releases too: `1.0.0 -> 2.0.0`
-- `*`
-- `x`
-
-https://www.youtube.com/watch?v=kK4Meix58R4
-
----
 ## multiple html pages in webpack
 ---
 create a .js page for each .html page.  `index.html index.js` and `edit.html edit.js`
@@ -187,37 +144,47 @@ entry: {
     filename: "[name]-bundle.js"
   },
 
-----------------------------------------------------
-## webpack.config.js
-----------------------------------------------------
-module.exports = {
+---
+## webpack
+---
+current build process:
+`index.js` - code we write
+    |
+    V
+`Babel` - convert modern JS to work everytwhere
+    |
+    v
+`bundle.js` - code browser runs (**NOTE:** naming convention for this file)
 
-}
+Introducing webpack
+`index.js` - code we write
+    |
+    V
+`Webpack` - 1. Enable modules 2. Run babel
+    |
+    v
+`bundle.js` - code browser runs (**NOTE:** naming convention for this file)
 
-----------------------------------------------------
-### entry
-----------------------------------------------------
-requires a relative path of the entry file
-  `entry: './src/app.js'`
+### configure webpack
+---
+the file `webpack.config.js` must reside in the root directory of your site.
 
-----------------------------------------------------
-### output
-----------------------------------------------------
-requires an object with output file settings
+`Node.js` is used for configuration so some boilerplate code:
 
-#### path
-the **absolute** path of the output destination.  
-
-We can use node `path` methods here:
-`path.join` merges two paths together but it doesn't necessarily return an absolute path
-`path.resolve` will always resolve to an absolute path
-the Node variable `__dirname` will give us the absolute path of the directory containing the source file that is being executed.
-
-With these methods we get:
+```
 const path = require('path')
-...
-path: path.resolve(__dirname, 'public')
 
-#### filename
-the desired name for the output bundled file
-*BEST PRACTICE* is to name this `bundle.js`
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'public/scripts'),
+    filename: "bundle.js"
+  }
+}
+```
+
+  `entry` is the source file
+  `output.path` is the location out of the output file
+    `__dirname` is from node.js and is an environment varialbe that tells you the absolute path of the directory containing the currently executing file
+    `path.resolve` is a node function that concats `__dirfile` with the remaining path.
+  `output.filename` - sets the output filename
