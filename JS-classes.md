@@ -228,5 +228,44 @@ Now bird and plane can both fly:
     bird.fly();   // Flying, wooosh!
     plane.fly();  // Flying, wooosh!
 
+---
+## Private Class Fields
+---
+adding `#` to a variable in a class says "this is private data only accessible by the class"
 
+  class Character {
+    constructor(name) {
+      this.name = name;
+    }
+    greet() {
+      console.log('hi' + this.name)
+    }
+  }
 
+  const mikey = new Character('Mikey')
+
+this could potentially be modified:
+
+  Character.prototype.greet = false;
+  mikey.greet() //false
+
+We can name private state:
+
+class Character {
+  #age = 54;
+  constructor(name) {
+    this.name = name;
+  }
+  greet() {
+    console.log('hi' + this.name is this.#age)
+  }
+}
+
+const Mikey = new Character('Mikey')
+
+    Mikey.age //undefined
+    Mikey.#age //54
+    Mikey.#age = 23 //error
+    Mikey.#age //54
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields
