@@ -12,6 +12,8 @@ The webpack config file is a JS file, that exports a JS object containing all of
 
 More specifically it is a node script that is exporting a module: `module.exports = {}`
 
+**NOTE:** whenever `webpack.config.js` is updated, `webpack` must be run again.
+
 `webpack` can be broken down into 5 principals:
 - Entry
 - Output
@@ -101,3 +103,20 @@ Three modes:
 3. `mode: 'none'`
 
 **NOTE:** if mode is not specified, webpack defaults to production
+
+----------------------------------------------------
+### devtool - (source maps)
+----------------------------------------------------
+since `webpack` bundles multiple modules into a single file, debugging can become difficult due to the trouble in tracking where (what line) the error is on.  
+
+Enter `source maps`.  A source map is a file that maps from the transformed source to the original source, enabling the browser to reconstruct the original source and present the reconstructed original in the debugger
+
+the `devtool:` option in `webpack` controls if and how source maps are generated.
+
+----------------------------------------------------
+### webpack dev server
+----------------------------------------------------
+`webpack` has it's own built in version of `live-server` that we can use while in development.  
+
+`devServer:` sets the options for `webpack-dev-server`, namely where the `public/` folder is located:
+`devServer.static.directory`
