@@ -41,7 +41,19 @@ WAYS TO USE `export`:
 - named export - as many exports as we'd like `export { func1, func2 }`
 - default export - maximum one default export `export { only1Func as default }`
 - default and named exports - `export { func1, func2, func3 as default }` // func1, func2 are named exports. func3 is default export
+- inline named export - `export const namedFunc = (x) => x % 2 === 0`
+- inline anonymous default func - `export default (x) => x % 2 === 0`
 
 Which export to use?
 - if a file has one large function, default export
 - if a file has a bunch of smaller functions, named exports
+
+----------------------------
+## using 3rd party libraries
+----------------------------
+to use an npm library, reference the documentation to understand installation, importing and usage.
+
+### importing
+After installing library, `import` the module providing name rather than a directory.  `webpack` will search for a module with the same name in the `node_modules/` folder
+
+Example: `import validator from 'validator'`
