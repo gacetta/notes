@@ -8,7 +8,11 @@ Documentation here: https://babeljs.io/
 3. To run `babel` through CLI, you need a source file and output file name:
 `babel source.js -o output.js --presets=@babel/preset-env`
 
---
+---
+## Webpack
+---
+Webpack is a module bundler
+
 ---
 ## webpack dev server
 ---
@@ -182,3 +186,38 @@ entry: {
     path: path.resolve(__dirname, 'public/scripts'),
     filename: "[name]-bundle.js"
   },
+
+----------------------------------------------------
+## webpack.config.js
+----------------------------------------------------
+module.exports = {
+
+}
+
+----------------------------------------------------
+### entry
+----------------------------------------------------
+requires a relative path of the entry file
+  `entry: './src/app.js'`
+
+----------------------------------------------------
+### output
+----------------------------------------------------
+requires an object with output file settings
+
+#### path
+the **absolute** path of the output destination.  
+
+We can use node `path` methods here:
+`path.join` merges two paths together but it doesn't necessarily return an absolute path
+`path.resolve` will always resolve to an absolute path
+the Node variable `__dirname` will give us the absolute path of the directory containing the source file that is being executed.
+
+With these methods we get:
+const path = require('path')
+...
+path: path.resolve(__dirname, 'public')
+
+#### filename
+the desired name for the output bundled file
+*BEST PRACTICE* is to name this `bundle.js`
