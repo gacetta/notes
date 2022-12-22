@@ -19,7 +19,13 @@ Flags:
 
   `-D` is equivalent to `--save-dev`.  Package will appear in your `devDependencies`
 
-
+---
+## Global Install
+---
+why we should avoid global install
+1. a global install doesn't keep track of what is needed for your project in package.json file
+2. having a global install doesn't allow for different versioning for each project
+3. we have to type out the entire command in the CLI.  no alias ability
 
 
 ---

@@ -75,6 +75,64 @@ class SinglyLinkedList {
     this.length++
     return newNode;
   }
+  get(index) {
+    if (index < 0 || index > this.length) return null;
+    let count = 0;
+    let currNode = this.head;
+    while (count !== index) {
+      currNode = currNode.next;
+      count++;
+    }
+    return currNode;
+  }
+  set(index, value) {
+    const updateNode = this.get(index);
+    if (updateNode) {
+      updateNode.value = value;
+      return true;
+    }
+    return false;
+  }
+  insert(index, value) {
+    if (index < 0 || index > this.length) return false;
+    if (index === this.length) return Boolean(this.push(value));
+    if (index === 0) return Boolean(this.unshift(value));
+
+    const prevNode = this.get(index - 1);
+    if (prevNode) {
+      const newNode = new Node(value);
+      newNode.next = prevNode.next
+      prevNode.next = newNode;
+      this.length++;
+      return true;
+    }
+    return false;
+  }
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === this.length - 1) return this.pop();
+    if (index === 0) return this.shift();
+
+    const prevNode = this.get(index -1);
+    const removedNode = prevNode.next;
+    prevNode.next = removedNode.next;
+    this.length--;
+    return removedNode
+  }
+  reverse() {
+    let currNode = this.head;
+    this.head = this.tail;
+    this.tail = currNode;
+    let prevNode = null; 
+    let nextNode;
+
+    while (currNode) {
+      nextNode = currNode.next;
+      currNode.next = prevNode;
+      prevNode = currNode
+      currNode = nextNode;
+    }
+  }
 }
 
 const List = new SinglyLinkedList()
@@ -96,6 +154,15 @@ const List = new SinglyLinkedList()
 // console.log(List)
 // List.shift();
 // console.log(List)
-List.unshift(999);
-console.log(List)
-
+List.push(100);
+List.push(500);
+List.push(900);
+// console.log(List)
+// console.log(List.get(0));
+// console.log(List.get(1));
+// console.log(List.get(2));
+List.reverse();
+console.log(List.get(0));
+console.log(List.get(1));
+console.log(List.get(2));
+// console.log(List)
