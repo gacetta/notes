@@ -317,3 +317,16 @@ we never call these functions directly.  They are always invoked behind the scen
 
 ### componentWillUnmount
 `componentWillUnmount` is invoked immediately before a component is unmounted and destroyed.  
+
+-----------------------------
+## creating components
+-----------------------------
+It's _GOOD PRACTICE_ to have a different file for each component.  This keeps code readable and maintainable.
+
+When naming component files, it's _GOOD PRACTICE_ to give the file the same name as the component.
+
+**TRICK:** we can export a class based component as default by using `export default` in front of the `class` keyword.
+
+`export default class AddOption extends React.Component { ...code... }`
+
+**NOTE:** even though some components aren't referencing React directly, if there is JSX then we need to import React since Babel will convert JSX to React.CreateElement calls.
