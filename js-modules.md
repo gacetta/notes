@@ -22,7 +22,7 @@ myFile.jsx          In the current directory
 ----------------------------
 `import` is used to import functionality between js files.  Functionality must also be `exported` from target js file.
 
-HOW TO USE `import`:
+WAYS TO USE `import`:
 - to import multiple items (no default export) `import { func1, func2 } from './file-name` 
 - to import single default item `import defaultFunc from './file-name'`
 - to import default and named items `import defaultFunc, { func1, func2 } from './file-name'`
@@ -37,10 +37,10 @@ at the top of a JS document, link other .js docs using `import 'path/file-name`
 ----------------------------
 `export` is used to export functionality between js files.  Functionality can then be imported with `import`
 
-HOW TO USE `export`:
+WAYS TO USE `export`:
 - named export - as many exports as we'd like `export { func1, func2 }`
 - default export - maximum one default export `export { only1Func as default }`
-- default and named exports - `export { func1, func2, func3 as default }` // func1, func2 are named exports. func3 is default
+- default and named exports - `export { func1, func2, func3 as default }` // func1, func2 are named exports. func3 is default export
 
 Which export to use?
 - if a file has one large function, default export
