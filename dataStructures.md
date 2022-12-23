@@ -39,3 +39,14 @@ ACCESS - O(N)
 ----------------------------------------
 ## Doubly Linked List
 ----------------------------------------
+Almost identical to singly linked lists except every node has a nother pointer to the previous node.
+
+### Big O Notation:
+INSERTION - O(1)
+REMOVAL - O(1)
+SEARCHING - O(N)
+ACCESS - O(N)
+
+### Advantages and Disadvantages
+- Better than Singly Linked Lists for finding nodes and can be done in half the time.
+- Take up more memory considering the extra pointer
