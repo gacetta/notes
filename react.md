@@ -1,6 +1,13 @@
 # react
+React is a JavaScript library developed by Facebook that was used to build instagram.  It allows developers to easily create fast user interfaces for websites and applications.  The main concept is virtual DOM - it is tree based, using javascript components created with react to mimic a DOM tree.  It does the least amound of DOM manipulation possible to keep React components up to date.
 
+React is an open-source JavaScript framework and library developed by Facebook.  It is used for building interactive user interfaces and web applications quickly and efficiently with significantly less code than with vanilla JS.
+
+
+
+----------------------------
 ## why learn react
+----------------------------
 1. react library itself
 - react builds on what you already know about javascript
 - component based, helps to break code into small pieces
@@ -11,17 +18,17 @@
 - great resources
 - used by many companies
 
----
+----------------------------
 ## JSX - JavaScript XML
----
-language extension provided to us by React.  We can integrate HTML into our JS language:
+----------------------------
+JSX is a language extension provided by React.  It allows the integration of HTML into our JS language:
 
   `const pElement = <p>This is JSX</p>`
   `const destination = document.querySelector('#app')`
 
----
+----------------------------
 ## ReactDOM.render()
----
+----------------------------
 **NOTE:** ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot
 
 `ReactDOM` has a `.render()` method.  Takes 2 args: element-you-want-to-render, where-you-want-to-render-it-to
@@ -29,9 +36,9 @@ we can use `ReactDOM.render()` to render the above code
 
   `ReactDOM.render(pElement, destination)` // doesn't render to DOM.  Not valid JS
 
----
+----------------------------
 # babel
----
+----------------------------
 Since JSX isn't valid JS, we use babel to compile JSX down to regular readable vanilla JS.  We can see that behind the scenes, `ReactDOM` is using other `React` methods when passed through Babel:
 
   const template = <p id='poo'>This is JSX</p>
@@ -49,9 +56,9 @@ Is transpiled to:
   );
 
 
----
+----------------------------
 ## JSX syntax
----
+----------------------------
 We can access variables or call functions inside JSX by using `{}`
 
   const test = 'platypus o'plenty';
@@ -63,9 +70,9 @@ Function call:
   const testFunc = (text) => text ?? 'unknown';
   <p>testFunc('hey boobie')</p> 
 
----
+----------------------------
 ## JSX - booleans, undefined, null
----
+----------------------------
 booleans, undefined and null are all ignored in JSX.
 
 For example, we could call a function that renders a phrase if a string or number value is returned, nothing if undefined
@@ -74,10 +81,10 @@ For example, we could call a function that renders a phrase if a string or numbe
   {testFunc('I am the walrus')} // 'I am the walrus'
   {testFunc()}                  // renders nothing
 
----
+----------------------------
 ## JSX - attributes
----
-Some attributes work as expected (`id`).  
+----------------------------
+Some attributes work as expected, such as `id`.
 Others have been renamed (`class` = `className`).  This is due to the fact that certain words in JS are reserved keywords.
 
 For a list of what is supported and what is slightly different: https://reactjs.org/docs/dom-elements.html
@@ -86,59 +93,58 @@ For a list of what is supported and what is slightly different: https://reactjs.
 
 We can use variables to assign attributes using the same `{}` as before.
 
----
-## JSX - data binding
----
+----------------------------
+## JSX - data binding and rendering
+----------------------------
 JSX does not have built in data binding.
 We build a DOM structure based on the variable data at the time of construction, and render that DOM to the screen.
 If it changes, the DOM is not re-rendered.
 
 To properly update and render, we have to re-render each time a function is called.  React is very efficient with "re-rendering the entire page".  It doesn't actually erase, re-construct and re-render.  Instead, it figures out the minimum amount of elements that need to be re-rendered and only updates those elements.
 
----
+----------------------------
 ## JSX - arrays
----
+----------------------------
 Numbers are valid datatype in JSX:
-```
-{
-  [99, 98, 97]
-}
-```
+
+    {
+      [99, 98, 97]
+    }
+
 is equivalent to `{99}{98}{97}`   //999897 is rendered
 
 Strings are valid datatype in JSX:
-{
-  [99, 'Mike Mike Mike Mike Mike']  //99Mike Mike Mike Mike Mike
-}
+    {
+      [99, 'Mike Mike Mike Mike Mike']  //99Mike Mike Mike Mike Mike
+    }
 
 Booleans are valid but ignored in JSX:
-{
-  [99, 'Bananahands', false]    //99Bananahands
-}
+    {
+      [99, 'Bananahands', false]    //99Bananahands
+    }
 
 Can we render an array of JSX in JSX?
-{
-  [{<p>a</p>},{<p>b</p>},{<p>c</p>}]    // valid but react throws an error - it has no way to reference each element
-}
+    {
+      [{<p>a</p>},{<p>b</p>},{<p>c</p>}]    // valid but react throws an error - it has no way to reference each element
+    }
 
-{
-  [{<p key='1'>a</p>},{<p key='2'>b</p>},{<p key='3'>c</p>}]    // no error, in the future, they will have id
-}
+    {
+      [{<p key='1'>a</p>},{<p key='2'>b</p>},{<p key='3'>c</p>}]    // no error, in the future, they will have id
+    }
 
----
+----------------------------
 ## components
----
-react uses component based architecture
+----------------------------
+react uses component based architecture which means creating smaller lego-like building blocks.  By splitting our code into separate components, the overall project is more manageable and understandable.
 
 one component might responsible for rendering the header, another for the rendering the user profile, another for rendering a form and handling form submission.
 
-Each component is responsible for defining the JSX when that compoenent is used and responsible for handling interaction with that component.
+Each component is responsible for defining the JSX when that component is used and responsible for handling interaction with that component.
 
----
-### component implementation
----
-**To create**
-extend the `React.Component` class:
+----------------------------
+### class component implementation
+----------------------------
+we can use `classes` to implement components.  This approach involves extending the `React.Component` class:
 
   class Header extends React.Component {
     render() {
@@ -148,7 +154,7 @@ extend the `React.Component` class:
 
 **NOTE:** extended class name must have capitalized naming convention to work properly (e.g. Header vs header).  If not properly capitalized, program won't crash, but React won't recognize the component.
 
-**To use**
+To use a component, we use a single HTML like tag: `<Component />`.  We also have to render the ReactDom somewhere:
 
     const jsx = (
       <div>
@@ -158,24 +164,26 @@ extend the `React.Component` class:
 
     ReactDOM.render(jsx, document.getElementById('app'));
 
-These components can be nested as needed so one Component might contain other components.
+**NOTE:** Components can be nested as needed so one Component might contain other components.
 
----
+----------------------------
 ## component props
----
+----------------------------
 we can pass values into our Components as property/value pairs.
-`<Header title="test-title">` //title: test-title
+```
+<Header title="test-title">` //title: test-title
+```
+When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object `props`.  That means to access a variable such as `title` above, we use `this.props.propName`:
 
-to access the properties from within the Component, use `this.props.propName`
 `console.log(this.props.title)` // test-title
 
 variables can be passed as well:
 `const title = 'Test Title By Variable'`
 `<Header title={title}>`  //title: Test Title By Variable
 
----
+----------------------------
 ## this binding in event listeners
----
+----------------------------
 `this` binding is lost in an event listener.  To workaround, we can use `bind()`
 
 this can be done in two ways:
@@ -188,11 +196,12 @@ this can be done in two ways:
         this.eventHandler = this.eventHandler.bind(this)
       }
     }
+**NOTE:** the only purpose of the constructor here is to bind the eventHandler method.
 
----
+----------------------------
 ## component state
----
-`state` is an object within the class that stores values we need to reference and modify.
+----------------------------
+`state` is a built-in react object used to contain data or information about a component.  A component's state can change over time - whenever it changes, the component re-renders.
 
 A general overview of the big picture implementation:
 
@@ -202,10 +211,9 @@ A general overview of the big picture implementation:
 4. Component re-rendered using updated state values (implicit - behind the scenes)
 5. Start again at 3
 
----
+----------------------------
 ### create component state
----
-
+----------------------------
 CREATING A COMPONENT STATE - is relatively simple.  We just declare the `state` object with any properties we want inside the constructor:
 
     class ComponentCounter extends React.Component {
@@ -218,12 +226,13 @@ CREATING A COMPONENT STATE - is relatively simple.  We just declare the `state` 
       }
     }
 
----
+--------------------------------------------------------
 ### updating component state with this.setState
----
-we use `this.setState` to update state.  When we're finished, it will render automatically.
+--------------------------------------------------------
+Don't modify state directly:  While the values will update, they won't re-render.  
+Instead use `this.setState` to update state. This will update values and re-render.
 
-`this.setState` gives us access to the previous state object.  We can use this to update the state object with our modified values.
+`this.setState` gives us access to the previous state object via the first argument.  We can use this to update the state object with our modified values.
 
   componentFunc() {
     this.setState((prevState) => {
@@ -233,11 +242,11 @@ we use `this.setState` to update state.  When we're finished, it will render aut
     });
   }
 
-`this.setState` doesn't have to include all properties from `state` object, only the properties that are being modified.  When we're defining the updates in our `this.setState` function, we're not overriding the state object completely, we are just changing specific values.
+**NOTE:** `this.setState` doesn't have to include all properties from `state` object, only the properties that are being modified.  When we're defining the updates in our `this.setState` function, we're not overriding the state object completely, we are just changing specific values.
 
----
+--------------------------------------------------------
 ### alternate setState syntax - OLD OUTDATED
----
+--------------------------------------------------------
 `this.setState` can take an object as an argument (instead of using arrow function with `prevState` to return an updated object).  In this way, we can declare a new `state` object to update our values.  However, this can cause issues as `setState` is an `async` func in React.
 
 componentFunc() {
@@ -251,9 +260,9 @@ componentFunc() {
 
 this is due to the fact that react is doing a lot in the background with `setState`.  It bundles all the setState state updates in one step and the `state` object isn't updated until the end.  So the second `setState` call is referencing the old `count` value instead of the updated `0` count.
 
----
+----------------------------
 ## props vs state
----
+----------------------------
 Props                                   State
 - an object                             - an object
 - can be used when rendering            - can be used when rendering
@@ -261,10 +270,10 @@ Props                                   State
 - comes from above                      - defined in component itself
 - can't be changed by component itself  - can be changed by component itself
 
----
+--------------------------------------------------------
 ## Stateless Functional Components
----
-Components can also be written as functions.  These functional components do not have access to state (or `this` in an arrow function).  The function implies `render()` so we can just return what we want to render.
+--------------------------------------------------------
+Components can also be written as arrow functions.  These functional components do not have access to state (or `this` in an arrow function).  The function implies `render()` so we can just return what we want to render.
 
     const ComponentName = (props) => {
       return (
@@ -274,7 +283,7 @@ Components can also be written as functions.  These functional components do not
       )
     }
 
-**NOTE:** we don't have access to `this` with an arrow function, so we use the `props` parameter to access `props` instead of `this.props`.
+**NOTE:** we don't have access to `this` with an arrow function, so we must provide the `props` parameter to access `props` instead of `this.props`.
 
 Advantages: 
 - faster than class based components (since they don't include all the class functionality and state functionality).
@@ -282,9 +291,12 @@ Advantages:
 - easier to test
 
 ----------------------------------------------------------
-## adding defaultProps to functional components
+## defaultProps to functional components
 ----------------------------------------------------------
-we can add default properties after we define a component.  We can use these property values (or not) for each instance of our component.  If a property isn't defined -> grab the value from the default properties.  OR if a property is defined, overwrite the default property.  OR if a property isn't defined -> don't display the property at all. 
+after defining a component, we can set default property values which can be used (or not) for each instance of our component.  
+- if a prop isn't defined -> grab the value from the default props.  
+- if a prop is defined, overwrite the default prop.  
+- if a prop isn't defined -> don't display the property at all. 
 
   const Header = (props) => {
     return (
