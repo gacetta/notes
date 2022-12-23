@@ -381,3 +381,14 @@ That syntax allows us to put JSX inside the component tags.  That JSX will be pa
       </Layout>
     ), document.getElementById('app'))
 
+--------------------------------
+## react-modal
+--------------------------------
+react modal is a 3rd party library that provides a modal component to pop up on the page.
+
+`react-modal` requires two args:
+- `isOpen` takes boolean.  `true` - modal is open.  `false` - modal is closed.
+- `contentLabel` - text for accessibility
+
+A third arg is helpful:
+- `onRequestClose` is similar to `onClick`.  It specifies what action to take when trying to close the window by hitting ESC or clicking outside the window. 
