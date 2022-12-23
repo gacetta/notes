@@ -352,3 +352,32 @@ class NewSyntax {
   name = 'AGreatName',
   age = 'aged 100 days'
 }
+
+--------------------------------
+## passing children to component
+--------------------------------
+`props.children` is a special built-in property of React components that gives us access to any child elements defined within the component.
+
+We know how to use components using the `<Component />` syntax.
+We can also use components with a different syntax that looks even more like HTML open and close tags: 
+```
+<Component></Component>
+```
+That syntax allows us to put JSX inside the component tags.  That JSX will be passed to the component via `props.children`
+
+    const Component = (props) => {
+      return (
+        <div>
+          {props.children}
+        </div>
+      );
+    }
+
+    ReactDOM.render((
+      <Layout>
+        <div>
+          <h1>This becomes a chilren prop in Component</h1>
+        </div>
+      </Layout>
+    ), document.getElementById('app'))
+
