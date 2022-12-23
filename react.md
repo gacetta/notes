@@ -330,3 +330,13 @@ When naming component files, it's _GOOD PRACTICE_ to give the file the same name
 `export default class AddOption extends React.Component { ...code... }`
 
 **NOTE:** even though some components aren't referencing React directly, if there is JSX then we need to import React since Babel will convert JSX to React.CreateElement calls.
+
+-----------------------------
+## ES6 class properties
+-----------------------------
+We can now declare properties in a new class without using the constructor function
+
+class NewSyntax {
+  name = 'AGreatName',
+  age = 'aged 100 days'
+}
