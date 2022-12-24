@@ -104,6 +104,20 @@ To use:
 ----------------------------------------
 ## file structure organization
 ----------------------------------------
+Our project folder is starting to get crowded:
+ROOT (our git repo)
+- node_modules (.gitignore)
+- public
+  - css
+  - img
+  - js
+- src
+  - app.js
+- templates
+  - partials
+  - views
+- package.json
+
 in our main `app.js` file we can start to organize things:
 - imports / requires
 - define our app = express()
