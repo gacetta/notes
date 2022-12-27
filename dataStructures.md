@@ -70,8 +70,8 @@ Requires two operations:
 2. `pop` - remove something from queue
 
 BIG O of Stacks
-Insertion - O(1)  <---- should have linear big O
-Removal - O(1)    <---- should have linear big O
+Insertion - O(1)  <---- should have linear big O (only thing that matters)
+Removal - O(1)    <---- should have linear big O (only thing that matters)
 Searching - O(N)  <---- doesn't matter for stack
 Access - O(N)     <---- doesn't matter for stack
 
@@ -86,9 +86,15 @@ Commonly used in programming:
 - printing / task processing
 
 A "queue" is more of a concept than a strict data structure implementation.  They are a built in data structure in some languages, but not JavaScript.  They are relatively simple to implement and there are multiple ways to do so:
-- Array Implementation (push/pop or unshift/shift)
+- Array Implementation (push/shift or unshift/pop)
 - A class similar to singly linked list (best choice since we don't need indexes)
 
 Requires two operations: 
 1. `enqueue` - add something to queue
 2. `dequeue` - remove something from queue
+
+BIG O of Stacks
+Insertion - O(1)  <---- should have linear big O (only thing that matters)
+Removal - O(1)    <---- should have linear big O (only thing that matters)
+Searching - O(N)  <---- doesn't matter for stack
+Access - O(N)     <---- doesn't matter for stack
