@@ -50,3 +50,45 @@ ACCESS - O(N)
 ### Advantages and Disadvantages
 - Better than Singly Linked Lists for finding nodes and can be done in half the time.
 - Take up more memory considering the extra pointer
+
+----------------------------------------
+## Stacks
+----------------------------------------
+A `LIFO or Last In First Out` data structure.  
+
+Where Stacks Are Used:
+- Managing Function Invocations (call stack)
+- Undo / Redo
+- Routing (the history object)
+
+A "stack" is more of a concept than a strict data structure implementation.  They are a built in data structure in some languages, but not JavaScript.  They are relatively simple to implement and there are multiple ways to do so:
+- Array Implementation (push/pop or unshift/shift)
+- A class similar to singly linked list (best choice since we don't need indexes)
+
+Requires two operations: 
+1. `push` - add something to queue
+2. `pop` - remove something from queue
+
+BIG O of Stacks
+Insertion - O(1)  <---- should have linear big O
+Removal - O(1)    <---- should have linear big O
+Searching - O(N)  <---- doesn't matter for stack
+Access - O(N)     <---- doesn't matter for stack
+
+----------------------------------------
+## Queues
+----------------------------------------
+A `FIFO or First In First Out` data structure
+
+Commonly used in programming:
+- background tasks
+- uploading resources
+- printing / task processing
+
+A "queue" is more of a concept than a strict data structure implementation.  They are a built in data structure in some languages, but not JavaScript.  They are relatively simple to implement and there are multiple ways to do so:
+- Array Implementation (push/pop or unshift/shift)
+- A class similar to singly linked list (best choice since we don't need indexes)
+
+Requires two operations: 
+1. `enqueue` - add something to queue
+2. `dequeue` - remove something from queue
