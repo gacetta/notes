@@ -98,3 +98,49 @@ Insertion - O(1)  <---- should have linear big O (only thing that matters)
 Removal - O(1)    <---- should have linear big O (only thing that matters)
 Searching - O(N)  <---- doesn't matter for stack
 Access - O(N)     <---- doesn't matter for stack
+
+----------------------------------------
+## Trees
+----------------------------------------
+A `tree` is a data structure that consists of nodes in a `parent / child` relationship
+
+lists are `linear`.  trees are `nonlinear` 
+
+- all nodes must point away from the root.  No nodes can connect "sideways" to another sibling.  That is a `graph`
+- has only one entry point (`root`)
+
+TREE TERMINOLOGY
+`root` - the top node in a tree
+`child` - a node directly connected to another node when moving away from the root.
+`parent`- the converse notion of a child
+`siblings` - a group of nodes with the same parent
+`leaf` - a node with no children
+`edge` - the connection between one node and another
+
+APPLICATIONS
+- HTML DOM
+- Network Routing
+- Abstract Syntax Tree
+- Artificial Intelligence
+- Folders in OS 
+- JSON
+
+### Types of Trees
+There are many many types of trees, all with a similar structure, but slightly different functionality / features:
+- Binary Trees
+- Heaps
+- Multiway Trees
+- B-trees
+- etc.
+
+#### Binary Search Tree
+A binary tree is a tree data structure where each node has at most 2 children.  These children are typically referred to as left and right.
+
+A binary SEARCH tree involves sorting of those nodes:
+Every node to the left of a parent node is always less than the parent.
+Every node to the right of the parent node is always greater than the parent.
+
+### Big O of BST
+Insertion - O(log n)
+Search - O(log n)
+NOT guaranteed!
