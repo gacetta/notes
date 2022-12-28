@@ -373,7 +373,7 @@ That syntax allows us to put JSX inside the component tags.  That JSX will be pa
       );
     }
 
-    ReactDOM.render((
+    ReactDOM.render(
       <Layout>
         <div>
           <h1>This becomes a chilren prop in Component</h1>
@@ -392,3 +392,7 @@ react modal is a 3rd party library that provides a modal component to pop up on 
 
 A third arg is helpful:
 - `onRequestClose` is similar to `onClick`.  It specifies what action to take when trying to close the window by hitting ESC or clicking outside the window. 
+
+--------------------------------
+## styling react
+--------------------------------

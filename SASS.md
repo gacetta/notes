@@ -1,13 +1,11 @@
 # SASS
 ## What is SASS
 ---
-`SASS` is a CSS preprocessor, an extension of CSS that adds power and elegance to the basic language.
+`SASS` is a CSS preprocessor, an extension of CSS that adds power and elegance to the basic language.  CSS files get huge, messy and unmangeable after time.  SASS can help us with our program architecture
 
-CSS files get huge, messy and unmangeable after time.  SASS can help us with our program architecture
+SASS Source Code ----> Sass compiler ----> Compiled CSS Code
 
-SASS Source Code ----Sass compiler----> Compiled CSS Code
-
-Instead of writing in CSS, we write SASS which is compiled into a css file that then can be read by the browser.
+Instead of writing in CSS, we write SASS which is compiled into a css file that can then be read by the browser.
  
 Functionality added by SASS:
 
@@ -28,20 +26,21 @@ Two different syntaxes - similar but different:
 ---
 ## Variables
 ---
-Variables are named using the `$` character followed immediately by the variable name: 
-
-     $color-primary: red;
+SASS introduced variables before CSS supported them.  They are named using the `$` character followed immediately by the variable name: 
+```
+  $color-primary: red;
+```
 
 Variables are referenced with the same syntax: 
-
-    color: $color-primary;
+```
+  color: $color-primary;
+```
 
 ---
 ## Nesting
 ---
-An important part of SCSS is nesting of selectors, which provides visual clarity of the heirarchy much like `html`
+SCSS supports nesting of selectors, which provides visual clarity of the heirarchy much like in `html`.  In SCSS we can nest selector elements:
 
-In SCSS we can nest selector elements.  
 Take this CSS for example:
 
     nav ul {
@@ -76,7 +75,8 @@ The same code written in SCSS, with the `ul`, `li`, and `a` selectors nested ins
       }
     }
 
-There's no limit to how deep the nesting can go (though overly nested rules will result in over-qualified CSS that could prove hard to maintain and is considered BAD PRACTICE)
+There's no limit to how deep the nesting can go 
+**NOTE:** overly nested rules will result in over-qualified CSS that could prove hard to maintain and is considered _BAD PRACTICE_
 
 Lets say the above CSS also has the following selector:
 
@@ -109,37 +109,31 @@ we can use the `&` character to represent the current path: `nav li` and nest th
   }
 
 
----
+---------------------------
 ## Color Functions in SASS
----
+---------------------------
 ### Lighten / Darken
 `lighten($base-color, value%)` function to calculate a lighter shade of the base color.
 `darken($base-color, value%)` function to calculate a darker shade of the base color.
 
----
 ### Saturate / Desaturate
----
 `saturate($base-color, value%)` function to calculate a more saturated shade of the base color.
 `desaturate($base-color, value%)` function to calculate a less saturated shade of the base color.
 
----
 ### Adjust Hue
----
 `adjust-hue($base-color, value%)` function to adjust the hue value of HSL
 
----
 ### Adding Alpha Transparency
----
 `rgba($base-color, opacity-value)` function can turn our color variable into a transparent value easily.
 
----
+---------------------------
 ## Float
----
+---------------------------
 The `float` CSS property places an element on the left or right side of its container, allowing text and inline elements to wrap around it. The element is removed from the normal flow of the page, though still remaining a part of the flow (in contrast to `absolute positioning`).
 
 ### How Floating Elements are Positioned
 As mentioned above, when an element is floated, it is taken out of the normal flow of the document (though still remaining part of it). It is shifted to the left, or right, until it touches the edge of its containing box, or another floated element.
-
+ 
 A floated element is at least as tall as its tallest nested floated children. We gave the parent width: 100% and floated it to ensure it is tall enough to encompass its floated children, and to make sure it takes up the width of the parent so we don't have to clear its adjacent sibling.
 
 In other words, if a container element only contains `floated` elements, that container element sees itself as having no height.
@@ -346,13 +340,14 @@ Compiled CSS:
 Mixin copies properties into the place of call
 Extend copies its selector into the specified rule.
 
----
+---------------------------
 ### Partials and Imports
----
-
-A partial SASS file is just that, a part of the complete SASS.  These files are conventionally named with an underscore as the first character `_base.scss`
+---------------------------
+A partial SASS file is just that, a part of the complete SASS.  These files are conventionally named with an underscore as the first character, e.g. `_base.scss`.
 
 These partials are imported into the main.scss file using `@import "file-path"` such as `@import "base/base"`
+
+**NOTE:** leave off the `_` and the `.scss` extension when importing
 
 ---
 ## Architecture
