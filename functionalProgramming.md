@@ -114,4 +114,15 @@ These all evaluate the same:
     compose(func1, func2, func3)(data);
     pipe(func3, func2, func1)(data)
 
-    
+-----------------------------
+## arity
+-----------------------------
+`arity` refers to the number of arguments a function takes.
+`nullary` function is a function that has no inputs
+`unary` function is a function with one parameter
+`binary` function accepts two parameters
+`trinary` functions have an arity of 3, i.e. they accept three inputs.
+`n-ary` functions have `n` inputs
+
+**NOTE:** the fewer number of parameters in a function, the easier it is to use (and understand)
+_BEST PRACTICE_ - aim for 0-2 args.
