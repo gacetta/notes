@@ -66,3 +66,27 @@ curried:
 partial application:
 `const partialMultiplyBy5 = multiply.bind(null, 5)`
 `partialMultiplyBy5(4, 10); //200`
+
+-----------------------------
+## caching & memoization
+-----------------------------
+`caching` is a way of storing values so you can use them later on.  Think of caching as a backpack - when you go to school you have what you need without already, instead of going home each time you need an item. 
+
+`memoization` is a way to remember the output of a function so you don't have to calculate it again.  . It does this by storing computation results in cache, and retrieving that same information from the cache the next time it's needed instead of computing it again.
+
+_BEST PRACTICE_ is to store the cache in closure:
+```
+function memoize(callback) {
+  cache = {};
+  return function memoizedFunc(arg) {
+    if (arg in cache) {
+        return cache[arg];
+    } else {
+        cache[arg] = callback(arg);
+        return cache[arg]
+    }
+  }
+}
+const memoizeSquare = memoize((num) => num*num);
+memoizeSquare(10) //100
+```
