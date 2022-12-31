@@ -90,3 +90,28 @@ function memoize(callback) {
 const memoizeSquare = memoize((num) => num*num);
 memoizeSquare(10) //100
 ```
+
+-----------------------------
+## compose & pipe
+-----------------------------
+### compose
+composing or composition is the process of creating a sort of assembly line with our functions and data.  It requires that all of our functions are pure. (it is a sort of currying)
+
+data --> function --> data --> function --> etc.
+
+`compose()` is not a function included in JS.  However, `compose()` is included in many libraries such as `Ramda`, a library designed specifially for functional programming.  It allows us to run several functions on a piece of data in order from right to left.  The last argument may have any arity; the remaining arguments must be unary.
+
+`const compose = (f,g) => (data) => f(g(data))`
+
+### pipe
+`pipe()` is similar to `compose()` but the order the functions are performed in order from left to right. The first argument may have any arity; the remaining arguments must be unary.
+
+`const pipe = (f,g) => (data) => g(f(data))`
+
+These all evaluate the same:
+
+    func1(func2(func3(data)));
+    compose(func1, func2, func3)(data);
+    pipe(func3, func2, func1)(data)
+
+    
