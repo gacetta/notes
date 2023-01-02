@@ -3,11 +3,51 @@ React is a JavaScript library developed by Facebook that was used to build insta
 
 React is an open-source JavaScript framework and library developed by Facebook.  It is used for building interactive user interfaces and web applications quickly and efficiently with significantly less code than with vanilla JS.
 
+--------------------------------------------------------
+## why do we need a front end framework
+--------------------------------------------------------
+If you're building a web app with js, css, and html, the work flow is usually.
 
+1. build html structure first
+2. JS somwhere.. either in the html file, or in another file(s)
+3. add style
 
-----------------------------
-## why learn react
-----------------------------
+JS COULD be inline as a script tag but there are no rules about where they are stored.
+
+The user interface is generally created in HTML on the SERVER first, then sent to the browser.
+
+In react, the html file might be minimal and most of the structure is in react js files and components, meaning
+the user interface is defined on the BROWSER first as JSX, and ReactDOM will render that into the html file.
+In react components, the structure and the JS code that manipulates that structure is in the SAME place.
+
+In vanilla, it was very hard to figure out WHERE the js functionality existed in the file structure and what DOM elements they pertained to.
+
+Main differences
+VANILLA JS:
+1. Vanilla js stores data in the DOM as a value. To access it, you need to find the dom and get its value.
+2. Vanilla js has no "state" tracking/updating so you have to always access a value to see if it's changed based on the user input
+
+```
+addButton.addEventListener("click", function() {
+  const input = document.getElementById("item-input");
+  const list = document.getElementById("grocery-list");
+
+  const listNode = document.createElement("li");
+  const textNode = document.createTextNode(input.value);
+
+  listNode.appendChild(textNode);
+  list.appendChild(listNode);
+});
+```
+REACT:
+1. React stores values in js variables
+2. State tracks and updates specified values
+
+```
+function addItem() { setItems([...items, itemInput]); }
+```
+
+### why React?
 1. react library itself
 - react builds on what you already know about javascript
 - component based, helps to break code into small pieces
@@ -18,33 +58,20 @@ React is an open-source JavaScript framework and library developed by Facebook. 
 - great resources
 - used by many companies
 
-----------------------------
-## JSX - JavaScript XML
-----------------------------
-JSX is a language extension provided by React.  It allows the integration of HTML into our JS language:
+-----------------------------------
+## JSX - JavaScript XML (and babel)
+-----------------------------------
+All react code is written in JSX, a language extension provided by React (as of now, wasn't the case in the beginning).  It allows the integration of HTML into our JS language:
 
   `const pElement = <p>This is JSX</p>`
   `const destination = document.querySelector('#app')`
 
-----------------------------
-## ReactDOM.render()
-----------------------------
-**NOTE:** ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot
-
-`ReactDOM` has a `.render()` method.  Takes 2 args: element-you-want-to-render, where-you-want-to-render-it-to
-we can use `ReactDOM.render()` to render the above code
-
-  `ReactDOM.render(pElement, destination)` // doesn't render to DOM.  Not valid JS
-
-----------------------------
-# babel
-----------------------------
-Since JSX isn't valid JS, we use babel to compile JSX down to regular readable vanilla JS.  We can see that behind the scenes, `ReactDOM` is using other `React` methods when passed through Babel:
-
+Since JSX isn't valid JS, we use `babel` to compile JSX down to vanilla JS.  We can see that, behind the scenes, `ReactDOM` is using other `React` methods when passed through Babel:
+```
   const template = <p id='poo'>This is JSX</p>
-
+```
 Is transpiled to:
-
+```
   "use strict";
 
   const template = /*#__PURE__*/ React.createElement(
@@ -54,45 +81,58 @@ Is transpiled to:
     },
     "This is JSX"
   );
-
+```
 
 ----------------------------
-## JSX syntax
+## ReactDOM.render()
+----------------------------
+**NOTE:** ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot
+
+`ReactDOM` has a `.render()` method.  Takes 2 args: element-you-want-to-render, where-you-want-to-render-it-to
+we can use `ReactDOM.render()` to render the above code
+
+----------------------------
+## JSX - syntax
 ----------------------------
 We can access variables or call functions inside JSX by using `{}`
-
+```
   const test = 'platypus o'plenty';
 
   <p>{test}</p> 
-
+```
 Function call:
-
+```
   const testFunc = (text) => text ?? 'unknown';
   <p>testFunc('hey boobie')</p> 
-
+```
 ----------------------------
 ## JSX - booleans, undefined, null
 ----------------------------
-booleans, undefined and null are all ignored in JSX.
+booleans, undefined and null are all ignored by JSX (but they don't throw errors).
 
-For example, we could call a function that renders a phrase if a string or number value is returned, nothing if undefined
-
+This allows to call a function that renders a phrase if a string or number value is returned, nothing if undefined
+```
   const testFunc = (text) => text ? <p>{text}<p> : undefined;
   {testFunc('I am the walrus')} // 'I am the walrus'
   {testFunc()}                  // renders nothing
-
+```
 ----------------------------
 ## JSX - attributes
 ----------------------------
 Some attributes work as expected, such as `id`.
 Others have been renamed (`class` = `className`).  This is due to the fact that certain words in JS are reserved keywords.
 
-For a list of what is supported and what is slightly different: https://reactjs.org/docs/dom-elements.html
+what is supported and what differs: https://reactjs.org/docs/dom-elements.html
 
-**NOTE:** attributes are named using camelCase in JSX.  so something like `maxlength` in HTML is referred to as `maxLength` in JSX.
+**NOTE:** attributes are named using camelCase in JSX. `onclick` in HTML is `onClick` in JSX.
 
 We can use variables to assign attributes using the same `{}` as before.
-
+```
+<button 
+  className="button button--link"
+  onClick={props.handleDeleteOptions}
+>
+```
 ----------------------------
 ## JSX - data binding and rendering
 ----------------------------
@@ -105,12 +145,13 @@ To properly update and render, we have to re-render each time a function is call
 ----------------------------
 ## JSX - arrays
 ----------------------------
+Arrays will render multiple elements in order:
 Numbers are valid datatype in JSX:
-
+```
     {
       [99, 98, 97]
     }
-
+```
 is equivalent to `{99}{98}{97}`   //999897 is rendered
 
 Strings are valid datatype in JSX:
@@ -129,33 +170,39 @@ Can we render an array of JSX in JSX?
     }
 
     {
-      [{<p key='1'>a</p>},{<p key='2'>b</p>},{<p key='3'>c</p>}]    // no error, in the future, they will have id
+      [{<p key='1'>a</p>},{<p key='2'>b</p>},{<p key='3'>c</p>}]    // no error since each has a reference
     }
 
 ----------------------------
-## components
+# components
 ----------------------------
 react uses component based architecture which means creating smaller lego-like building blocks.  By splitting our code into separate components, the overall project is more manageable and understandable.
 
 one component might responsible for rendering the header, another for the rendering the user profile, another for rendering a form and handling form submission.
 
-Each component is responsible for defining the JSX when that component is used and responsible for handling interaction with that component.
+Each component is responsible for defining the JSX when that component is used and responsible for handling interaction with that component.  I.e. the code for the structure and JS code that manipulates the structure is in the same place.
+
+There are two types of components:
+1. Class components
+2. Functional components
 
 ----------------------------
-### class component implementation
+## class component implementation
 ----------------------------
-we can use `classes` to implement components.  This approach involves extending the `React.Component` class:
-
+TO CREATE COMPONENT:
+we can use `classes` to implement components by extending the `React.Component` class:
+```
   class Header extends React.Component {
     render() {
       return <p>Test element</p>
     }
   }
-
+```
 **NOTE:** extended class name must have capitalized naming convention to work properly (e.g. Header vs header).  If not properly capitalized, program won't crash, but React won't recognize the component.
 
-To use a component, we use a single HTML like tag: `<Component />`.  We also have to render the ReactDom somewhere:
-
+TO USE COMPONENT:
+we use a single HTML like tag: `<Component />`.  We also have to render the ReactDom somewhere:
+```
     const jsx = (
       <div>
         <Header />
@@ -163,19 +210,21 @@ To use a component, we use a single HTML like tag: `<Component />`.  We also hav
     )
 
     ReactDOM.render(jsx, document.getElementById('app'));
-
+```
 **NOTE:** Components can be nested as needed so one Component might contain other components.
 
 ----------------------------
 ## component props
 ----------------------------
-we can pass values into our Components as property/value pairs.
+we can pass values into our Components as property/value pairs, e.g. 
 ```
 <Header title="test-title">` //title: test-title
 ```
-When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object `props`.  That means to access a variable such as `title` above, we use `this.props.propName`:
 
-`console.log(this.props.title)` // test-title
+When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object `props`.  That means to access a variable such as `title` above, we use `this.props.propName`:
+```
+console.log(this.props.title) // test-title
+```
 
 variables can be passed as well:
 `const title = 'Test Title By Variable'`
