@@ -31,7 +31,7 @@ so when URL changes:
 --------------------------
 **IMPORTANT:** use `npm react-router-dom` NOT `react-router`
 
-`import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+`import { BrowserRouter as Router, Routes, Route, Link, NavLink } from 'react-router-dom';`
 
 ### BrowserRouter
 `BrowserRouter` expects the child to either not exist or have a length of 1.  More than one child will throw error.
@@ -65,6 +65,34 @@ For nav bar components, use `<NavLink>` which gives access to a special property
 <NavLink to='/' className={({ isActive }) => isActive ? 'is-active' : undefined} end>Dashboard</NavLink>
 ```
 
-------------------------
-## Organizing Routes
-------------------------
+-----------------------------------
+## Workflow
+-----------------------------------
+1. create AppRouter.js in src/routers. this is all our `<Routes>` go
+2. break up all pages into component.js files. put in src/components.  import / export as necessary
+3. app.js imports AppRouter and renders it with ReactDOM.render()
+
+Folder Structure:
+public
+  - images
+  - index.html
+src
+  - components
+  - routers
+  - styles
+  - app.js
+.babelrc
+package.json
+webpack.config.js
+
+-----------------------------------
+## Dynamic URLs
+-----------------------------------
+**OUTDATED** - see react-hooks.md
+react router passes info into component which can be accessed via props.
+
+Useful one - if you pass `<Route exact path=”/whatever/:id”` in AppRouter.js, you can now access `website/whatever/` and the `props.match.params.id` will be that `id` number.
+
+So if we want to have many pages (website/gallery1, website/gallery2, website/gallery3, etc.) we can use `exact path=”/gallery/:id”`
+
+**NOTE** this will not match with “/gallery” so you’ll need two different components, one for the main gallery page and one for gallery items in that page
