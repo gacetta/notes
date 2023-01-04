@@ -126,3 +126,33 @@ These all evaluate the same:
 
 **NOTE:** the fewer number of parameters in a function, the easier it is to use (and understand)
 _BEST PRACTICE_ - aim for 0-2 args.
+
+-----------------------------
+## Composition vs inheritence
+-----------------------------
+`inheritence` is a super class that is extended to smaller pieces that add or overwrite things.
+focus on "what it is"
+`composition` is using smaller pieces to make something bigger
+focus on "what it has" or "what it does"
+
+PROBLEMS FROM INHERITENCE:
+- `tight coupling` - children (sub-classes) are dependent on parent (super class).  
+- `fragile base class` problem - a base class (superclass) is considered "fragile" because a seemingly safe modification, when inherited by the derived classes, may break things.
+- `heirarchy` problem - what happens if there's a change and a child becomes higher up the inheritence chain than its parent?  Or you have a very simple subclass that only needs one method from the superclass, but due to heirarchy inheritence, it gets that method in addition to ALL the additional functionality of super class that it doesn't want / shouldn't have.
+
+RESULT: A compositional approach adds more flexibility for future changes
+
+--------------------------------
+## OOP vs Functional Programming
+--------------------------------
+FUNCTIONAL
+- many operations on fixed data
+- stateless
+- pure functions
+- declarative
+
+OOP
+- few operations on common data
+- stateful
+- side effects
+- imperitive
