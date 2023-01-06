@@ -511,3 +511,55 @@ class BST {
 // console.log(user.cart)
 // console.log(user.purchases)
 
+const counter =  {
+  count: 0,
+  increment() {
+    this.count++;
+    return this.count;
+  },
+  incrementByVal(val) {
+    this.count += val;
+    return this.count;
+  },
+  incrementByVals(...vals) {
+    this.count += vals.reduce((acc, curr) => acc + curr);
+    return this.count;
+  }
+  // incrementFlex(vals) {
+  //   const valsArr = Array.isArray(vals) ? [...vals] : [...Array.prototype.slice.call(arguments)]
+  //   this.count += valsArr.reduce((acc, curr) => acc + curr);
+  //   return this.count;
+  // }
+}
+
+const counterTwo = {
+  count: 100
+}
+
+console.log('count1: ', counter.count);
+console.log('count2: ', counterTwo.count);
+counter.incrementByVals(10, 11, 12, 13);
+counter.incrementByVals.call(counterTwo, 400, 300, 200)
+console.log('count1: ', counter.count);
+console.log('count2: ', counterTwo.count);
+const counterTwoIncrement = counter.incrementByVal.bind(counterTwo, 5);
+
+
+
+
+function getName() {
+  return this.name;
+}
+
+const plasticReed = {
+  name: 'Michael',
+  getName
+}
+
+const goodReed = {
+  name: 'Hideaki'
+}
+
+console.log(plasticReed.getName.call(goodReed));
+const reedFunc = plasticReed.getName.bind(goodReed, 5);
+console.log(reedFunc());
