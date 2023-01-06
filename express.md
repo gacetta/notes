@@ -1,5 +1,30 @@
 # express
-express is an unopinionated web framework, written in JS and hosted within Node.js runtime environment.  This makes developing and maintaining a web server much friendlier than doing it using built-in Node.js utilities
+express is a fast, unopinionated and minimal web framework.  It is the most used Node framework for the web.
+
+Express is written in JS and hosted within Node.js runtime environment.  This makes developing and maintaining a web server much friendlier than doing it using built-in Node.js utilities
+
+Other frameworks include Hapi and Koa. Hapi was very opinionated, Kao was not. Kao was developed by TJ Holowaychuk, who also created Express.
+
+----------------------
+## middleware
+----------------------
+express middleware is simply a function that takes on 3 args (third is optional)
+
+1. req object
+2. res object
+3. next function (optional)
+
+You simply apply the current middleware, then run the next function
+
+app.get('/', middleWare1, middleWare2);
+
+// middleWare1 will need a next function but not middleWare2
+
+Stuff that you write with (req, res) => {} is also considered middleware!!
+
+------------------------
+## basic implementation
+------------------------
 
 In its most basic implementation, we import the express library, create an express object and then use various methods on that object to create a server.
 
