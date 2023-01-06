@@ -51,3 +51,39 @@ SOLUTION: redux
 4. we can see our store using `store.getState()`
 
     console.log(store.getStore());
+
+----------------------------------
+## updating the store with actions
+----------------------------------
+`action` - an object that gets sent to the store that describes the action we want to take.  
+
+CREATE:
+Some actions we might want to take: increment, decrement, reset, etc.  e.g an increment action would look like:
+
+    {
+      type: 'INCREMENT'
+    }
+
+_BEST PRACTICE:_ action types are named with UPPERCASE
+
+DISPATCH:
+actions must be `dispatched` to the store using `store.dispatch(action)`:
+
+    store.dispatch({
+      type: 'INCREMENT'
+    });
+
+ADD FUNCTIONALITY:
+the second argument of `createStore()` is `action`.  This gives `createStore()` access to actions.  Typically we handle actions with `switch` statement.
+
+    const store = createStore((state = { count: 0 }, action) => {
+      switch (action.type) {
+        case 'INCREMENT': 
+        return {
+          count: state.count + 1
+        };
+        default: 
+        return state;
+      }
+    });
+
