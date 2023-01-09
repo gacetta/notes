@@ -79,11 +79,23 @@ the second argument of `createStore()` is `action`.  This gives `createStore()` 
     const store = createStore((state = { count: 0 }, action) => {
       switch (action.type) {
         case 'INCREMENT': 
-        return {
-          count: state.count + 1
+          return {
+            count: state.count + 1
         };
         default: 
-        return state;
+          return state;
       }
     });
 
+-----------------------------
+## subscribing
+-----------------------------
+`store.subscribe(function)` a change listener that calls a function every time the `store` changes.
+
+to UNSUBSCRIBE:
+`subscribe` returns a function that is used to unsubscribe the listener.
+
+```
+const unsubscribe = store.subscribe(handleChange)   // sets up listener
+unsubscribe() // when called, unsubscribes listener
+```
