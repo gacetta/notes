@@ -115,3 +115,21 @@ store.dispatch({
 })
 ```
 Now we have access to more data on the `action` object.  `action.incrementBy` //5
+
+-----------------------------
+## action generators
+-----------------------------
+creating in-line action objects can lead to spelling errors that are difficult to debug
+
+instead we can use action generators, i.e. functions that return action objects.  These action generators can be called in a `store.dispatch()` call to clean up our code.  Use of object destructuring and default parameters helps for very clean code:
+
+    const incrementCount = ({ incrementBy = 1} = {}) => ({
+      type: 'INCREMENT',
+      incrementBy
+    })
+
+    store.dispatch(incrementCount({ incrementBy: 5}));
+
+-----------------------------
+## reducers
+-----------------------------
