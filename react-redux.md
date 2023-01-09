@@ -90,7 +90,7 @@ the second argument of `createStore()` is `action`.  This gives `createStore()` 
 -----------------------------
 ## subscribing
 -----------------------------
-`store.subscribe(function)` a change listener that calls a function every time the `store` changes.
+`store.subscribe(function)` is a change listener that calls a function every time the `store` changes.
 
 to UNSUBSCRIBE:
 `subscribe` returns a function that is used to unsubscribe the listener.
@@ -99,3 +99,19 @@ to UNSUBSCRIBE:
 const unsubscribe = store.subscribe(handleChange)   // sets up listener
 unsubscribe() // when called, unsubscribes listener
 ```
+
+-----------------------------
+## dynamic actions
+-----------------------------
+we can set up actions use extra information, e.g. dynamic information from user input.
+
+For each action, `type` must always be provided or redux will crash.
+
+We can provide additional information: 
+```
+store.dispatch({
+  type: 'INCREMENT',
+  incrementBy: 5
+})
+```
+Now we have access to more data on the `action` object.  `action.incrementBy` //5
