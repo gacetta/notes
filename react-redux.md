@@ -133,3 +133,21 @@ instead we can use action generators, i.e. functions that return action objects.
 -----------------------------
 ## reducers
 -----------------------------
+In redux, the reducers are the **pure functions** that contain the logic and calculation that needed to be performed on the state. These functions accept the initial state of the state being used and the action type. It updates the state and responds with the new state. This updated state is sent back to the view components of the react to make the necessary changes. Basically, In short, we can say that Reducer’s work is to return the updated state and to also describe how the state changes.
+
+the concept: `(state, action) => newState`
+
+    const initialState = {};
+    const reducer = (state = initialState, action) => {
+      // Write your code here
+    }
+
+When we create a new store, we pass the reducer we want to use as the arg for createStore():
+
+    const store = createStore(reducer())
+
+-----------------------------
+## combineReducers
+-----------------------------
+as state gets more complex, a single reducer can get out of control.
+`combineReducers` allows us to use multiple reducer functions to more easily manage state change
