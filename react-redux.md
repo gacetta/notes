@@ -213,3 +213,44 @@ We can create an HOC by passing that component into another component:
 
 **NOTE:** it's _BEST PRACTICE_ to name the argument `WrappedComponent`
 **NOTE:** the use of spread operator to pass props into the returned HOC.
+
+----------------------------
+## connecting React to Redux
+----------------------------
+To connect our React app to the Redux store, we need to install `react-redux` via `npm`
+This provides two tools we need:
+1. `Provider`- the `<Provider />` component which makes the redux store available to the rest of the app
+2. `connect` - the `connect()` function connects a React component to the redux store.  It provides its connected component with the pieces of the data it needs from the store, and the functions it can use to dispatch actions to the store.  It does not modify the component class passed to it; instead, it returns a new, connected component class that wraps the component you passed in.
+
+PROVIDER:
+To give our React app access to the redux store, we can wrap our AppRouter component in a `<Provider>` tag.  We then give it access to store with a store prop.  We then pass this all to `ReactDOM.render()`
+
+    const jsx = (
+      <Provider store={store}>
+        <AppRouter />
+      </Provider>
+    )
+
+    ReactDOM.render(jsx, document.querySelector('#app'))
+
+**NOTE:** `<Provider>` is not a component, but an html tag.  
+
+CONNECT:
+`connect` returns a function so the standard call looks like: `connect()()`
+The first invocation takes a `mapStateToProps` function.  This is a function we create that accesses the state and returns a props object.
+The second invocation is the component we want to "connect" to the redux store
+
+    const ExpenseList = (props) => (
+      <div>
+        {props.filters.text}
+      </div>
+    );
+
+    const mapStateToProps = (state) => {
+      return {
+        filters: state.filters
+      }
+    };
+
+    export const ConnectedExpenseList = connect(mapStateToProps)(ExpenseList);
+
