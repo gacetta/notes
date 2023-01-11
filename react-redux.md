@@ -96,7 +96,7 @@ to UNSUBSCRIBE:
 `subscribe` returns a function that is used to unsubscribe the listener.
 
 ```
-const unsubscribe = store.subscribe(handleChange)   // sets up listener
+const unsubscribe = store.subscribe(() => {}))   // sets up listener
 unsubscribe() // when called, unsubscribes listener
 ```
 
@@ -150,4 +150,66 @@ When we create a new store, we pass the reducer we want to use as the arg for cr
 ## combineReducers
 -----------------------------
 as state gets more complex, a single reducer can get out of control.
-`combineReducers` allows us to use multiple reducer functions to more easily manage state change
+`combineReducers` allows us to use multiple reducer functions to more easily manage state change.
+
+for example, given a complex state:
+
+    const demoState = {
+      expenses: [{
+        id: 'kjahsgdfas',
+        description: 'January Rent',
+        note: 'This was the last payment for this apartment',
+        amount: 54500,
+        createdAt: 0
+      }],
+      filters: {
+        text: 'rent',
+        sortBy: 'date', //date or amount
+        startDate: undefined,
+        endDate: undefined
+      }
+    }
+
+Note there are two `root` properties of the state we need to manage: `expenses` and `filters`.  combineReducers allows us to specify which reducers we want to use to manage what parts of the state.  So after creating a reducer for expenses and a reducer for filters, we call `combineReducers` as the argument when we create the store:
+
+    const store = createStore(
+      combineReducers({
+        expenses: expensesReducer,    // specify root property (expenses) and what reducer to use
+        filters: filtersReducer
+      })
+    );
+
+-------------------------
+## higher order component
+-------------------------
+Higher-order components (HOCs) in React were inspired by higher-order functions in JavaScript. A HOC is an advanced technique for reusing logic in React components. It is a pattern created out of React’s compositional nature.
+
+Components take one or more components as arguments, and return a new upgraded component.
+
+HOCs:
+- don't modify or mutate components.  they create new ones
+- are used to compose components for code reuse
+- are pure functions.  They have no side effects and return only a new component
+
+
+Say we have the component:
+
+    const Info = (props) => (
+      <div>
+        <p>The info is {props.info}</p>
+      </div>
+    );
+
+We can create an HOC by passing that component into another component:
+
+    const withAdminWarning = (WrappedComponent) => {
+      return (props) => (
+        <div>
+          {props.isAdmin && <p>This is private info. Don't share yo!</p>}
+          <WrappedComponent {...props}/>
+        </div>
+      )
+    };
+
+**NOTE:** it's _BEST PRACTICE_ to name the argument `WrappedComponent`
+**NOTE:** the use of spread operator to pass props into the returned HOC.
