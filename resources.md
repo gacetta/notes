@@ -46,3 +46,6 @@ https://www.bigocheatsheet.com/ - time and space complexity info
 <!-- JAVASCRIPT -->
 https://doesitmutate.xyz/ - do various methods mutate arrays?
 https://dorey.github.io/JavaScript-Equality-Table/ - type coercion
+
+<!-- REGEX -->
+https://regex101.com/ - regex reference
