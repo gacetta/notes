@@ -23,4 +23,6 @@ to access individual iconts we use the `xlink:href` attribute.
     fill: var(--color-white); // fill property sets the icon color
   }
 
-  `fill:` used to change svg icon color.  Can set it with a color OR with `currentColor` which allows the color to be inherited from the parent.
+**NOTE:** define both a height and width to sucessfully change the size.  using one doesn't work.
+
+`fill:` used to change svg icon color.  Can set it with a color OR with `currentColor` which allows the color to be inherited from the parent.
