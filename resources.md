@@ -52,3 +52,4 @@ https://momentjs.com/ - documentation for moment.js
 
 <!-- REGEX -->
 https://regex101.com/ - regex reference
+https://regexr.com/ - regex reference
