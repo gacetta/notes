@@ -53,3 +53,8 @@ https://momentjs.com/ - documentation for moment.js
 <!-- REGEX -->
 https://regex101.com/ - regex reference
 https://regexr.com/ - regex reference
+
+<!-- JOB SEARCH -->
+https://www.levels.fyi/ - check job salaries
+https://www.glassdoor.com/ -
+https://www.linkedin.com/
