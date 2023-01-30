@@ -315,7 +315,7 @@ so for our code:
 ---
 ## Fetch API
 ---
-`fetch()` returns a `promise` which will resolve or reject ONLY when it is ready.  no more need to check `readystatechange` as we did for `XMLHttpRequest`
+`fetch()` returns a `promise` which will resolve or reject ONLY when it is ready.
 
 `fetch(resource, {options})` where `resource` is the URL.  `options` is an optional argument.  Refer to MDN
 
