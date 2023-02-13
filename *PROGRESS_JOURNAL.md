@@ -1,6 +1,6 @@
----
+----------------
 # Day 1 - Jan 30
----
+----------------
 
 Paired with Erika Jung - reminded me of the nullish coallescing operator
 
@@ -9,11 +9,9 @@ leftExpr ?? rightExpr       // if leftExpr is truthy, returns leftExpr
                             // if leftExpr is falsy, returns rightExpr
 ```
 
----
-
+----------------
 # Day 2 - Jan 31
-
----
+----------------
 
 Use of `.constructor`:
 
@@ -21,21 +19,17 @@ Use of `.constructor`:
 const copy = new testObject.constructor  // uses the constructor to make a copy of the datatype
 ```
 
----
-
+----------------
 # Day 3 - Feb 1
-
----
+----------------
 
 - Learned HashTables
 
-- Array.unshift(1, 2, 3) = [1, 2, 3, ...Array]
+- Array.unshift(1, 2, 3) = [1, 2, 3, ...Array] NOT [3, 2, 1, ..Array]
 
----
-
+----------------
 # Day 4 - Feb 2
-
----
+----------------
 
 - `this.head = this.tail = newNode` assigns both `this.head` and `this.tail` to `newNode`
 
@@ -48,15 +42,13 @@ if number is in hash - return both indices
 otherwise add curr element to hash { element: index}
 ```
 
----
-
+----------------
 # Day 5 - Feb 3
-
----
+----------------
 
 `.repeat()` - string method that constructs and returns a new string which contains the specified numbers of copies of the string on which it was called
 
-approach to binary convertor
+approach to binary convertor:
 Given a string that represents a Binary Number, write a function that converts this string into a decimal number. DO NOT use the native parseInt() method.
 
 For example:
@@ -77,42 +69,39 @@ function binToDec(binString){
     return output;
 ```
 
----
-
+----------------
 # Day 6 - Feb 4
-
----
+----------------
 
 `console.time(label)` start timer of name label
 `console.timeEnd(label)` end timer of name label
 
+----------------
 isPrime() - check all divisors up to Math.sqrt(num) for efficiency
 
 fibonacci bottom up approach:
 
-- w/cache. cache = {0:0, 1:1}. cache[num] = cache[num - 2] + cache[num - 1]
-- space: O(1): twoBefore = 0, oneBefore = 1. update values as you go
+- APPROACH W/CACHE: cache = {0:0, 1:1}. cache[num] = cache[num - 2] + cache[num - 1]
+- APPROACH W/TWO VARIABLES: space: O(1): twoBefore = 0, oneBefore = 1. update values as you go
 
 **factorial could be the same**
 
----
-
+----------------
 # Day 7 - Feb 6
-
----
+----------------
 
 "Every single dynamic programming video should start out with the explanation of the subproblem.
 This is not about table behind me. It’s about subproblem and how they relate to each other.
 
-coinSum2
+- coinSum2
 dynamic programming solution to "Total Unique Ways to Make Change or 'Coin Change 2' on Leet Code" - https://www.youtube.com/watch?v=DJ4a7cmjZY0
 
 - `element.onclick = function(e) {}` <------ overwrites any existing functionality for click
 - `element.addEvenetListener(eventType, function(event) {})` <------- preferred since it ADDS functionality vs overwrites
 
-DOM Tree - a huge massive object
+DOM Tree - "a huge massive object"
 
-      window
+      window        <---- window is at higher scope than document
         |
       document
         |
@@ -124,8 +113,64 @@ DOM Tree - a huge massive object
 
 - HTML elements represented as objects
 
----
-
+----------------
 # Day 8 - Feb 7
+----------------
 
----
+- `setTimeout` returns a `timeoutID` that can be used to end the setTimeout.  Same with `setInterval`
+to end - `clearTimeout(timeoutID)`
+
+
+- got snake working after struggle bus. Remind
+
+----------------
+# Day 9 - Feb 8
+----------------
+
+helpful eventlistener event types:
+- `mouseover` - fired when pointing device is used to move the cursor onto the element or one of its child elements  
+- `mouseout` - fired when pointing device is used to move the cursor so that it is no longer contained within the element or one of its children
+
+- built a chrome extension!
+Used: Vanilla Dom Manipulation, CSS animations/keyframes/transitions, eventListeners (mouseover), manifest.json (for chrome extension)
+
+----------------
+# Day 10 - Feb 9
+----------------
+
+- `targetElement.insertAdjacentHTML(position, element)`
+insets a given element node at given position relative to the element it is invoked upon
+`targetElement` - the targetElement
+`element` - the element to be inserted in the tree
+`position` - a string representing the position relative to the `targetElement`.  Must be one of the following:
+1. `beforebegin` - before the targetElement itself
+2. `afterbegin` - just inside the targetElement, before its first child
+3. `beforeend` - just inside the targetElement, after its first child 
+4. `afterend` - after the targetElement itself
+**NOTE** all lowercase
+
+- `continue` - terminates execution of the statements in the current iteration of the loop and continues execution of the loop with the next iteration
+
+- Got 3rd place in chrome extension!
+
+----------------
+# Day 11 - Feb 10
+----------------
+
+element.className = 'class1 class2' vs element.classList.add('class1'):
+
+`className` - overwrites all classes (like `setAttribute('class', classNames`)) - use at element creation for multiple classes
+`classList` use ALL other times
+
+----------------
+# Day 12 - Feb 11
+----------------
+
+- ES6 computed property names:
+To access object of variable key - `var myObj = {[a]: b};`
+
+- React fragment: `<>`.  Instead of returning JSX in <div> tags
+
+-`prop drilling` - when class components "drill" the state down to a lower level for access
+
+- From Nick: check out `useContext` with `useReducer`

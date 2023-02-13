@@ -43,6 +43,7 @@ https://www.postcss.parts/ - search for PostCSS plugins
 <!-- HTML -->
 
 https://www.webfx.com/web-development/glossary/http-status-codes/ - HTTP status codes
+https://httpstatusdogs.com/ - HTTP status codes as dogs
 
 <!-- SORTING ALGO INFO -->
 
