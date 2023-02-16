@@ -174,3 +174,41 @@ To access object of variable key - `var myObj = {[a]: b};`
 -`prop drilling` - when class components "drill" the state down to a lower level for access
 
 - From Nick: check out `useContext` with `useReducer`
+
+
+-----------------
+# Day 13 - Feb 13
+-----------------
+
+CHECK YOUR LOCAL HOST PORT.  3000 !== 8080
+
+Namespace Import:
+
+The following code inserts myModule into the current scope, containing all the exports from the module located at /modules/my-module.js:
+
+`import * as myModule from "/modules/my-module.js";`
+
+Here, myModule represents a namespace object which contains all exports as properties. For example, if the module imported above includes an export doAllTheAmazingThings(), you would call it like this:
+
+`myModule.doAllTheAmazingThings();`
+
+-----------------
+# Day 14 - Feb 14
+-----------------
+`isNaN()` - checks if element is not a number
+
+array destructuring while iterating over Map:
+`for (const [key, value] of Map) {}`
+
+-----------------
+# Day 15 - Feb 15
+-----------------
+
+- CSS specificity is 4 numbers (!important, id, class, element)
+- Look up critical rendering path (not important for interviews)
+- look up margin collapsing (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)
+
+`killall node`
+
+
+`repeat(auto-fill, minmax(280px, 1fr))`

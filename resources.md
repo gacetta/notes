@@ -35,6 +35,7 @@ https://astexplorer.net/ - see how a JS engine parses JS into an AST
 <!-- CSS -->
 
 https://css-tricks.com/ - ultimate CSS reference
+https://specificity.keegan.st/  - specificity calculator
 
 <!-- POST-CSS -->
 
