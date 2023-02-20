@@ -1,0 +1,1 @@
+- in a for...of or for..in loop, `for (LET element of arr)` vs `for(CONST element of arr)`
