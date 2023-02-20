@@ -210,5 +210,41 @@ array destructuring while iterating over Map:
 
 `killall node`
 
+gridbox auto column resizing: `repeat(auto-fill, minmax(280px, 1fr))`
 
-`repeat(auto-fill, minmax(280px, 1fr))`
+-----------------
+# Day 16 - Feb 16
+-----------------
+`__dirname`
+`response.on`
+TO DO: LEARN POSTMAN
+
+-----------------
+# Day 17 - Feb 17
+-----------------
+javascript `.sort` - implemented with heap sort under the hood?
+express
+
+-----------------
+# Day 18 - Feb 18
+-----------------
+CSV - Comma Separated Values
+
+`flat` method: 
+`Array.prototype.flat(depth)`
+_______________________________
+`depth` - (optional) the depth level specifying how deep a nested 
+array structure should be flattened.  Defaults to 1
+
+**NOTE:** when you don't know the depth level, you can pass `Infinity` into the `flat()` method to recursively concatenate all elements of the sub-arrays into the new array.
+
+`return value` - a new array
+
+- Binary Tree !== Binary Search Tree
+- get used to answering LL questions with 
+- LOOK UP - heaps and graphs (adjacency matrix)
+
+
+- bodyParser.json is depricated - use express.json()
+
+- research copy relative path in VSCode
