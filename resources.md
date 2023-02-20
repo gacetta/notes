@@ -59,6 +59,7 @@ https://www.bigocheatsheet.com/ - time and space complexity info
 <!-- JAVASCRIPT -->
 
 https://doesitmutate.xyz/ - do various methods mutate arrays?
+https://www.w3schools.com/jsrEF/default.asp - method/properies reference for all JS objects
 https://dorey.github.io/JavaScript-Equality-Table/ - type coercion
 
 <!-- TIME -->
