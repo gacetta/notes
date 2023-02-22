@@ -159,10 +159,12 @@ function bstHeight(root) {
 # Router Set-Up
 
 ## router set-up: require and express.Router()
+`const router = express.Router()`
 ## request route handlers
-router.get(path, middlewareChain, (req, res, next) => {
-  return res.status(200).json()  // or .send / .sendFile / etc.
-})
+
+  router.get(path, middlewareChain, (req, res, next) => {
+    return res.status(200).json()  // or .send / .sendFile / etc.
+  })
 
 # Middleware / Controllers
 BOILERPLATE: 
