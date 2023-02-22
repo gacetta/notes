@@ -248,3 +248,9 @@ array structure should be flattened.  Defaults to 1
 - bodyParser.json is depricated - use express.json()
 
 - research copy relative path in VSCode
+
+Express!  `next()` and error handling!  
+
+-----------------
+# Day 19 - Feb 21
+-----------------
