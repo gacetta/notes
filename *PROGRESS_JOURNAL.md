@@ -254,3 +254,11 @@ Express!  `next()` and error handling!
 -----------------
 # Day 19 - Feb 21
 -----------------
+Databases and SQL
+
+-----------------
+# Day 20 - Feb 22
+-----------------
+look up urlencoded
+
+Did I learn MongoDB?  Confusion...
