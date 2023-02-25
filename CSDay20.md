@@ -99,7 +99,7 @@ either callback-based or promise-based (async/await)
 #### Model.find vs Model.findOne
 - find a single item that matches the conditions object
 - `.find()` will always return an array
-- `.findOne()` willl return a single element, the first element that matches
+- `.findOne()` will return a single element, the first element that matches
 
 ### Create Operations
 Two syntax options:

@@ -262,3 +262,42 @@ Databases and SQL
 look up urlencoded
 
 Did I learn MongoDB?  Confusion...
+
+-----------------
+# Day 21 - Feb 23
+-----------------
+COOKIES
+`res.cookie(key, value, {options})`
+`options`
+{
+  secure: boolean,
+  httpOnly: boolean,
+  maxAge: number of ms before expiration
+}
+
+-----------------
+# Day 22 - Feb 24
+-----------------
+Object.entries - returns an array of a given object's own enumerable string-keyed property key-value pairs.
+
+res.redirect('/path') - equal to GET request to '/path'
+res.sendFile('/path.html') - serves path.html page
+
+
+`/**
+*/`  - auto starred JS commenting - courtesy of Christopher Long
+
+`Array.prototype.some()` - The some() method tests whether at least one element in the array passes the test implemented by the provided function. It returns true if, in the array, it finds an element for which the provided function returns true; otherwise it returns false. It doesn't modify the array.
+
+`TypeError`
+
+export const addMarket = event => (dispatch, getState) => {
+  event.preventDefault();
+  const location = getState().markets.newLocation;
+  if (location) {
+    dispatch({
+      type: types.ADD_MARKET,
+      payload: location,
+    });
+  }
+};
