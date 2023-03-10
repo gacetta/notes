@@ -30,3 +30,22 @@ get efficient:
 3. if nothing coming up, study:
     - backlog
     - 
+
+
+
+# Typical Company Structures
+
+`skip` - your boss's boss
+
+IC (coders) are given levels in bigger companies (L2, L3, L4, etc.)
+  - you are expected to keep getting promoted, then you might be offered to become a manager or stay in the coding world
+Management
+
+"Tell me about yourself"
+"So what brings you here..."  
+"What's going on?"
+
+what this means: tell me your coding journey
+
+REACT con:
+JSX combines html and JS

@@ -301,3 +301,134 @@ export const addMarket = event => (dispatch, getState) => {
     });
   }
 };
+
+export const addMarket = (event) => {
+  return (dispatch, getState) => {
+    event.preventDefault();
+    const location = getState().markets.newLocation;
+    if (location) {
+      dispatch({
+        type: types.ADD_MARKET,
+        payload: location,
+      });
+    }
+});
+
+-----------------
+# Day 24 - Feb 27
+-----------------
+LOOK UP:
+`Hot Module Replacement`
+`tree-shaking`
+`codespliting`
+
+PATH LOOKUPS:
+'./path' vs 'path'
+
+-----------------
+# Day 25 - Feb 28
+-----------------
+-----------------
+# Day 26 - Mar 1
+-----------------
+-----------------
+# Day 27 - Mar 2
+-----------------
+-----------------
+# Day 28 - Mar 3
+-----------------
+-----------------
+# Day 29 - Mar 4
+-----------------
+-----------------
+# Day 30 - Mar 6
+-----------------
+understand `useEffect` better.  `useState` inside of `useEffect` doesn't work how intended
+
+-----------------
+# Day 31 - Mar 7
+-----------------
+OAuth 2.0 Workflow:
+
+1. App sends authorization request to google `authorization` server (for username & profile resources)
+ex: MyApp --Authorization Request --> Google Authorization Server
+"Do you wish to authorize the app MyApp to access your Google username and profile?"
+
+2. Authorization server responds with authorization grant (and code) to MyApp
+Authorization is granted and an authorization code is sent back
+ex: MyApp <--Authorization Grant--  Google Authorization Server
+
+3. App sends Authorization Grant (and code) to Google Authorization Server to request access token
+ex: MyApp --Authorization Grant (and code) --> Google Authorization Server
+
+4. Authorization server responds with access token to MyApp
+Token will provide user with access to requested resources only (username & profile)
+ex: MyApp <--Authorization Grant--  Google Authorization Server
+
+5. App sends request to Google `Resource` Server with included access token to get resources
+ex: MyApp --resource request (and access token) --> Google Resource Server
+
+6. Google resource server reads access token to identify this user is allowed to access only those agreed upon protected resources.  Responds with those protected resources
+ex: MyApp <--Protected Resources--  Google Resource Server
+
+for this to work, myApp must register with Google and share name, website and callback URL (the url where the user will be redirected once they have been authorized)
+
+Upon registering, API will give client (MyApp) Credentials:
+Client ID
+Client Secret
+
+**GITHUB - Never Merge Someone Elses Pull Request**
+
+-----------------
+# Day 32 - Mar 8
+-----------------
+express.session
+1. install and require express-session
+2. create session for every server request
+app.use(session({
+  secret: '',
+  resave: false,
+  saveUninitialize: false,
+}))
+3. regenerate a session (good practice for guarding against forms of session fixation)
+req.session.regenerate(function (err) {
+    if (err) next(err)
+
+    // store user information in session, typically a user id
+    req.session.user = req.body.user
+
+    // save the session before redirection to ensure page
+    // load does not happen before session is saved
+    req.session.save(function (err) {
+      if (err) return next(err)
+      res.redirect('/')
+    })
+  })
+4. middleware to test if authenticated:
+`if (req.session.user) return next()`
+5. middleware to logout user
+// clear the user from the session object and save.
+// this will ensure that re-using the old session id
+// does not have a logged in user
+req.session.username = null;
+req.session.save((error) => {
+  if (error) return next({})
+  // regenerate the session, which is good practice to help
+  // guard against forms of session fixation
+  req.session.regenerate((error) => {
+    if (error) next(error);
+    res.redirect('/');
+  })
+})
+
+-----------------
+# Day 33 - Mar 9
+-----------------
+
+loading animation: 
+1. create a pure css animation in CSS.  give it class name: loading
+2. create hidden class to set display: hidden.
+3. create loading useState(true)
+4. in useEffect, after fetching and getting data, setLoading(false)
+5. conditionally render a `<span className={`loader ${!loading && 'hidden'}`}></span>`
+6. we can now also conditionally render components based on loading

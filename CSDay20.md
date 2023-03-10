@@ -1,38 +1,41 @@
 # MongoDB: Non-relational database
 
-MongoDB is a document-oriented DB.  No relational.
+MongoDB is a document-oriented DB. *Not relational*
 1. Everything is stored as `BSON` (Binary JSON)
 2. Instead of tables, you have collections of documents.
   a. Each document is like a JS object
   b. You have the ability to store array and object data types
   c. You have the ability to nest arbitrarily deep. *PROCEED WITH CAUTION*
 3. Built with an emphasis on speed
-4. Not equipped to handle complex relationships as SQL
+4. Not equipped to handle complex relationships like SQL
 
 _BONUS_ access to the `Date()` datatype.
 
-Each entry has its own properties.  Potentially the same bit of information might be re-written many times.  Look-up might be faster, but space allocation is less efficient
+Each entry has its own properties.  Potentially the same bit of information might be re-written many times. Known as `denormalization`. Look-up might be faster, but space allocation is less efficient and there is no longer one source of truth.
 
 ## MongoDB Document Store
 1. Ability to store array of items, called `embedding` and is an alternative to foreign-key relationship
 2. Flexibility in field properties and nesting, just like JSON.  Great for unstructured/nested data
 
 ## Mongoose
-MongoDB is often used with Mongoose, which provides structure to raw MongoDB.
-`ODM - object document mapper`
+`Mongoose` is an `ODM - object document mapper` which serves as an interface between a server and the database to provide structure to raw MongoDB.
 
 Server  -->  Interface  -->   Database
 NodeJS       Mongoose         MongoDB
 
-- we use Mongoose to create Schema definitions and types:
+Mongoose to creates Schema definitions and types:
   - String, Number, Date, Array, ObjectId, Mixed(any type)...
   - Custom types: allows validation, defaults, pre/post middleware
-- create a schema instance, then create a Model to perform queries
+
+1. create schema
+2. then create Model from schema to perform DB queries
 
 ### Model
 *SYNTAX:*
+  // import mongoose
   const mongoose = require('mongoose');
 
+  // create schema
   const personSchema = new mongoose.Schema({
     name: {type: String, required: true},
     age: Number,
@@ -40,94 +43,71 @@ NodeJS       Mongoose         MongoDB
     data: Mixed
   })
 
+  // create Model from schema
   const Person = mongoose.model('Person', personSchema);
                                     ^             ^
-                              name of the Model   |
-                                                schema
+                                singular name     |
+                              of the collection   |
+                               model is for     schema
+
+**Note:** mongoose will automatically look for the plural, lowercased version of model name
+The above example: the model `Person` is for the `people` collection in the DB
 
 ### query on model
-- after creating the model, perform queries on it to create/read/update/delete items in a DB
-
-`.find()` takes two arguments: `what to find`, `callback`
-either callback-based or promise-based (async/await)
-
-*SYNTAX:*
-  Person.find({
-    name: 'Greg'
-  }, (err, people) => {
-    // do stuff...
-  })
-
-  Person.find({
-    name: {$in: ['Anna', 'Bob', 'Clara']}
-  }, (err, people) => {
-    // do stuff...
-  })
-
-  Person.find({
-    name: {$in: ['Anna', 'Bob', 'Clara']}
-  }).then(people => {
-    // do stuff...
-  }).catch(err => {
-    // handle error...
-  })
-
-`$in`
+- after creating the model, perform queries on it for CRUD in a DB
 
 ------------------
 ## CRUD in MongoDB
 ------------------
-### Read
+Once a Model is created, we can perform CRUD operations in a DB.
+
+### READ
+`Model.find()`
 - find array of items matching the conditions object
 
-// promise style
-`Model.find(conditions, [projection], [options]).then(...);`
+*PROMISE SYNTAX:*
+
+  Model.find(conditions, [projection], [options])
+    .then(...);`
 
 `conditions` - what you're searching for: `{name: 'John', age: 30}`
-`projection(OPTIONAL)` - whatfields of the docs we want returned to match those conditions: `email age`
+`projection(OPTIONAL)` - what fields of the docs we want returned to match those conditions: `email age`
 `options(OPTIONAL)` - specify options like `sort` results, `limit` number of results, `skip` for pagination (ex: skip first 100 results)
 
-*SYNTAX:*
+*CALLBACK SYNTAX:*
 
   Person.find({ name: 'Tim', country: 'Canada' },
   'name age',
   { sort: {age: -1}, limit: 10, skip: 20},
-  (err, people) => {}) // callback.  People is always an array (possibly empty)
+  (error, result) => {}) // callback.  result is an array
 
-*NOTE:* in docs, Model.find, model refers to your Model.  Don't use it for syntax
+`.find()` takes two arguments: `what to find`, `callback`
+either callback-based or promise-based (async/await)
 
-#### Model.find vs Model.findOne
-- find a single item that matches the conditions object
-- `.find()` will always return an array
-- `.findOne()` will return a single element, the first element that matches
+`$in`
 
-### Create Operations
-Two syntax options:
 
-1. Model.prototype
-*SYNTAX:*
-  const myCar = new Car({make: 'Honda', model: 'Civic', year: 2015, color: 'blue'});
+#### Model.find() vs Model.findOne()
+- `.find({})` will always return an array
+- `.findOne({})` will return a single element, the first element that matches.  If no matches found, returns null.
 
-  myCar.save((err, car) => {
-    // do stuff...
-  })
+### CREATE
+`Model.create({})`
 
-2. Model.create
-
-  // shortcut for creating Car model instance and saving
-  Car.create({{make: 'Honda', model: 'Civic', year: 2015, color: 'blue'},
+  // creating single Car model instance and saving
+  Car.create({make: 'Honda', model: 'Civic', year: 2015, color: 'blue'},
     (err, car) => {
     // do stuff...
   })
 
-  // this allows us to create multiple instances
+  // create multiple instances with an array of documents to insert
   Person.create([{name: 'Kim', age: 28}, {name: 'Tim', age: 26}],
     (err, people) => {
     // do stuff...
   })
 
-### Delete Operations
-Which to use?  Think of what we need returned:
+### DELETE Operations
+Which to use?  Depends on what we need returned:
 **NOTE - deletes first match it finds, so use _id**
 
 - to find (obtain in the callback) a single document and delete it, use 
@@ -143,17 +123,17 @@ or
 
 *SYNTAX:*
   Car.findOneAndDelete({license: 'P2236917'},
-    (err, car) => {
-    // car will be the just deleted car document
+    (err, result) => {
+    // result will be the just deleted car document
     // showing make, model, color, license
   })
 
   Car.deleteOne({license: 'P2235891},
     (err) => {
-    // no car object obtained as a callback after the deletion
+    // no result object obtained as a callback after the deletion
   })
 
-### Update Operations
+### UPDATE Operations
 To find (obtain in the callback) a single document and update it use:
 `Model.findOneAndUpdate(conditions, update, [options], callback)`
 **NOTE** this gives us the pre-updated object for use in the callback
