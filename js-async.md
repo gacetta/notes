@@ -313,6 +313,20 @@ so for our code:
 **NOTE:** this makes it easy to throw a `catch()` at the end of a chain. If we want to trigger the catch in an earlier `then()` block, we can `throw` an `error` in that black.
 
 ---
+### Promise.all
+---
+`Promise.all()` - static method that takes an iterable of promises as input and returns a single Promise. This returned promise fulfills when all of the input's promises fulfill (including when an empty iterable is passed), with an array of the fulfillment values. It rejects when any of the input's promises rejects, with this first rejection reason.
+
+*syntax*
+`Promise.all(iterable)`
+- `iterable` - an iterable (such as an Array) of promises
+
+*Return value:* A promise that is:
+- _already fulfilled_ if the iterable passed is empty
+- _asynchronously fulfilled_ when all promises in the `iterable` fulfill
+- _asynchronously rejected_ when any of the promises in the `iterable` rejects.
+
+---
 ## Fetch API
 ---
 `fetch()` returns a `promise` which will resolve or reject ONLY when it is ready.
