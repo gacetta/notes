@@ -432,3 +432,38 @@ loading animation:
 4. in useEffect, after fetching and getting data, setLoading(false)
 5. conditionally render a `<span className={`loader ${!loading && 'hidden'}`}></span>`
 6. we can now also conditionally render components based on loading
+
+-----------------
+# Day ? - Ideation Week
+-----------------
+Researched:
+GraphQL
+@defer & @stream (graphQL)
+WebSocket
+Socket.io
+WebRTC
+WebTransport
+TypeScript
+Kafka
+Prometheus
+Grafana
+cypress testing
+react-testing-library
+tRPC
+
+------------------
+# Senior Day 1
+------------------
+checkout: webpack bundle analyzer
+snowpack - no longer maintained
+rollup?
+
+lookup: react snippets?
+
+------------------
+# Senior Day 2
+------------------
+introspection
+getIntrospectionQuery()
+buildClientSchema()
+printSchema()
