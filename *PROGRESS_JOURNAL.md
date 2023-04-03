@@ -590,9 +590,36 @@ localhost:XXXX/webpack-dev-server
 path: "src/\*_/_" `glob` or `glob pattern` that will explore all sub-folders
 
 ---
-
 # Senior Day 6
-
 ---
 
 `pagination`: `connections`, `edges`, `cursors`
+
+
+--------------
+# Senior Day ?
+---------------
+throttle vs debounce: https://tomekdev.com/posts/throttle-vs-debounce-on-real-examples
+`throttle` - Throttle runs a given function just once in a given period. Say you've got 400 events in 2 seconds but you've decided to throttle that stream and let it be executed just once per second. As a result, your function will be called just twice. Instead of 400!
+
+From a user's point of view, their action will be run every 1 second. No matter how many actions in-between they do.
+
+`debounce` - Debounce on the other hand will run a given function after a given period of time will pass without a single event. To put it to the extreme - if you have a constant stream of events that happen every 1 second, and you decided to debounce a function to be run after 2 seconds of "no action" then your function will be never executed.
+
+From a user's point of view, they have to stop doing something for 2 seconds to see the result of their action.
+
+Hiresmith:
+- admit when you don't know and ask questions
+
+- send thank yous after chats.  include a link about something you spoke about
+
+- work on a narrative
+
+- resume, do it, get notes/feedback, come back 2 days later
+
+- 1st job, go for base salary
+- 2nd job, start reaching out to the vc associates that invest in an area you're interested in.  reach out to the individual who's invested in the startups.
+
+--------------
+# Senior Day ?
+---------------
