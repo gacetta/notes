@@ -141,3 +141,169 @@ services:
 ## Docker Hub
 
 `docker hub` - a central repository for collaboratively sharing images. Like GitHub for images.
+
+## summary
+
+`containerization` allow us to keep our entire ecosystem in sync across our team and infrastructure
+
+`images` are templates for containers that can be shared from a central repository
+
+`volumes` allow us to mount directores on our host filesystem in the container so we can share files and persist data
+
+`docker hub` is a central repo for images
+
+we can automate spinning up containers with `docker-compose`
+
+# The Cloud
+
+AWS - 34% of cloud market
+Azure - 21%
+Google Cloud - 11%
+
+Cloud infrastructure service revenues in the 12 months ending sept 2022 - $217 Billion
+
+## EC2 - Elastic Compute Cloud
+
+EC2 is the workhosre of AWS. This service provides basic 'servers' where you can deploy and run your apps
+
+This is where you'll be running your node server.
+
+### Features
+
+`Instances` - virtual computing environments
+`Amazon Machine Images (AMIs)` - preconfigured templates for your instances
+`Instance types` - various configurations of CPU, memory, storage, and networking capacity for your instances
+`Regions & Availability Zones` - Multiple physical locations for your resources, such as EC2 instances
+`Key Pairs` - provide secure login info for your instances with SSH (Secure Shell)
+`Security groups` - Firewall that enables you to specify the protocols, ports, and IP ranges that can reach your instances
+
+## Amazon Machine Images & Instances
+
+`AMI` - a template that contains a software configuration
+From an AMI you launch an EC2 instance. You can launch multiple instances of an AMI.
+
+Instances can be run on various hardware configurations for CPU, RAM, and network capacity options. These configurations are called `instance types`
+
+## Storage Options
+
+`instance store` - temporary storage that is deleted if the EC2 instance is terminated
+`S3` - simple storage service
+
+- useful for hosting website images and videos, data analytics, and both mobile and web apps
+- can be accessed from anywhere on the internet
+  `EBS` - Elastic Block Store
+- Useful for backups and other low-latency persistent storage needs.
+- Can be backed up to S3
+- Limited to one EC2 instance
+  `EFS` - Elastic File System
+- Best used for large quantities of data, such as large analytic workloads
+- can be used across many EC2 instances
+
+## Regions and Availability Zones
+
+Each `region` is completely independent. Resources are not replicated across regions unless you do so specifically.
+
+When you view your resources on the AWS console, you'll only see the resources tied to the region you've specified.
+
+Each Availability Zone is isolated, but the Availability Zones in a region are connected through low-latency links
+
+If you distribute your instances across multiple Availability Zones and one instance fails, you can design your application so that an instance in another Availability Zone can handle requests.
+
+# Scaling / fault tolerance
+
+Amazon EC2 is hosted in multiple locations world-wide.
+
+## Access Control: Security Groups
+
+A `security group` acts as a virtual firewall that controls the traffic for one of more instances.
+
+You can add rules to each security group that allow traffic to or from its associated instances.
+
+When determining whether to allow traffic to reach an instance, AWS evaluates all the rules from all the security groups that are associated with that instance.
+
+## Logging in: SSH with Key Pairs
+
+EC2 makes use of public-key cryptography which uses a `public key` to encrypt a piece of data, such as a password, then the recipient uses the `private key` to decrypt the data. The public and private keys are known as a `key pair`
+
+To log in to your instance, you must create a key pair, specify the name of the key pair when you launch the instance, and provide the private key when you connect to the instance.
+
+_Amazon EC2 doesn't keep a copy of your private key, if you lose a private key there's no way to get it back_
+
+## Elastic Beanstalk
+
+elastic beanstalk can be thought of as a 'wizard'
+
+elastic beanstalk, you can qwuickly deploy and manage apps in the AWS Cloud without worrying about the infrastructure that runs those applications. You can simply configure it, upload your app, and EB automatically handles the details of `capacity provisioning`, `load balancing`, `scaling`, and `application health monitoring`
+
+it works around the concepts of applications. Each application contains one or more environments. Each environment is a configured collection of AWS resources that enable that environment's version of the application.
+
+Commonly, you'll have a staging environment alongside a production environment.
+
+It provides a GUI Dashboard for you to tweak config settings, examine log files and more.
+
+## auto scaling
+
+When setting up an environment in Elastic Beanstalk, you'll have the option to build it for 'high availability'
+
+This configures a `load balancer` into your infrastructure. The load balancer will distribute requests across n EC2 instances.
+
+As traffic increases, more EC2 instances will get spun up. As traffic decreases, the number of instances will decrease to a configured minimum.
+
+## S3 - Simple Storage Service
+
+S3 provides cheap `static file storage` that can be accessed from internal AWS resources or optionally anywhere on the internet.
+
+S3, data is stored as `objects` in `buckets` that can bew accessed using a `key`.
+
+## RDS - Relational Database Service
+
+## DB Backups and High Availability
+
+RDS makes it simple to schedule ongoing backups of your data. In case of data corruption, these backups can restore your database back to the most recent snapshot.
+
+You can also set up a replica of your database in a separate Availability Zone (AZ) to act as a failover option in the event of a localized disaster.
+
+## ECR - Elastic Container Registry
+
+Amazon Eleastic Container Registry (ECR) is a fully-managed container registry that makes it weasy for devs to store, manage, and deploy container images.
+
+## IAM - Identity & Access Manager
+
+Amazon's tool to control account level security. This allows you to control who can access what in your AWS account.
+
+---
+
+# CI/CD - continuous integration / continuous deployment
+
+---
+
+Continuous Integration
+
+The process of automating the build and testing of code every time a team member commits changes to version control.
+
+CI emerged as a best practice because software devs often work in isolation, and then they need to integrate their changes with the rest of the team's code base.
+
+Continuous Deployment
+
+A strategy for sofwtware releases wherein any pull request that passes the automated testing (CI) phase and is subsequently merged into the main branch is then automatically released into the production environment, making changes that are visible to the software's users.
+
+TOOLS:
+TeamCity
+Travis CI
+Jenkins
+GitHub Actions
+Bamboo
+circleci
+GitLab
+
+## GitHub Actions
+
+GitHub's CI/CD service - is widely used both in industry and open source projects.
+
+- We can use GitHub to run customized `workflows` each time a specified `event` occurs (e.g. pull request, merge)
+
+- A workflow is made up of one or more `jobs` which can run either concurrently or in sequence
+
+- GitHub hosts VMs (called `runners`) dedicated to running Actions jobs
+
+- Free for all public repos, limited (2000 free min per month) for private repos.
