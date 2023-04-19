@@ -1,6 +1,7 @@
 # Algorithms and Problem Solving Patterns
 
 ## Problem Solving Strategies
+
 1. understand the problem
 2. explore concrete examples
 3. break it down
@@ -10,17 +11,19 @@
 Resource: How To Solve It - George Polya
 
 ## 1. Understand The Problem
-Fight the urge to jump in too quickly.  Really understand what the problem is asking you.
+
+Fight the urge to jump in too quickly. Really understand what the problem is asking you.
 
 1. Can I restate the problem in my own words?
 2. What are the inputs / outputs?
-3. Can the outputs be determined from the inputs?  AKA - do I have enough info to solve the problem?
+3. Can the outputs be determined from the inputs? AKA - do I have enough info to solve the problem?
 4. How should I label the important pieces of data that are a part of the problem?
 
 ## 2. Explore Examples
+
 - coming up with examples helps you understand the problem better
 - examples also provide sanity checks that your eventual solution works how it should
--user stories!  Unit tests!
+  -user stories! Unit tests!
 
 1. start with simple examples
 2. progress to more complex examples
@@ -28,23 +31,28 @@ Fight the urge to jump in too quickly.  Really understand what the problem is as
 4. explore examples with invalid inputs
 
 ## 3. Break It Down
+
 - kind of like pseudo-code
-- explicitly write out the steps you need to take.  
-  - this forces you to think about the code you'll need to write before you write it.  It helps you catch and lingering conceptual / logic issues or misunderstandings before you dive in and worry about details (e.g. language syntax)
+- explicitly write out the steps you need to take.
+  - this forces you to think about the code you'll need to write before you write it. It helps you catch and lingering conceptual / logic issues or misunderstandings before you dive in and worry about details (e.g. language syntax)
 
 ## 4. Solve / Simplify
-Solve the problem!... if you can't... Solve a simpler problem.  AKA, ignore the part that is giving you a hard time and solve a simpler version.
+
+Solve the problem!... if you can't... Solve a simpler problem. AKA, ignore the part that is giving you a hard time and solve a simpler version.
 
 ### Simplify
+
 1. Find the corse difficulty in what you're trying to do
 2. Temporarily ignore that difficulty
 3. Write a simplified solution
 4. Then incorporate that difficulty back in
 
 ## 5. Look Back & Refactor
-You solved it!  But you're not done!
+
+You solved it! But you're not done!
 
 ### Refactoring Questions:
+
 1. Can you check the result?
 2. Can you derive the result differently?
 3. Can you understand it at a glance?
@@ -53,27 +61,28 @@ You solved it!  But you're not done!
 6. Can you think of other ways to refactor?
 7. How have other people solved this problem?
 
-    if (/[a-z0-9]/.test(char)) {
-      if (obj[char] > 0) {
-        obj[char]++;
-      } else {
-        obj[char] = 1;
-      }
-    }
+   if (/[a-z0-9]/.test(char)) {
+   if (obj[char] > 0) {
+   obj[char]++;
+   } else {
+   obj[char] = 1;
+   }
+   }
 
-    if (/[a-z0-9]/.test(char)) {
-      obj[char] = obj[char] > 0 ? ++obj[char] : 1
-    }
+   if (/[a-z0-9]/.test(char)) {
+   obj[char] = obj[char] > 0 ? ++obj[char] : 1
+   }
 
-    if (/[a-z0-9]/.test(char)) {
-      obj[char] = ++obj[char] || 1;
-    }
+   if (/[a-z0-9]/.test(char)) {
+   obj[char] = ++obj[char] || 1;
+   }
 
 # MASTERING COMMON PROBLEM SOLVING PATTERNS
 
-Not a notebook of solutions that will solve ALL algos.  But there are some commmon approaches that are applicable to many problems.
+Not a notebook of solutions that will solve ALL algos. But there are some commmon approaches that are applicable to many problems.
 
 Some patterns:
+
 - Frequency Counter
 - Multiple Pointers
 - Sliding Window
@@ -81,16 +90,20 @@ Some patterns:
 - Dynamic Programming
 - Greedy Algos
 - Backtracking
+
 ---
+
 ## Frequency Counters
+
 ---
+
 A pattern that uses objects or sets to collect values / frequencies of values
 
 This can often avoid the need for nested loops or `O(n^2)` operations with arrays / strings.
 
 Example Problem:
 
-Write a function called **same** which accepts two arrays.  The function should return true if every value in the array has it's corresponding value squared in the second array.  The frequency of values must be the same.
+Write a function called **same** which accepts two arrays. The function should return true if every value in the array has it's corresponding value squared in the second array. The frequency of values must be the same.
 
     same([1, 2, 3], [4, 1, 9]) // true
     same([1, 2, 3], [1, 9]) // false
@@ -117,41 +130,40 @@ Nested loops: a `for loop` with `indexOf` inside (which is another loop) results
 **Refactored For Better Time Complexity**
 Loop over each array ONE time individually:
 
-  function same(arr1, arr2) {
-    if(arr1.length !== arr2.length) {
-      return false;
-    }
-    let frequencyCounter1 = {};
-    let frequencyCounter2 = {};
-    for (let val of arr1) {
-      frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1;
-    }
-    for (let val of arr2) {
-      frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1;
-    }
-    for (let key in frequencyCounter1) {
-      if (!(key ** 2 in frequencyCounter2)) {
-        return false;
-      }
-      if (frequencyCounter2[key ** 2] !== frequencyCounter1[key]) {
-        return false;
-      }
-    }
-    return true;
-  }
+function same(arr1, arr2) {
+if(arr1.length !== arr2.length) {
+return false;
+}
+let frequencyCounter1 = {};
+let frequencyCounter2 = {};
+for (let val of arr1) {
+frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1;
+}
+for (let val of arr2) {
+frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1;
+}
+for (let key in frequencyCounter1) {
+if (!(key ** 2 in frequencyCounter2)) {
+return false;
+}
+if (frequencyCounter2[key ** 2] !== frequencyCounter1[key]) {
+return false;
+}
+}
+return true;
+}
 
 **ADDITIONAL EXAMPLE:**
 
-Prompt: given two strings, write a function to determine if the second string is an anagram of the first.  An anagram is a word, phrase or name formed by rearranging the letters of another, such as _cinema_ formed from _iceman_.
+Prompt: given two strings, write a function to determine if the second string is an anagram of the first. An anagram is a word, phrase or name formed by rearranging the letters of another, such as _cinema_ formed from _iceman_.
 
-  validAnagram('', '') // true
-  validAnagram('aaz', 'zza') // false
-  validAnagram('anagram', 'nagaram') // true
-  validAnagram('rat', 'car') // false
-  validAnagram('awesome', 'awesom') // false
-  validAnagram('qwerty', 'qeywrt') // true
-  validAnagram('texttwisttime', 'timetwisttext') // true
-
+validAnagram('', '') // true
+validAnagram('aaz', 'zza') // false
+validAnagram('anagram', 'nagaram') // true
+validAnagram('rat', 'car') // false
+validAnagram('awesome', 'awesom') // false
+validAnagram('qwerty', 'qeywrt') // true
+validAnagram('texttwisttime', 'timetwisttext') // true
 
     function validAnagram(str1, str2) {
       if (str1.length !== str2.length) {
@@ -173,15 +185,19 @@ Prompt: given two strings, write a function to determine if the second string is
 
       return true;
     }
+
 ---
+
 ## Multiple Pointers
+
 ---
+
 Create pointers or values that correspond to an index or position and move towards the beginning, end or middle based on a certain condition.
 
 This method is VERY efficient for solving problems with minimal space complexity as well.
 
 Example:
-Write a function called sumZero which accepts a **SORTED** array of integers.  The function should find ht efirst pair where the sum is 0.  Return an array that includes both values that sum to zero or undefined if a pair does not exist.
+Write a function called sumZero which accepts a **SORTED** array of integers. The function should find ht efirst pair where the sum is 0. Return an array that includes both values that sum to zero or undefined if a pair does not exist.
 
 sumZero([-3,-2,-1,0,1,2,3]) // [-3,3]
 sumZero([-2,0,1,3]) // undefined
@@ -199,7 +215,7 @@ sumZero([1,2,3]) // undefined
       }
     }
 
-This contains nested `for` loops and results in a time complexity of `O(n^2)`.  Space complexity is `O(1)`
+This contains nested `for` loops and results in a time complexity of `O(n^2)`. Space complexity is `O(1)`
 
 **Refactored for better time complexity**
 
@@ -222,7 +238,7 @@ This results in a time complexity of `O(n)` and Space Complexity of `O(1)`
 
 **Additional example:**
 
-Implement a function called countUniqueValues which accepts a sorted array, and counts the unique values in the array.  There can be negative numbers in the array, but it will always be sorted.
+Implement a function called countUniqueValues which accepts a sorted array, and counts the unique values in the array. There can be negative numbers in the array, but it will always be sorted.
 
 countUniqueValues([1, 1, 1, 1, 2]) // 2
 countUniqueValues([1, 2, 3, 4, 4, 4, 7, 7, 12, 13]) // 7
@@ -248,8 +264,11 @@ countUniqueValues([-2, -1, -1, 0, 1]) // 4
         }
         return first + 1;
     }
+
 ---
+
 ## Sliding Window
+
 ---
 
 This pattern involves creating a window which can either be an array or number from one position to another.
@@ -260,7 +279,7 @@ Very useful for keeping track of a subset of data in an array/string/etc.
 
 **Example:**
 
-Write a function called maxSubarraySum which accepts an array of integers and a number called n.  The function should calculate the maximum sum of n consecutive elements in the array.
+Write a function called maxSubarraySum which accepts an array of integers and a number called n. The function should calculate the maximum sum of n consecutive elements in the array.
 
 maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 2) // 10
 maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 4) // 17
@@ -311,15 +330,18 @@ Time complexity - `O(n^2)` because #NestedLoops
 Time complexity - `O(n)`
 
 ---
+
 ## Divide and Conquer
+
 ---
-This pattern involves dividing a data set into smaller chunks and then repeating a process with a subset of data.  
+
+This pattern involves dividing a data set into smaller chunks and then repeating a process with a subset of data.
 
 This pattern can tremendously decrease time complexity.
 
 **Example:**
 
-Given a **sorted** array of integers, write a function called binarySearch, that accepts a value and returns the index where the value passed to the function is located.  If the value is not found, return -1.
+Given a **sorted** array of integers, write a function called binarySearch, that accepts a value and returns the index where the value passed to the function is located. If the value is not found, return -1.
 
 binarySearch([1, 2, 3, 4, 5, 6], 4) // 3
 binarySearch([1, 2, 3, 4, 5, 6], 6) // 5
@@ -329,14 +351,14 @@ binarySearch([1, 2, 3, 4, 5, 6], 11) // -1
 
 Look at each element in the array in a linear search:
 
-  function binarySearch(arr, val) {
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i] === val) {
-        return i;
-      }
-    }
-    return -1;
-  }
+function binarySearch(arr, val) {
+for (let i = 0; i < arr.length; i++) {
+if (arr[i] === val) {
+return i;
+}
+}
+return -1;
+}
 
 Time complexity: `O(n)`
 

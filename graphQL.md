@@ -414,3 +414,29 @@ Current Promising Idea:
 6. We can now access the array in `__schema.types[0].fields` (where 0 represents the type whose name matches the queryType name). For each object, we access the `name` property and find the corresponding ObjectType in `__schema.types`
 
 it's not perfect and it's quite speculative on several points and it's not 100% yet. But it's the more promising idea I have thus far.
+
+
+
+
+Presentation:
+
+
+Another problem we encountered was both monaco editor and react flow relied heavily on constantly changing state.  This often led to issues caused by referencing outdated (stale) state due to useEffect() timing or scoping issues
+
+Our solution was useRef() which provided accurate state available across the application.  Additionally, useNodeInternals() was essential for addressing race conditions to allow proper rendering within react flow.
+
+
+Problem: Both Editor and React Flow relied heavily on constantly changing state which led to issues caused by referencing outdated (stale) state.
+Solution: useRef() provided accurate state available across the application.  Additionally, useNodeInternals() was used to address race conditions within React Flow
+
+
+
+
+Our first problem It was a hurdle to parse schemas effectively and convert them to a visual hierarchy that made sense
+Solution: We used introspection & a custom algorithm to parse and normalize schemas. Then we processed React Flow nodes & edges through the ElkJS layered algorithm
+
+Another problem we encountered was both monaco editor and react flow relied heavily on constantly changing state.  This often led to issues caused by referencing outdated (stale) state due to useEffect() timing or scoping issues
+Our solution was useRef() which provided accurate state available across the application.  Additionally, useNodeInternals() was essential for addressing race conditions to allow proper rendering within react flow.
+
+We also encountered a problem with reverse mode functionality and collision management
+The solution was to determine the shape that clicked fields needed to fit into and create a framework that helped us find the correct reference for a clicked field. We also created a way for the user to help us resolve collisions.
