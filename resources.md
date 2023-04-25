@@ -80,3 +80,13 @@ https://www.linkedin.com/
 <!-- CODE REVIEW -->
 
 https://www.processimpact.com/articles/humanizing_reviews.pdf
+
+<!-- EVENT LOOP -->
+
+<!-- DEBOUNCE / THROTTLE -->
+
+https://redd.one/blog/debounce-vs-throttle
+
+<!-- ALGOS -->
+
+https://www.techinterviewhandbook.org/grind75?weeks=8&hours=12
