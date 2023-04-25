@@ -90,3 +90,10 @@ https://redd.one/blog/debounce-vs-throttle
 <!-- ALGOS -->
 
 https://www.techinterviewhandbook.org/grind75?weeks=8&hours=12
+
+<!-- SQL -->
+
+https://pgexercises.com/questions/basic/
+https://philip.greenspun.com/sql/
+https://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins
+https://www.youtube.com/watch?v=nWyyDHhTxYU
