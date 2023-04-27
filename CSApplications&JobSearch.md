@@ -141,3 +141,151 @@ Step 1: https://hunter.io / oppolo.io
 
 Use a mail tracker
 
+Engineering credibility signal (2x)
+Your personalized “in” (a personal sincere connection to the company)
+Call to action and logistics (Optional) 
+Overall style
+
+
+
+Hey there!
+
+I came across a Palantir article while on my latest tech-blog rabbit hole and enjoyed reading about your commitmenet to the OSS community with blueprint.  Some of my favorite projects have been open source - most recently The GraphQL One Stop Shop - a dev tool for real-time data & visual feedback.
+
+
+
+don't forget javascript
+people and devs
+
+resource heavy - caching is solution
+
+behavioral question - doesn't have to go deep in to tech, more so about behavior
+
+"I prefer to spin up my own implementation of a virtual DOM for a more lightweight approach than React"
+
+Current market trends:
+
+- Forget about FAANG.  Big companies that need a shift for software engineering is where teh $$/opportunities are at
+- LLM (Large Language Model) will be a big trend and where the SWEs are needed
+- Normal companies are now hiring a bunch of SWEs
+- AI is just going to let us build a lot of stuff faster, not replace engineers
+
+Will - 310-740-1639 (whatsapp)
+Annie - 303-621-6209
+willsentance@gmail.com
+
+
+Questions to ask at the end of interview:
+What's your team structure and size?
+Do you use JS or TS and why?
+What's your biggest goal for your team to achieve this year?
+What's the onboarding experience like?
+What level is the position for?
+What is your role do you serve for the team?
+What's a process on your team that you want to see improved upon?
+
+Design Systems realted questions are helpful
+Look into *storybook*
+
+# Job Search Strategy
+Referrals (order by effectiveness):
+1. Intro by engineer or leader on their team
+2. Intro by non-engineer on their team
+3. Intro by outside person connected to engineer/leader on their team
+
+Networking Calls / Virtual Coffee
+- Focus on people with whom you have an 'in' (school, identity) but you can contact anyone at the company - focus on leaders and engineers (avoid hiring process people)
+  - use the Codesmith Alumni Database
+- Email about 'learning' and 'careeer path' - but then in person - all the standard rules about credibility signals apply
+- Most people are open to this - people very rarely ask for these coffees
+  - people want to pay forward in fixed time amounts
+
+Prepare thoughtful (informed - opinoin ) questsion but also focus on conversational and warm style
+  - use the 'pre-interview checklist'
+Ask for guidance on the application process & if they can let the team know you're applying
+*Especially effective when applying to large companies (substitute for Double-down email)*
+
+"I noticed this role....I was curious if there is any formal referral process for the company?"
+
+"I was planning on applying for a role on a particular team.  I was wondering if you have any tips to help my application get seen and moved towards the top of the pile."
+
+## What if you didn't have to apply at all?
+
+Ensure your public online profiles (Angellist, LinkedIn) are perfect
+- add profile to HN who's searching (monthly post), Stackoverflow
+
+Apply for private online job platforms (Hired)
+- pre-vet you for companies
+- make sure to prepare for your application as you would any application
+
+Blog posts - submit to JSDaily, FreeCodeCamp, Hackernoon
+
+Speak at (virtual) meetups (use your tech talks & don't doubt yourself)
+
+Elegant Personal site (seasoned engineer look, not bootcamp grad portfolio site)
+
+Connecting directly with internal recruiters & talen acquisition on LinkedIn, *Engineering team decision-makers (e.g. CTOs)*
+
+## Recruiters
+INTERNAL RECRUITERS
+- look for terms like: Talent acquisition, Hiring manager, Recruiter @ company
+- an important part of your application process: often handle the phone interview
+- Think back to the lecture about phone interviews and the goals of recruiters (to impress their boss) but how hard that is from a non-technical background.  Your task is to make it easier for them
+  - how?  by coming across as credible
+
+EXTERNAL RECRUITERS
+- Mostly doing the same as you - submitting your resume to companies where they have no decision-making power
+  - But they're doing it without any of the Codesmith Hiring Program approaches - at best it's 25% as effective as applying yourself
+
+- Not only that, they will promise you a list of companies they work with: creating a false sense of pipeline
+
+## Other things to do when you're exhausted 
+Codesmith curriculum
+- skill builders and assignments
+- hack hours (add in codewars, hackerrank, interviewcake, old hack hours)
+- frontend masters
+
+Open Source Product
+- Handle pull requests & stretch features
+- It's powerful in interview to be working daily on your open source contributions
+
+Take Homes
+- Use these instead of tutorials to push you to cement core technologies
+
+*Most important* - iterate on previous interview questions
+
+## Take Home Assignments
+DO:
+- complete all features
+- testing
+- submit on time (or communicate that you have timeline / work pressures to navigate)
+- use this as the chance to practice your core technologies
+- contact your cohortmates or Codesmith team for code review
+
+DON'T:
+- have someone else complete the assignment
+- give up before you've talked with a team member
+
+## References
+Who to ask?
+- Phil (OSLabs/Codesmith), OSP Mentors/Fellows, Prior Employers
+
+Brief Your Referee
+- What have you communicated to the company
+- What's the company focused on
+- Mus provide:
+ 1. What engineering achievements do you want the referee to stress (3)
+ 2. What are your strengths/weaknesses
+ 3. How do you work in teams
+
+## Employment Verification and Background Checks
+Common for companies to conduct work verifications and background checks around the offer stage
+- often done with a 3rd party organization
+
+How to have a successful employment verification process:
+- ensure work exp timelines are accurate on your resume and online profiles
+- always have integrity in the job search process
+- let us know if you have any questions in your hiring channel
+
+OSP / OS Labs Verification
+- If you are asked to provide a written verification for your time working on your OSP, reach out in your hiring support channel and we will be able to provide you with a form

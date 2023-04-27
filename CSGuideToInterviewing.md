@@ -348,7 +348,7 @@ You can iterate on your understanding of these questions in conversation during 
 By linking it to a product/situation and explain its significance and seriousness
 
 Make your answer powerful by relating it to your work or product
-
+`
 Tell me your experience with node?
 - Describe a specific product in which you used Node
 How does closure work?
@@ -370,7 +370,7 @@ What made the product significant?
   - There are 3 main goals I have when choosing a UI framework and that led me to choose React...
 
   (b) Focus on mature engineering judgment calls adn motivations
-  - "react abstracts my interaction with DOM and lets me think of state changes throughout the render lifecycle"
+  - "react abstracts my interaction with DOM and lets me think of state changes 21throughout the render lifecycle"
   - Diagramming 
   - remember client optimizations vs. dev optimizations
 
@@ -436,37 +436,37 @@ Overall, our team hit all our MVPs and we're proud of it.  We're now working on 
 
 One downside we experienced using the useState hook in conjunction with useEffect caused issues with stale state.  So in hindsight it might have been a good idea for us to implement some sort of global state management such as redux or useContext().
 
-I see figma's frontend is built using React as well.  How do you manage state?  Do you use stateful class components, functional components with hooks, or some global alternative like redux or zustrand?
+I see figma's frontend is built using React as well.  How do you manage state?  I ask because one downside we experienced in our app was the useState() hook in conjunction with useEffect() caused issues with stale state.  So in hindsight it might have been a good idea for us to implement some sort of global state management.  Do you use stateful class components, functional components with hooks, or some global alternative like redux or zustrand?
 
-  (c) Relate your answer to the company/role/interviewer
-  - "has your team thought about incorporating hooks?"
+(c) Relate your answer to the company/role/interviewer
+- "has your team thought about incorporating hooks?"
 
 
-  ## Step 5: Review & Iterate
-  Suppose you were asked: "what are the advantages of React over Vue?  What now?"
+## Step 5: Review & Iterate
+Suppose you were asked: "what are the advantages of React over Vue?  What now?"
 
-  Same as before:
-  (a) Take notes
-  - note down all the questions from the interview (esp ones that were unpolished)
-  (b) research
-  - search "what are the advantages of React over Angular" - look for thoughtful post
-  - medium, hn.algolia, etc.
-  (c) Understand trade-offs (this helps hedging)
-  - find agreeing and disagreeing responses
-  (d) Get feedback & experiment
-  - share your insights in Slack with your cohortmates.
-  - experiment with relavant tech - e.g. build things in Angular and React
+Same as before:
+(a) Take notes
+- note down all the questions from the interview (esp ones that were unpolished)
+(b) research
+- search "what are the advantages of React over Angular" - look for thoughtful post
+- medium, hn.algolia, etc.
+(c) Understand trade-offs (this helps hedging)
+- find agreeing and disagreeing responses
+(d) Get feedback & experiment
+- share your insights in Slack with your cohortmates.
+- experiment with relavant tech - e.g. build things in Angular and React
 
-  ## What makes a great answer
-  Technical communication
-  - precise and specific
-  - give context for your audience
-  Keep it conversational by asking questions
-  - volunteer further depth - you can always share more
-  Have opinions but make sure to provide the context or hedge
-  *Show passion and excitement*
+## What makes a great answer
+Technical communication
+- precise and specific
+- give context for your audience
+Keep it conversational by asking questions
+- volunteer further depth - you can always share more
+Have opinions but make sure to provide the context or hedge
+*Show passion and excitement*
 
-  ## what to avoid
-  - undersell words: "i only touched x", "as beginners it was hard, I kinda did x"
-  - short answers - although remember to check with the interviewer if they want you to keep on diving in
-  - "I've never worked with that" -> Volunteer a story related (remember your context)
+## what to avoid
+- undersell words: "i only touched x", "as beginners it was hard, I kinda did x"
+- short answers - although remember to check with the interviewer if they want you to keep on diving in
+- "I've never worked with that" -> Volunteer a story related (remember your context)

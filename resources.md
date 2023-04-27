@@ -97,3 +97,6 @@ https://pgexercises.com/questions/basic/
 https://philip.greenspun.com/sql/
 https://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins
 https://www.youtube.com/watch?v=nWyyDHhTxYU
+https://schemaverse.com/
+https://mystery.knightlab.com/
+
