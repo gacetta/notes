@@ -155,11 +155,11 @@ Order of Specificity
 3. Classes, pseudo-classes, attribute
 4. Elements, pseudo-elements
 
-specificity is actually 4 numbers, one for each element of specificity listed above.
+`specificity` is 4 numbers, one for each element of specificity listed above.
 
 Take the following example:
 // We want to determine the background-color.  
-//All elements are of the same importance
+// All elements are of the same importance
 
     .button {
       font-size: 20px;

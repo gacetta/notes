@@ -9,25 +9,17 @@ The CSS property `display: grid` turns any HTML element into a grid container.
 ## COLUMNS AND ROWS
 _grid container property_
 
-### GRID-TEMPLATE-COLUMNS
+### GRID-TEMPLATE-COLUMNS & ROWS
 _grid container property_
-The CSS property `grid-template-columns` will define the column structure of the grid.
+`grid-template-columns` & `grid-template-rows` will define the column & row structure of the grid.  The number of parameters given to the `grid-template-columns` (and `grid-template-rows`) indicates the number of columns (and rows) in the grid, and the value of each parameter indicates the width of each column (and row).
 
-The following creates two columns 50px wide:
-
-    `grid-template-columns: 50px 50px`
-
-### GRID-TEMPLATE-ROWS
-Likewise, the CSS property `grid-template-rows` will define the row structure of the grid.
-
-The number of parameters given to the `grid-template-columns` (and `grid-template-rows`) indicates the number of columns (and rows) in the grid, and the value of each parameter indicates the width of each column (and row).
+The following creates two columns 50px wide:  `grid-template-columns: 50px 50px`
+The following creates three rows 20px wide:  `grid-template-columns: 20px 20px 20px`
 
 **NOTE:** number (and size) of columns will be set automatically if no `grid-template-rows` property is defined and vice versa.
 
 ### GRID-TEMPLATE
 The CSS shorthand property `grid-template` combines `grid-template-rows` and `grid-template-columns` into one.
-
-The syntax:  
 
 `grid-template: grid-template-rows / grid-template-columns`
 
@@ -35,10 +27,9 @@ The following would create 5 columns and 5 rows equally spaced:
 
     grid-template: 20% 20% 20% 20% 20% / 20% 20% 20% 20% 20%;
 
-**NOTE:** Jonas doesn't use... can get confusing with large grids.
+**NOTE:** can get confusing with large grids.
 
 ---
-
 ## CSS GRID UNITS
 _grid container property_
 
@@ -226,32 +217,28 @@ If grid items aren't explicitly placed, they are automatically placed according 
 ## REPEAT FUNCTION
 _grid container property_
 
-Using `grid-template-row` to define 100 rows of the same width individual would take too much time and code.
+`repeat` specifies the number of times you want a row (or column) to be repeated, followed by a comma and the value you want to repeat.
 
-The `repeat` function can be used to specify the number of times you want your row (or column)) to be repeated, followed by a comma and the value you want to repeat.
+EX: create 100 row grid, each row at 50px tall: 
 
-Here's an example that would create a 100 row grid, each row at 50px tall.
+`grid-template-rows: repeat(100, 50px);`
 
-    `grid-template-rows: repeat(100, 50px);`
+`repeat` supports multiple values. insert the function amongst other values when defining a grid structure:
 
-You can also repeat multiple values with the repeat function and insert the function amongst other values when defining a grid structure:
-
-    `grid-template-columns: repeat(2, 1fr 50px) 20px;`
+`grid-template-columns: repeat(2, 1fr 50px) 20px;`
 
 which translates to:
 
-    `grid-template-columns: 1fr 50px 1fr 50px 20px;`
+`grid-template-columns: 1fr 50px 1fr 50px 20px;`
 
 ---
 ## MINMAX FUNCTION
 
-The `minmax` function is a built-in function for use with `grid-template-columns` and `grid-template-rows`.
-
 `minmax` is used to limit the size of items when the grid container changes size.  To do so, an acceptable size range for the item must be specified:
 
-    `grid-template-columns: 100px minmax(50px, 200px);`
+`grid-template-columns: 100px minmax(50px, 200px);`
 
-The code above will create two columns, the first is 100px wide, the second has a min width of 50px and a max width of 200px.
+Creates two columns, the first is 100px wide, the second has a min-width of 50px and a max-width of 200px.
 
 ---
 ## AUTO-FILL
@@ -260,7 +247,7 @@ The `repeat` function comes with an option called _auto-fill_ which allows you t
 
 When combined with `minmax`, it's possible to create flexible layouts.
 
-    `repeat(auto-fill, minmax(60px, 1fr));`
+`repeat(auto-fill, minmax(60px, 1fr))`
 
 With the above code, when the container changes size, this setup keeps inserting 60px columns and stretching them until it can insert another one.
 
@@ -269,13 +256,11 @@ With the above code, when the container changes size, this setup keeps inserting
 ---
 ## AUTO-FIT
 
-`auto-fit` works almost identically to `auto-fill`
+almost identical to `auto-fill`
 
-The only difference is that when the container's size exceeds the size of all the items combined, `auto-fill` keeps inserting empty rows or columns and pushes your items to the side, while `auto-fit` collapses those empty rows or columns and stretches your items to fit the size of the container.
+difference -  when the container's size exceeds the size of all the items combined, `auto-fill` keeps inserting empty rows or columns and pushes your items to the side, while `auto-fit` collapses those empty rows or columns and stretches your items to fit the size of the container.
 
-     `repeat(auto-fit, minmax(60px, 1fr));`
-
-With the above code, when the container changes size, this set up will 
+`repeat(auto-fit, minmax(60px, 1fr));`
 
 ---
 ## MEDIA QUERIES WITH CSS GRID

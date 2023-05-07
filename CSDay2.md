@@ -1,4 +1,4 @@
-## Approach to Problem Solving
+<!-- ## Approach to Problem Solving
 
 BRAINSTORMING SESSION
 
@@ -30,7 +30,7 @@ BRAINSTORMING SESSION
 1. play around, consider example inputs
 1. describe approach using plain english
 1. write pseudo-code
-1. write some code
+1. write some code -->
 
 ## OOP in JavaScript
 

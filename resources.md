@@ -100,3 +100,6 @@ https://www.youtube.com/watch?v=nWyyDHhTxYU
 https://schemaverse.com/
 https://mystery.knightlab.com/
 
+<!-- BASH / SHELL -->
+
+https://www.grymoire.com/Unix/Sed.html#uh-62h - all about `sed` command

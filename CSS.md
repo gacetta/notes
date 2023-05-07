@@ -8,7 +8,6 @@ the style attribute can be added to many elements to alter their appearance
 ***NOTE:***  It is best practice to end inline style declaration with a `;`
 
 ---
-
 ## CASCADING STYLE SHEET & STYLE BLOCK
 Using inline style attributes could get repetative if we need to assign a style to every separate `<p>` tag.  However, we can define the style for all `<p>` elements at once using a style block.  
 
@@ -23,29 +22,30 @@ Using inline style attributes could get repetative if we need to assign a style 
 ---
 ## CSS Units
 ---
-**ABSOLUTE UNITS** - tie to physical units of length. (won't necessarily line up to a ruler if held to screen.  Use measurements when doing things for print)  
+**ABSOLUTE UNITS** - tied to physical units of length. (won't necessarily line up to a ruler if held to screen.  Use measurements when doing things for print)  
   * Pixels (`px`)
   * `pt`
   * `cm`
   * `mm`
   * `in`
 
-**PERCENTAGES** - mainly used for widths.  Relative to their parent  (Heights get weird)
+**PERCENTAGES** - mainly used for widths.  Relative to their parent  (Heights can get weird)
 
 **RELATIVE UNITS** - relative to another length value.  
 
-* UNITS RELATIVE TO FONT-SIZE:
+UNITS RELATIVE TO FONT-SIZE:
   * `em` is relative to the parents's `font-size`, which is an inherited property.  If none of the parents have a declared `font-size` then `em` will inherit its size from the `<body>` (or the default which is usually 16px).
     * for example: `1em` = 100% of its parent's font-size.  `1.5em` = 150% of parent's font-size.
     * **NOTE:** when used for the font-size, `em` units can get out of control and have a cascading effect.
-  * `rem` - short for root em.  It's always relative to the font size at the "root" of the document.  The "root" being the `<html>` element
+  * `rem` - short for root em.  It's always relative to the font size at the "root" of the document.  The "root" usually being the `<html>` element
 
-* UNITS RELATIVE TO VIEWPORT
+UNITS RELATIVE TO VIEWPORT
     * `vw` - relative to 1% of the viewport width
     * `vh` - relative to 1% of the viewport height
     * `lh` - relative to the line height of the element
     * `vmin` - uses the ratio of the _smallest side_.  If the browser is wider than it is tall, `1vmin` will be equivalent to `1vh`.  If the viewport is taller than it is wide, `1vmin` is equivalent to `1vw`.
     * `vmax`- similarly to `vmin`, `vmax` uses the ratio of the _largest side_.  `1vmax` is equivalent to `1vw` if the viewport is wider than it is tall; if the browser is taller than it is wide, `1vmax` will be equivalent to `1vh`.
+    
 ---
 ### WHICH UNITS TO USE?
 ---
@@ -87,13 +87,11 @@ In the following code, `rem` units are used to set the `font-size`, but `em` uni
 
 ### IMAGES
 
-**NOTE:** any `images` in that class are _not_ resized and will extend outside of that 50%.  This is because `images` are `inline-elements`.  They default to the size of themselves.  So we can style them as well. 
+**NOTE:** any `images` in that class are _not_ resized and will extend outside of that 50%.  This is because `images` are `inline-elements` and thus, default to the size of themselves.  So we can style them as well. 
 
     img {
         width: 100%;  
     }
-
-**NOTE:** do not set a width AND height for an image.  otherwise the aspect ratio will be altered.
 
 `max-width:` is a great property that allows us to set an absolute size as the maximum (so text and images are formatted properly).  Then we can use a percentage to scale down the site as the viewport changes
 
@@ -1083,7 +1081,12 @@ use a linear gradient with the same color as both properties
 background-image: linear-gradient(rgba($same-color, .5), rgba($same-color, .5)), url(img.jpg);
 
 ---
-## Creating custom icon for tab
+## loading animation effect
 ---
 
-in HTML doc, create a <link> in the <head>.  `href='image.png'` `rel='icon'`
+1. create a pure css animation in CSS. give it class name: loading
+2. create hidden class to set display: hidden
+3. create loading useState(true)
+4. in useEffect, after fetching and getting data, setLoading(false)
+5. conditionally render a `<span className={`loader ${!loading && 'hidden'}`}></span>`
+6. we can now also conditionally render components based on loading

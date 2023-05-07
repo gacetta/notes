@@ -1,10 +1,7 @@
 ---
-
 # Day 1 - Jan 30
-
 ---
-
-Paired with Erika Jung - reminded me of the nullish coallescing operator
+nullish coallescing operator
 
 ```
 leftExpr ?? rightExpr       // if leftExpr is truthy, returns leftExpr
@@ -12,11 +9,8 @@ leftExpr ?? rightExpr       // if leftExpr is truthy, returns leftExpr
 ```
 
 ---
-
 # Day 2 - Jan 31
-
 ---
-
 Use of `.constructor`:
 
 ```
@@ -24,19 +18,13 @@ const copy = new testObject.constructor  // uses the constructor to make a copy 
 ```
 
 ---
-
 # Day 3 - Feb 1
-
 ---
-
-- Learned HashTables
 
 - Array.unshift(1, 2, 3) = [1, 2, 3, ...Array] NOT [3, 2, 1, ..Array]
 
 ---
-
 # Day 4 - Feb 2
-
 ---
 
 - `this.head = this.tail = newNode` assigns both `this.head` and `this.tail` to `newNode`
@@ -47,16 +35,14 @@ const copy = new testObject.constructor  // uses the constructor to make a copy 
 hash= {};
 iterate over numArr check what number is needed to match to target
 if number is in hash - return both indices
-otherwise add curr element to hash { element: index}
+otherwise add curr element to hash { element: index }
 ```
 
 ---
-
 # Day 5 - Feb 3
-
 ---
 
-`.repeat()` - string method that constructs and returns a new string which contains the specified numbers of copies of the string on which it was called
+`.repeat(instances)` - string method that constructs and returns a new string which contains the specified numbers of instances of the string on which it was called
 
 approach to binary convertor:
 Given a string that represents a Binary Number, write a function that converts this string into a decimal number. DO NOT use the native parseInt() method.
@@ -80,9 +66,7 @@ function binToDec(binString){
 ```
 
 ---
-
 # Day 6 - Feb 4
-
 ---
 
 `console.time(label)` start timer of name label
@@ -100,9 +84,7 @@ fibonacci bottom up approach:
 **factorial could be the same**
 
 ---
-
 # Day 7 - Feb 6
-
 ---
 
 "Every single dynamic programming video should start out with the explanation of the subproblem.
@@ -112,7 +94,7 @@ This is not about table behind me. It’s about subproblem and how they relate t
   dynamic programming solution to "Total Unique Ways to Make Change or 'Coin Change 2' on Leet Code" - https://www.youtube.com/watch?v=DJ4a7cmjZY0
 
 - `element.onclick = function(e) {}` <------ overwrites any existing functionality for click
-- `element.addEvenetListener(eventType, function(event) {})` <------- preferred since it ADDS functionality vs overwrites
+- `element.addEventListener(eventType, function(event) {})` <------- preferred since it ADDS functionality vs overwrites
 
 DOM Tree - "a huge massive object"
 
@@ -129,20 +111,14 @@ DOM Tree - "a huge massive object"
 - HTML elements represented as objects
 
 ---
-
 # Day 8 - Feb 7
-
 ---
 
-- `setTimeout` returns a `timeoutID` that can be used to end the setTimeout. Same with `setInterval`
-  to end - `clearTimeout(timeoutID)`
-
-- got snake working after struggle bus. Remind
+`setTimeout` returns a `timeoutID` that can be used to end the setTimeout. Same with `setInterval`
+to end - `clearTimeout(timeoutID)`
 
 ---
-
 # Day 9 - Feb 8
-
 ---
 
 helpful eventlistener event types:
@@ -154,42 +130,34 @@ helpful eventlistener event types:
   Used: Vanilla Dom Manipulation, CSS animations/keyframes/transitions, eventListeners (mouseover), manifest.json (for chrome extension)
 
 ---
-
 # Day 10 - Feb 9
-
 ---
 
-- `targetElement.insertAdjacentHTML(position, element)`
-  insets a given element node at given position relative to the element it is invoked upon
-  `targetElement` - the targetElement
-  `element` - the element to be inserted in the tree
-  `position` - a string representing the position relative to the `targetElement`. Must be one of the following:
+`targetElement.insertAdjacentHTML(position, element)` - inserts a given element node at given position relative to the element it is invoked upon
+`targetElement` - the targetElement
+`element` - the element to be inserted in the tree
+`position` - a string representing the position relative to the `targetElement`. Must be one of the following:
 
 1. `beforebegin` - before the targetElement itself
 2. `afterbegin` - just inside the targetElement, before its first child
-3. `beforeend` - just inside the targetElement, after its first child
+3. `beforeend` - just inside the targetElement, after its last child
 4. `afterend` - after the targetElement itself
    **NOTE** all lowercase
 
-- `continue` - terminates execution of the statements in the current iteration of the loop and continues execution of the loop with the next iteration
 
-- Got 3rd place in chrome extension!
+`continue` - terminates execution of the statements in the current iteration of the loop and continues execution of the loop with the next iteration
 
 ---
-
 # Day 11 - Feb 10
-
 ---
 
 element.className = 'class1 class2' vs element.classList.add('class1'):
 
-`className` - overwrites all classes (like `setAttribute('class', classNames`)) - use at element creation for multiple classes
+`className` - overwrites all classes (like `setAttribute('class', classNames)`) - use at element creation for multiple classes
 `classList` use ALL other times
 
 ---
-
 # Day 12 - Feb 11
-
 ---
 
 - ES6 computed property names:
@@ -197,17 +165,11 @@ element.className = 'class1 class2' vs element.classList.add('class1'):
 
 - React fragment: `<>`. Instead of returning JSX in <div> tags
 
--`prop drilling` - when class components "drill" the state down to a lower level for access
-
-- From Nick: check out `useContext` with `useReducer`
+From Nick: check out `useContext` with `useReducer`
 
 ---
-
 # Day 13 - Feb 13
-
 ---
-
-CHECK YOUR LOCAL HOST PORT. 3000 !== 8080
 
 Namespace Import:
 
@@ -220,58 +182,44 @@ Here, myModule represents a namespace object which contains all exports as prope
 `myModule.doAllTheAmazingThings();`
 
 ---
-
 # Day 14 - Feb 14
-
 ---
 
 `isNaN()` - checks if element is not a number
 
 array destructuring while iterating over Map:
-`for (const [key, value] of Map) {}`
+`for (const [key, value] of Map) {...code}`
 
 ---
-
 # Day 15 - Feb 15
-
 ---
 
-- CSS specificity is 4 numbers (!important, id, class, element)
 - Look up critical rendering path (not important for interviews)
 - look up margin collapsing (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)
 
 `killall node`
 
-gridbox auto column resizing: `repeat(auto-fill, minmax(280px, 1fr))`
+<!-- gridbox auto column resizing: `repeat(auto-fill, minmax(280px, 1fr))` -->
 
 ---
-
 # Day 16 - Feb 16
-
 ---
 
-`__dirname`
 `response.on`
-TO DO: LEARN POSTMAN
 
 ---
-
 # Day 17 - Feb 17
-
 ---
 
 javascript `.sort` - implemented with heap sort under the hood?
-express
 
 ---
-
 # Day 18 - Feb 18
-
 ---
 
 CSV - Comma Separated Values
 
-`flat` method:
+<!-- `flat` method:
 `Array.prototype.flat(depth)`
 
 ---
@@ -281,40 +229,30 @@ array structure should be flattened. Defaults to 1
 
 **NOTE:** when you don't know the depth level, you can pass `Infinity` into the `flat()` method to recursively concatenate all elements of the sub-arrays into the new array.
 
-`return value` - a new array
+`return value` - a new array -->
 
 - Binary Tree !== Binary Search Tree
-- get used to answering LL questions with
+- get used to answering LL questions without tail or length
 - LOOK UP - heaps and graphs (adjacency matrix)
 
 - bodyParser.json is depricated - use express.json()
 
 - research copy relative path in VSCode
 
-Express! `next()` and error handling!
-
 ---
-
 # Day 19 - Feb 21
-
 ---
 
 Databases and SQL
 
 ---
-
 # Day 20 - Feb 22
-
 ---
 
 look up urlencoded
 
-Did I learn MongoDB? Confusion...
-
 ---
-
 # Day 21 - Feb 23
-
 ---
 
 COOKIES
@@ -327,50 +265,20 @@ maxAge: number of ms before expiration
 }
 
 ---
-
 # Day 22 - Feb 24
-
 ---
 
 Object.entries - returns an array of a given object's own enumerable string-keyed property key-value pairs.
 
-res.redirect('/path') - equal to GET request to '/path'
-res.sendFile('/path.html') - serves path.html page
-
 `/**
 */` - auto starred JS commenting - courtesy of Christopher Long
 
-`Array.prototype.some()` - The some() method tests whether at least one element in the array passes the test implemented by the provided function. It returns true if, in the array, it finds an element for which the provided function returns true; otherwise it returns false. It doesn't modify the array.
+<!-- `Array.prototype.some()` - The some() method tests whether at least one element in the array passes the test implemented by the provided function. It returns true if, in the array, it finds an element for which the provided function returns true; otherwise it returns false. It doesn't modify the array. -->
 
 `TypeError`
 
-export const addMarket = event => (dispatch, getState) => {
-event.preventDefault();
-const location = getState().markets.newLocation;
-if (location) {
-dispatch({
-type: types.ADD_MARKET,
-payload: location,
-});
-}
-};
-
-export const addMarket = (event) => {
-return (dispatch, getState) => {
-event.preventDefault();
-const location = getState().markets.newLocation;
-if (location) {
-dispatch({
-type: types.ADD_MARKET,
-payload: location,
-});
-}
-});
-
 ---
-
 # Day 24 - Feb 27
-
 ---
 
 LOOK UP:
@@ -382,47 +290,7 @@ PATH LOOKUPS:
 './path' vs 'path'
 
 ---
-
-# Day 25 - Feb 28
-
----
-
----
-
-# Day 26 - Mar 1
-
----
-
----
-
-# Day 27 - Mar 2
-
----
-
----
-
-# Day 28 - Mar 3
-
----
-
----
-
-# Day 29 - Mar 4
-
----
-
----
-
-# Day 30 - Mar 6
-
----
-
-understand `useEffect` better. `useState` inside of `useEffect` doesn't work how intended
-
----
-
 # Day 31 - Mar 7
-
 ---
 
 OAuth 2.0 Workflow:
@@ -457,9 +325,7 @@ Client Secret
 **GITHUB - Never Merge Someone Elses Pull Request**
 
 ---
-
 # Day 32 - Mar 8
-
 ---
 
 express.session
@@ -505,24 +371,20 @@ express.session
     })
 
 ---
-
 # Day 33 - Mar 9
-
 ---
 
-loading animation:
+<!-- loading animation:
 
 1. create a pure css animation in CSS. give it class name: loading
-2. create hidden class to set display: hidden.
+2. create hidden class to set display: hidden
 3. create loading useState(true)
 4. in useEffect, after fetching and getting data, setLoading(false)
 5. conditionally render a `<span className={`loader ${!loading && 'hidden'}`}></span>`
-6. we can now also conditionally render components based on loading
+6. we can now also conditionally render components based on loading -->
 
 ---
-
 # Day ? - Ideation Week
-
 ---
 
 Researched:
@@ -541,21 +403,16 @@ react-testing-library
 tRPC
 
 ---
-
 # Senior Day 1
-
 ---
 
 checkout: webpack bundle analyzer
-snowpack - no longer maintained
 rollup?
 
 lookup: react snippets?
 
 ---
-
 # Senior Day 2
-
 ---
 
 introspection
@@ -564,17 +421,13 @@ buildClientSchema()
 printSchema()
 
 ---
-
 # Senior Day 4
-
 ---
 
 useCallback
 
 ---
-
 # Senior Day 5
-
 ---
 
 GREAT CHECK FOR SERVER SIDE:
@@ -619,7 +472,3 @@ Hiresmith:
 
 - 1st job, go for base salary
 - 2nd job, start reaching out to the vc associates that invest in an area you're interested in.  reach out to the individual who's invested in the startups.
-
---------------
-# Senior Day ?
----------------
