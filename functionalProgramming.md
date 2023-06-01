@@ -51,6 +51,8 @@ const curriedMultiplyBy5 = curriedMultiply(5);
 curriedMultiplyBy5(3);  //15
 ```
 
+**I expect one argument at a time**
+
 -----------------------------
 ## partial application
 -----------------------------
@@ -66,6 +68,8 @@ curried:
 partial application:
 `const partialMultiplyBy5 = multiply.bind(null, 5)`
 `partialMultiplyBy5(4, 10); //200`
+
+**I expect all the remaining arguments in the second call**
 
 -----------------------------
 ## caching & memoization
