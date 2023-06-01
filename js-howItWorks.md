@@ -282,6 +282,7 @@ the difference between `call()` and `apply()` is how arguments are provided.
 
 `bind()` method creates and returns a new function that, when called, has its `this` keyword set to the provided value.
 Arguments may also be provided as a comma-separated list.
+**NOTE: the bind() method makes a copy of the function being called upon** 
 
 Bind is useful for us to call functions later on with a certain context (or certain `this` keyword)
 
