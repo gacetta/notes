@@ -151,12 +151,12 @@ RESULT: A compositional approach adds more flexibility for future changes
 --------------------------------
 FUNCTIONAL
 - many operations on fixed data
-- stateless
+- stateless - state is immutable
 - pure functions
 - declarative
 
 OOP
 - few operations on common data
-- stateful
+- stateful - we're modifying state
 - side effects
 - imperitive
