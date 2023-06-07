@@ -93,6 +93,18 @@ _Destructuring assignment_ is a special syntax introduced in ES6 for neatly assi
 
     You may read it as "get the value of `user.name` and assign it to a new variable named `userName`" and so on. The value of `userName` would be the string `John Doe`, and the value of `userAge` would be the number `34`.
 
+    We can also set up default values in case a property doesn't exist:
+
+        const { name = 'jane doe' } = user
+
+    if the property user.name doesn't exist on the user object, our variable `name` will default to a value of `jane doe`
+
+    FINALLY, we can combine default values and custom variable names:
+
+        const { name: userName = 'jane doe' } = user
+
+    The above code will grab the `name` property from the `user` object, and assign its value to the variable `userName`.  If there is no `user` property, the value will default to `jane doe`
+
 * **TO ASSIGN VARIABLES FROM NESTED OBJECTS**
 
     Given the nested object:
