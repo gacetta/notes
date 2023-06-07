@@ -410,6 +410,3 @@ use rest operator to make shallow clone of an obj: `const {...clone} = object`
     };
 
     heroClone; // { name: 'Batman', realName: 'Bruce Wayne' }
-
-
-
