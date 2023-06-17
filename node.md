@@ -148,3 +148,32 @@ We can inspect it using the chrome browser (since Node uses V8 and so does chrom
 
 If we step through our program and still want to continue debugging, just type `restart` in the terminal.   CLI: `debug> restart`
 
+-----------------------
+## Node Version Manager
+-----------------------
+Node Version Manager (nvm) is a tool for managing Node versions on a device.
+
+### install Node versions
+`nvm install latest` - install the latest version of Node
+`nvm install vX.Y.Z` - install Node version `X.Y.Z`
+`nvm install carbon` - installs v8.16.2, the latest release of the Carbon LTS line
+
+### list available versions
+`nvm ls-remote` - *NOTE:* long list
+
+### list installed versions
+`nvm ls`
+
+### set default version
+`nvm alias default vX.Y.Z` - set a version to default
+
+### switch to another version
+`nvm use vA.B.C`
+`nvm use node` - switch to the latest installed version
+`nvm use --lts` - use the latest LTS verion
+
+*NOTE:* `LTS` means "long-term support" 
+
+
+
+
