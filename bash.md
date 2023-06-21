@@ -153,4 +153,6 @@ we could even add standard input arguments to an alias:
 
 In your own environment, you could add this alias to your `~/.bashrc` to make the alias active every time the terminal is started.
 
-## arrays
+## adding flags
+`yarn jest --watch` - in this case, the watch flag is associated with yarn
+`yarn jest -- --watch` - in this case, "everything before the hyphens is associated with yarn, everything after is associated with jest"
