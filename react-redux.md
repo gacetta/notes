@@ -534,3 +534,4 @@ export default countReducer;
 3. Check the action.  is that good?
 4. Check the reducer.  If you haven't found it yet, the problem is in here.
 5. Write a test.  Since the reducers are pure functions, testing simply requires calling the function with the requisite params.
+
