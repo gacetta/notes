@@ -331,3 +331,35 @@ CONTEXT: object based
 - "what's the value of the `this` keyword which is a reference to the object that owns that current executing code"
 
 most often determined by HOW a function is invoked with the value of `this` keyword
+
+----------------
+## ES7 - 2016
+----------------
+- `Array.prototype.includes()` - checks if an array includes a certain value.  Improvement over `Array.prototype.indexOf()`
+- `Exponentiation Operator - (base ** exponent)` - clearer, more concise method to raise a number to the power of another
+
+----------------
+## ES8 - 2017
+----------------
+- `async` functions - cleaner, more intuitive syntax for asynchronous JS code.
+- `Object.values()` - method returns an array of given object's own enumerable property values
+- `Object.entries()` - method returns an array of given object's own enumerable string-keyed property `[key, value]` pairs
+- String Padding - `padStart()` and `padEnd()` methods pad a string with another string until it reaches the given length
+- trailing commas accepted in function parameter lists - help format code to make version control diffs cleaner
+
+----------------
+## ES9 - 2018
+----------------
+- `Rest`/`Spread` - expanded to object literals, easier to extract properties from objects and create shallow copies
+- Async iteration - new way to iterate over data that comes asynchronously, useful with Promises or async/await
+- `Promise.prototype.finally()` - method gets called when a Promise is settled, regardless of whether it was fulfilled or rejected, making promise handling more comfortable
+- Regex Improvements - improvements such as lookbehind assertions and named capture groups
+
+----------------
+## ES10 - 2019
+----------------
+- `Array.prototype.flat()` - flatten nested array.  concatenate all sub-array elements recursively up to specified depth
+- `Array.prototype.flatMap()` - first applies a function, then flattens result
+- `Object.fromEntries()` - method transforms a list of key-value pairs into an object, essentially reversing the operation of `Object.entries()`
+- `String.prototype.trimStart()` & `String.prototype.trimEnd()`- method removes whitespace from beginning and end of a string
+- `Symbol.prototype.description()` - allows a read-only access to the description of a Symbol object

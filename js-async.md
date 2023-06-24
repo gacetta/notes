@@ -130,6 +130,8 @@ Complete code for XML request:
 ---
 Introduced in ES6 
 
+A promise is an object that may produce a single value some time in the future: either a resolved value or a reason that it's not resolved (rejected).
+
 The `Promise` object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
 
 a two-pronged 'facade' function that both:
@@ -145,7 +147,11 @@ a two-pronged 'facade' function that both:
 `promise` is a constructor function, needs `new` keyword to create.  It takes a callback function as its argument, with two parameters - `resolve` and `reject`.  These are methods used to determine the outcome of the promise:
 
     const myPromise = new Promise((resolve, reject) => {
-
+        if (true) {
+            resolve('Stuff worked');
+        } else {
+            reject("Error, it broke")
+        }
     });
 
 A promise object has three keys:
@@ -205,6 +211,8 @@ When you make a server request it takes some amount of time, and after it comple
     });
 
 `error` is the argument passed into the `reject` method
+
+*Note:* `catch()` will only catch errors thrown BEFORE its implementation, which is why it's best practice to call `catch()` at the end of a promise chain.
 
 ---
 ### Nested Callback Hell
@@ -315,7 +323,7 @@ so for our code:
 ---
 ### Promise.all
 ---
-`Promise.all()` - static method that takes an iterable of promises as input and returns a single Promise. This returned promise fulfills when all of the input's promises fulfill (including when an empty iterable is passed), with an array of the fulfillment values. It rejects when any of the input's promises rejects, with this first rejection reason.
+`Promise.all()` - static method that takes an iterable (e.g. array) of promises as input and returns a single Promise. This returned promise fulfills when all of the input's promises fulfill (including when an empty iterable is passed), with an array of the fulfillment values. It rejects when any of the input's promises rejects, with this first rejection reason.
 
 *syntax*
 `Promise.all(iterable)`
@@ -325,6 +333,8 @@ so for our code:
 - _already fulfilled_ if the iterable passed is empty
 - _asynchronously fulfilled_ when all promises in the `iterable` fulfill
 - _asynchronously rejected_ when any of the promises in the `iterable` rejects.
+
+`Promise.all` will return an array of all the resolved Promise values in the order Promises were provided.
 
 ---
 ## Fetch API
@@ -417,6 +427,8 @@ The event loop will ALWAYS check the microtask queue before the callback queue
 ---
 ## Async / Await
 ---
+Introduced in ES8, `async / await` is syntactic sugar for `promises`
+
 when creating a function we can choose to create a function as an `async` function.
 
 we do so by adding `async` before the function:
@@ -461,3 +473,104 @@ XML needs to know:
 Concurrency is the task of running and managing multiple computations at the same time.  
 
 Parallelism is a specific kind of concurrency where tasks are really executed simultaneously.
+
+---------------
+## Try / Catch
+---------------
+In async / await, rather than `.then` and `.catch`, we have `try` and `catch`.  
+
+const asyncFunc = async function () {
+    try {
+        async code in here...
+    } catch (err) {
+        code to run with error...
+    }
+}
+
+
+---------------
+## Finally
+---------------
+`.finally()` is called after a promise `settles`, meaning after it `resolves` or `rejects`.
+
+```
+Promise.all((urls) => {
+    return fetch(url).then(response => response.json())
+})
+    .then(array => {
+        throw Error;
+        console.log('1', array[0])
+    })
+    .catch(error => console.log('error:', error))
+    .finally(() => console.log('this runs on both resolve and reject))
+```
+
+---------------
+## for await of
+---------------
+ES9 introduced a way to iterate over asynchronous data with `for await...of` loop.
+
+`for of`:
+```
+const urls = [url1, url2, url3]
+for (const url of urls) {codeGoesHere...}
+```
+
+`for await of`:
+```
+const asyncLoop = async function() {
+    const arrayOfPromises = urls.map((url) => fetch(url));
+    for await (let request of arrayOfPromises) {
+        const data = await request.json();
+        console.log(data);
+    }
+}
+```
+----------------------------------
+## Parallel, Sequence, & Race
+----------------------------------
+If we have multiple Promises we need to handle, there are several ways to manage them:
+1. `parallel` - I want to run these in parallel, all at the same time
+2. `sequential` - run the first one, if that succeeds, run the next, etc.
+3. `race` - call all of them, whichever comes back first, use that and ignore the rest
+```
+const promisify = (item, delay) => 
+    new Promise((resolve) => 
+        setTimeout(() =>
+            resolve(item), delay));
+
+const a = () => promisify('a', 100);
+const b = () => promisify('b', 5000);
+const c = () => promisify('c', 3000);
+
+```
+
+### Parallel
+AKA - `Promise.all()`
+```
+async function parallel() {
+    const promises = [a(), b(), c()];
+    const [output1, output2, output3] = await Promise.all(promises);
+    return `parallel is done: ${output1} ${output2} ${output3}`
+}
+```
+
+### race
+AKA - `Promise.race()`
+```
+async function race() {
+    const promises = [a(), b(), c()];
+    const output1 = await Promise.race(promises);
+    return `race is done: ${output1}`;
+}
+```
+
+### sequential
+```
+async function sequence() {
+    const output1 = await a();
+    const output2 = await b();
+    const output3 = await c();
+    return `sequence is done ${output1} ${output2} ${output3}`;
+}
+```

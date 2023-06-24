@@ -20,3 +20,14 @@ const port = process.env.PORT || 3000;       // use port 3000 unless there
                                              // exists a preconfigured port
 app.listen(port, () => { ...server code })   // tells express app where to listen
 ```
+
+## Regular vs Dev Dependencies
+reduce app size by reducing dependencies 
+
+dev dependencies using:
+`npm i <library> -D ` or `npm i <library> --save-dev`
+`yarn add <library> -dev`
+
+install only regular dependencies:
+`yarn install --production`
+`npm install --production`

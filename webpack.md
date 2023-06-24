@@ -232,3 +232,4 @@ Webpack-dev-server handling (devServer:)
   - `devServer.compress` - compresses file?  Not 100% sure but some help I found included it so why not.  It works….
   - `devServer.port` - I’m setting a port for devServer to serve the site to.  That way I can access it in my browser
   - `devServer.devMiddleware.publicPath` - THIS WAS KEY.  Since webpack-dev-server stores the updated compiled file in memory (rather than writing it to disk where we specified in ouput), this tells webpack-dev-server where to look for the updated compiled file.  So rather than access the bundle.js file in the local directory on the computer, it accesses it via the file that is served from memory via express.
+

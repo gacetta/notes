@@ -80,10 +80,5 @@ Essentially we will undo the commit by creating a new commit that reverses the u
 
 `git revert HEAD` will generate a new commit that removes the changes introduced by our unwanted commit
 
----
-## Questions
----
-- I now understand that GitHub is not dropbox.  It's not about files / folders AKA organization.  It's about project storage and accessibility.
-- With that understanding, I now realize that you may have 100s or 1000s of repos in your account.  Since there's no real organization, and since it's dangerous to rename repos, does that mean you have a base folder on your local machine, say CODING, that corresponds to your github account?  And as a result contains 100-1000 folders that are linked to your repo.  Hopefully the naming is good so you can find it when you need.
-- Follow up, dropbox has a selective sync feature if you don't want to store files locally.  Can you do that with github?  If you're not using a repo any more, can you just delete it locally and then clone it if you need it?
-- If I chose Dropbox/Coding as my location for all my repos, is that a good idea or bad idea?
+## Git Add and Commit
+if `git status` lists only modified files (no new, no deleted), you can add and commit them all in one step with `git commit -a -m "message..."` or `git commit -am "message..."`
