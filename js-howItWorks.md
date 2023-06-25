@@ -363,3 +363,7 @@ most often determined by HOW a function is invoked with the value of `this` keyw
 - `Object.fromEntries()` - method transforms a list of key-value pairs into an object, essentially reversing the operation of `Object.entries()`
 - `String.prototype.trimStart()` & `String.prototype.trimEnd()`- method removes whitespace from beginning and end of a string
 - `Symbol.prototype.description()` - allows a read-only access to the description of a Symbol object
+
+----------------
+## ES11 - 2020
+----------------

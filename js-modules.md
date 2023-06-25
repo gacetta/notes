@@ -57,3 +57,123 @@ to use an npm library, reference the documentation to understand installation, i
 After installing library, `import` the module providing name rather than a directory.  `webpack` will search for a module with the same name in the `node_modules/` folder
 
 Example: `import validator from 'validator'`
+
+-------------------
+## Module Pattern
+-------------------
+Before there were modules, there was the `module pattern`
+
+### Scope
+// Global Scope
+  // Module Scope
+    // Function Scope
+      // Block Scope - let and const
+
+Important not to pollute global scope, so module scope can be used to share variables between functions.  
+
+Module scope allows us to be explicit: In Module 1, I want to export these functions / variables.  In Module 2, I want to import this function from this other module.
+
+### Module Scope
+IIFE - immediately invoked function expression
+essentially a function as a module
+
+```
+var fightModule = (function() {
+  let harry = 'potter'
+  let voldemort = 'he who must not be named'
+
+  function fight(char1, char2) {
+    var attack1 = Math.floor(Math.random() * char1.length);
+    var attack2 = Math.floor(Math.random() * char2.length);
+    return attack1 > attack2 ? `${char1} wins` : `${char2} wins`
+  }
+  return {
+    fight: fight
+  }
+})()
+```
+
+now we have access to fight via the fightModule.  Trying to run fight() will result in an error whereas fightModule.fight() will run properly;
+
+### pros and cons of module pattern
+PROS:
+- only revealing what we want to reveal
+- lower dependencies: rather than look up the scope for information, we import what we need and don't modify outside of our scope
+
+CONS:
+- technically still polluting global namespace: fightModule is a global variable.  While we've minimized number of global variables, we can still have name clashes.
+- we don't know all the dependencies, AKA the order of the script tags matters.
+
+-------------------
+## CommonJS and AMD
+-------------------
+`CommonJS` and `AMD` or `Asynchronous Module Definition` were the next step after the `Module Pattern`.  They help solve the problem of interfering with the global scope.
+
+### CommonJS
+This pattern is still utilized by NodeJS and is one reason Node became so popular.  It made code very easy to share in Node.  `NPM` is a result of the simplicity of sharing code and has grown in popularity.
+
+```
+const module1 = require('module1');
+const module2 = require('module2);
+
+function fight() {
+
+}
+
+module.exports = {
+  fight: fight
+}
+```
+
+### Browserify
+CommonJS Modules are meant to be loaded synchronously, which can result is slow load times.
+
+Browserify is a module bundler.  It will read all the scripts in the project, resolve dependencies and bundle them in one place, `bundle.js`.
+
+`Webpack` also handles module bundling.
+
+### AMD
+Designed specifically for broswers.  It loads scripts/modules asynchronously .
+While it may not seem familiar, a library that helped used AMD may be: `Require.js`.  
+```
+define(['module1', 'module2'],
+  function (module1Import, module2Import) {
+    const module1 = module1Import;
+    const module2 = module2Import;
+
+    funtion dance() {
+
+    }
+
+    return {
+      dance: dance
+    }
+  }
+);
+```
+
+### UMD
+Due to a lack of standardization, CommonJS and AMD were both methodologies of accomplishing the same task.  So to share code on NPM, now it was necessary to have two versions of the code for best compatibility.
+
+`UMD` - `universal module definition` tried to solve this problem.  It was essentially an if/then statement to determine if CommonJS or AMD was needed, and then it would just load the correct version of the code.  It didn't solve the core problem.
+
+--------------
+## ES6 Modules
+--------------
+JavaScript has grown into a much more powerful language than it was initially designed for, and thus, the need for a standardized way to import and export became necessary.
+
+
+
+```
+import module1 from 'module1'
+import module2 from 'module2'
+
+export function jump() {
+
+}
+```
+
+and in `html` file, scripts must be defined as:
+`<script type='module' src='./script.js></script>`
+
+Additionally, these modules must be served from a server (not running in Node)
