@@ -103,3 +103,6 @@ https://mystery.knightlab.com/
 <!-- BASH / SHELL -->
 
 https://www.grymoire.com/Unix/Sed.html#uh-62h - all about `sed` command
+
+<!-- DATA STRUCTURES -->
+https://www.cs.usfca.edu/~galles/visualization/OpenHash.html - Hash Table Animation
