@@ -30,4 +30,9 @@ insertMany
 #### GUIDs in MongoDB
 GUID or `globalally unique identifier` is a 128-bit text string that represents an ID.  Designed to be unique using an algorithm rather than rely on a server to tell what the next unique value is.  This allows mongoDB to scale well in a distributed system.
 
+---------------
+## Mongoose
+---------------
+Library to simplify and streamline interaction with MongoDB
 
+**Note:** mongoose takes the model name, changes it to lower case and pluralizes it and uses that as the collection name.
