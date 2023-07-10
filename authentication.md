@@ -4,7 +4,7 @@
 2. Managing a session - ensure a user remains authenticated.  Usually done using cookies
 
 ## Authorization vs Authentication
-`authorization` is different than `authentication`.  It is the process by which we control which resources an authenticated user is allowed to access.
+`authorization` (different than `authentication`) - the process by which we control which resources an authenticated user is allowed to access.
 
 ## HTTP vs HTTPS
 `HTTPS` - Hypertext Transfer Protocol Secure.
@@ -23,9 +23,9 @@ goal of authentication - protect users.  assume users choose terrible passwords
 _BEST PRACTICE_ - alter passwords through a "hashing" process to protect users
 AKA **NEVER STORE PASSWORDS AS CLEARTEXT**
 
-`cleartext` or `plaintext` ishumanly readable.  `ciphertext` is obscured by hashing, encoding or encryption
+`cleartext` or `plaintext` is humanly readable.  `ciphertext` is obscured by hashing, encoding or encryption
 
-`encoding` - process of transofrming data into another format
+`encoding` - process of transforming data into another format
 ex: URL Encoding: `'that's cool' -> 'text=that%27s+cool'`
 *PREVENTS* - HTML injection attack
 
@@ -36,7 +36,7 @@ ex: HTTPS (server holds secret key), E2E encryption (client holds secret key)
 
 ## Hash functions
 - pure functions.  will always produce same output for a given input
-- one-way.  There is no inverse function to go from the has back to the plain cleartext password.
+- one-way.  There is no inverse function to go from the hash back to the plain cleartext password.
 - they are slow.  This is an advantage for security.
 
 The only way to determine the stored hashed password is to hash a candidate password and see if it matches.  This is how you would verify login.
@@ -235,44 +235,56 @@ LocalStorage
 
 `tokens` are generated for users after they present verifiab;e credentials.  They store user's identifying info on the *client side* rather than the serve side.
 
+-----------------------
 ## JSON Web Token (JWT)
+-----------------------
 JWTs allow us to avoid continually querying a DB to authorize users.
 `JWT` - open standard (RFC 7519) that defines a compact and self-contained way for transmitting info between parties as a JSON object that are integrity protected through a signature.
 
-Contain two parts:
-- payload
-- signature
+### JWT payload
+payload contains user info stored as JSON object.  Sent between the client and the server
 
-## JWT payload
-payload contains user info stored as JSON object.  Sent between the lclient and the server
-
-Server checks 
-
-## JWT signature
+### JWT signature
 `signature` is used to confirm the validity of the payload.  Signature is essentially a one-way hash of the payload, plus a `secret` stored on the server.  `secret` is a string
-- veritifcation requeres us to take the payload plus the secret, hash it, and compare to the signature.
-- clinets don't know the sectet, they can't make a valid signature
+- veritifcation requires us to take the payload plus the secret, hash it, and compare to the signature.
+- clients don't know the secret, they can't make a valid signature
 
-## Why JWT
+### Why JWT
 payload contains all required info about the user, avoiding the need to continually query the database.
 
 Once user is logged in, each subseuent request will inclue the JWT, allowing the user to access routes, services, and resources that are permitted with that token.
 
-## JWT is compact
+### JWT is compact
 JWTs are base64 encoded strings.  Because of small size, they can be sent through:
 - URL parameters
 - POST request body
 - HTTP header
 
-## JWT structure
-three parts sepaarated by dots:
-- `header` indicates the hashing algo name (in base64)
-- `payload` is our data (base64)
-- `signature` is hashed version of the header+payload+secret.  
+### JWT structure
+three parts sepaarated by periods:
+- `header` - includes metadata: kind of token, hashing algo name (base64 encoded json string)
+- `payload` or `body` - includes provided data (base64 encoded json string)
+- `signature` - includes hashed version of the header+payload+secret and is used to verify token
 
 *Syntax:*
 `hhhhh.ppppp.sssss`
 
-## JWT Storage
-use cookies for safer storage of JWTYS
-adding the HttpOnly and Secure options to your cookie, you can block it from access by JS.  This is limited to one domain but can help avoid XSS attacks
+### JWT Storage
+- use cookies for safer storage of JWTs
+- adding the HttpOnly and Secure options to your cookie, you can block it from access by JS.  This is limited to one domain but can help avoid XSS attacks
+
+### jwt.sign
+Used to create a JWT.
+`jwt.sign(<payload>, <secretOrPrivateKey>, <[{options}, callback]>)`
+
+`payload` - information to send in JWT
+`secretOrPrivateKey` - to be used for hashing
+`callback` - if supplied, callback is called with the `err` or the `JWT` making `.sign` async
+`{options}` - set options such as:
+  - `algorithm` - (default `HS256`)
+  - `expiresIn` - expressed in seconds or a string describing time span, e.g. '2 days' or '10h'
+  - `notBefore` - expressed in seconds or a string describing time span
+
+### jwt.verify
+Used to verify a JWT.
+`jwt.verify(<token>, <secretOrPrivateKey>, <[{options}, callback]>)`

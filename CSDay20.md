@@ -56,6 +56,24 @@ The above example: the model `Person` is for the `people` collection in the DB
 ### query on model
 - after creating the model, perform queries on it for CRUD in a DB
 
+### Instance Methods
+methods can be created on a schema instance using `.methods`:
+
+```
+userSchema.methods.customMethod = () => {
+  code here...
+}
+```
+
+### Model Methods
+methods can be created on the schema Model using `.statics`:
+
+```
+userSchema.statics.customModelMethod = () => {
+  ...code here...
+}
+```
+
 ------------------
 ## CRUD in MongoDB
 ------------------
