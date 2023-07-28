@@ -288,3 +288,10 @@ Used to create a JWT.
 ### jwt.verify
 Used to verify a JWT.
 `jwt.verify(<token>, <secretOrPrivateKey>, <[{options}, callback]>)`
+
+## Request Headers
+Bearer Token
+The client provides the token to authenticate via the header
+Key: Authorization
+Value: Bearer <token>
+**NOTE:** "Bearer" is followed by a single space
