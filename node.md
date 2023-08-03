@@ -174,6 +174,22 @@ Node Version Manager (nvm) is a tool for managing Node versions on a device.
 
 *NOTE:* `LTS` means "long-term support" 
 
+## File Uploads
+Node does not (?) handle file uploading on its own.  
 
+### Multer
+Use npm package `multer` to handle file uploads.
 
+various settings to consider:
+`dest` - file destination
+`limits.filesize` - limit the file size in bytes, 1000000 = 1MB
+`fileFilter(req, file, callback)` - to filter allowable file types
 
+## Images
+
+### Sharp
+Use npm package `sharp` to handle image cropping and resizing in node
+
+## Emails
+
+### Sendgrid

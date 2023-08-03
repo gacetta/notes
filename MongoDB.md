@@ -1,6 +1,7 @@
 1. setup mongoDB, get URI and password
 
 IN MODEL FILE:
+
 2. in modelFile, setup mongoose
   - import `const mongoose = require('mongoose');`
   - set mongo URI: `const MONGO_URI = 'yourURIHere-mongodb+srv://michaelgacetta:J......';`
@@ -42,3 +43,56 @@ IN MODEL FILE:
   const Species = mongoose.model('species', speciesSchema);
   ```
 5. export models: `module.exports = { Species, Model2,... }`
+
+## Query Parameters
+
+### Filtering
+Include the filter in the URL:
+
+// GET / tasks?completed=true
+// returns only completed tasks
+
+uses `match` property:
+```
+match: {
+  completed: true
+}
+```
+
+### Pagination
+The idea of creating pages of data as requested so you're not fetching everything all at once.
+
+URL may contain `limit` and/or `skip`:
+
+// GET / tasks?limit=10&skip=20
+
+`limit` refers to the maximum number of results to display
+`skip` refers to how many results to "skip" and then display the next
+
+uses `options` property:
+```
+options: {
+  limit: parseInt(req.query.limit)
+  skip: parseInt(req.query.skip)
+}
+```
+
+### Sorting
+Include the sorting method in the URL:
+
+// GET / tasks?sortBy=createdAt_asc
+// GET / tasks?sortBy=createdAt:asc
+// GET / tasks?sortBy=createdAt_desc
+// GET / tasks?sortBy=createdAt:desc
+
+_BEST PRACTICE_ - name the sortMethod_UNDERSCORE_asc (for ascending) or desc (for descending). If field names contain _UNDERSCORE, then use colons
+_BEST PRACTICE_ - name the sortMethod_UNDERSCORE_asc (for ascending) or desc (for descending).If field names contain _UNDERSCORE, then use colons
+
+uses `options` property:
+```
+options: {
+  sort: {
+    createdAt: <number value - positive: ascending, negative: descending>
+  }
+}
+```
