@@ -79,7 +79,7 @@ Other assertion libraries: `Chai`, `Should.js`
 
 #### Assertion Operators
 `expect.toBe()` should be the EXACT same object (reference)
-`expect.toEqual()` should be the the shape...
+`expect.toEqual()` should be of the shape...
 
 #### Asymmetric Matchers
 `expect.any(constructor)` - matches anything that was created with the given constructor or if it's a primitive that is of the passed type.  Can be used inside `toEqual()` or `toBeCalledWith` instead of a literal value
@@ -109,6 +109,31 @@ test('should add two numbers', () => {
 
 **NOTE:** `npm start` and `npm test` are special script names that don't need `npm run`
 
+## Asynchronous Testing
+### done
+Jest can run asynchronous tests - to do so, provide a single parameter, `done`.
+Jest won't consider a test to pass or fail until `done()` is called.
+
+```
+test('Async test demo', (done) => {
+  setTimeout(() => {
+    expect(1).toBe(2);
+    done();
+  }, 2000)
+})
+```
+### async/await
+async /await syntax can also be used:
+
+```
+test('Async test demo', async () => {
+  await setTimeout(() => {
+    expect(1).toBe(2);
+  }, 2000)
+})
+```
+
+
 ## Isolating Tests / Mocking
 we often need to test an individual module that relies on other modules
 
@@ -126,7 +151,7 @@ We can mock data (e.g. from a DB or external API) as well as functions that our 
 - `dependency injection` - 
 
 ## Testing Server-Side (Node and Express)
-`Supertest` - used to test routes on server with Node.  Uses http request library called `Superagent`to provide a high-level abstraction for testing routes. 
+`SuperTest` - used to test routes on server with Node.  Uses http request library called `Superagent`to provide a high-level abstraction for testing routes. 
 
 ## End-to-end testing
 end-to-end testing should resemble a real browser as closely as possible.  We can do this using headless browser or browser automater
@@ -213,7 +238,7 @@ much like querySelector, returns
 ### Mocking
 Manual mocks are used to stub out functionality with mock data.  For example, instead of accessing a remote resource like a website or a database, you might want to create a manual mock that allows you to use fake data.  This ensures your tests will be fast and not flaky.
 
-Manual mockes are defined by writing a module in a `__mocks__/` subdirectory immediately adjacent to the module.
+Manual mocks are defined by writing a module in a `__mocks__/` subdirectory immediately adjacent to the module.
 
 ### Testing User Interation
 
