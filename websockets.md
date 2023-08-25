@@ -18,9 +18,26 @@ server-side: `io.on()`
 client-sdet: `const socket = io()`  then `socket.on()`
 
 ### send events
-`socket.emit()` - emits event
+`socket.emit()` - emits event to specific connection
 `socket.broadcast.emit()` - emits event to all connected sockets EXCEPT self
+`io.emit()` - emits even to all connections
 
 ### built in events
 `connection` - fires when a websocket connection is made
 `disconnect` - fires when a websocket connection is ended
+
+### join
+We can create different "rooms" so we can better control where events are emitted to.
+
+`socket.join(<room>)`
+
+### to
+we can further specify where to emit events with `.to()`
+
+### socket properties
+`socket.id` - the unique id for the socket connection
+
+### autoscroll
+
+not a websocket thing, but correlated to chat room
+great autoscroll feature in Andrew Node Udemy course vid 173.
