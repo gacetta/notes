@@ -11,3 +11,16 @@ an npm library for websockets
 **NOTE:** affects the set-up of express server.  see docs
 
 socket.io serves a `js` file from `socket.io/socket.io.js` that gives access to the resources needed to connect and maintain a websocket connection
+
+### create a socket
+
+server-side: `io.on()`
+client-sdet: `const socket = io()`  then `socket.on()`
+
+### send events
+`socket.emit()` - emits event
+`socket.broadcast.emit()` - emits event to all connected sockets EXCEPT self
+
+### built in events
+`connection` - fires when a websocket connection is made
+`disconnect` - fires when a websocket connection is ended
