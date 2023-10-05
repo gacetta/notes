@@ -443,5 +443,54 @@ A third arg is helpful:
 - `onRequestClose` is similar to `onClick`.  It specifies what action to take when trying to close the window by hitting ESC or clicking outside the window. 
 
 --------------------------------
-## styling react
+## hooks
 --------------------------------
+
+### useState
+
+----------------------------------------
+### useEffect
+
+#### CLEAN-UP
+`useEffect()` returns a cleanup function with behavior similar to `componentDidUnmount`
+
+```
+const Component = () => {
+  useEffect(() => {
+    console.log('setting up effect')
+
+    return () => {
+      console.log('cleaning up effect')
+    }
+  }, [])
+
+
+  return (
+    <div>
+      <h1>test</h1>
+    </div>
+  )
+}
+```
+
+----------------------------------------
+### useReducer
+`const [state, dispatch] = useReducer(reducer, initialArg, init?)`
+
+example:
+```
+const notesReducer = (state, action) => {
+  switch (action.type) {
+    case 'POPULATE_NOTES':
+      return action.notes
+    default:
+      return state
+  };
+}
+
+const NoteApp = () => {
+  const [notes, notesDispatch] = useReducer(notesReducer, []);
+}
+```
+
+**NOTE:** `useState` uses `useReducer` behind the scenes
