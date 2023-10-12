@@ -62,6 +62,19 @@ const colors: string[] = ['red', 'blue', 'green'];
 ALTERNATIVE SYNTAX:
 const colors: Array<string> = ['red', 'blue', 'green'];
 
+## Type Annotation
+code we add to tell Typsescript what type of value a variable has
+
+### Type Annotation with functions
+what type of arguments a function will receive and what type of values it will return
+
+`void` is a type that states "this function doesn't return anything" 
+
+`never` is an edge type "this function will never complete"
+
+## Type Inference
+Typescript tries to figure out what type of value a variable refers to
+
 ## Union Types
 
 To provide more flexibility, the `union operator` `|` specifies if a variable may be assigned two or more types:

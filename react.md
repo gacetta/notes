@@ -449,9 +449,10 @@ A third arg is helpful:
 ### useState
 
 ----------------------------------------
-### useEffect
+## useEffect
+----------------------------------------
 
-#### CLEAN-UP
+### CLEAN-UP
 `useEffect()` returns a cleanup function with behavior similar to `componentDidUnmount`
 
 ```
@@ -474,7 +475,8 @@ const Component = () => {
 ```
 
 ----------------------------------------
-### useReducer
+## useReducer
+----------------------------------------
 `const [state, dispatch] = useReducer(reducer, initialArg, init?)`
 
 example:
@@ -494,3 +496,30 @@ const NoteApp = () => {
 ```
 
 **NOTE:** `useState` uses `useReducer` behind the scenes
+
+----------------------------------------
+## useContext
+----------------------------------------
+To provide context:
+```
+const NotesContext = React.createContext()
+
+<NotesContext.Provider value={{ notes, dispatch}}>
+  ...code...
+</ NotesContext.Provider>
+```
+
+To consume context:
+```
+const { notes } = useContext(NotesContext);
+```
+
+----------------------------------------
+## Fragments
+----------------------------------------
+react requires the return of a single root JSX element.  Sometimes we don't need a `<div>`, and instead we can use React fragments.  These fragments aren't shown in the html markup.
+
+----------------------------------------
+## Custom Hooks
+----------------------------------------
+
