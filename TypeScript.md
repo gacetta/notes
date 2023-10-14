@@ -55,12 +55,6 @@ Variables are statically typed, AKA their types must be specified when they are 
 PRIMITIVES
 let num: number = 3;
 
-ARRAYS:
-const nums: number[] = [1, 2, 3, 4];
-const colors: string[] = ['red', 'blue', 'green'];
-
-ALTERNATIVE SYNTAX:
-const colors: Array<string> = ['red', 'blue', 'green'];
 
 ## Type Annotation
 code we add to tell Typsescript what type of value a variable has
@@ -71,6 +65,48 @@ what type of arguments a function will receive and what type of values it will r
 `void` is a type that states "this function doesn't return anything" 
 
 `never` is an edge type "this function will never complete"
+
+### Arrays
+ARRAYS:
+const nums: number[] = [1, 2, 3, 4];
+const colors: string[] = ['red', 'blue', 'green'];
+
+ALTERNATIVE SYNTAX:
+const colors: Array<string> = ['red', 'blue', 'green'];
+
+2D ARRAYS:
+const carsByMake: string[][] = [['F150'], ['mustang']]
+
+
+#### Tuples
+we could store values in an object:
+```
+const Pepsi = {
+  color: 'brown',
+  carbonated: true,
+  sugar: 40
+}
+```
+
+we could also store that same information in an array:
+```
+const Pepsi = ['brown', true, 40]
+```
+
+this is called a tuple, where order matters and the meaning of the value is associated to its position.  We can add typing to a tuple:
+```
+const pepsi: [string, boolean, number] = ['brown', true, 40]
+const coke: [string, boolean, number] = ['brown', true, 39]
+```
+
+instead of including the longform type for each declaration, we can declare a `type alias`:
+
+```
+type Drink = [string, boolean, number];
+const pepsi: Drink = ['brown', true, 40]
+const coke: Drink = ['brown', true, 39]
+```
+
 
 ## Type Inference
 Typescript tries to figure out what type of value a variable refers to
@@ -207,10 +243,11 @@ Objects defined using an interface must contain all fields on that interface as 
 
 When we define classes we can specify the type of each property above the constructor method.
 
-TS incorporates access modifiers, a popular feature of object-oriented languages such as C++ and Java. Acess modifiers let us restrict where properties or methods can be accessed from.
+TS incorporates access modifiers, a popular feature of object-oriented languages such as C++ and Java. Access modifiers let us restrict where properties or methods can be accessed from.
 
 - Public: can be accessed anywhere
 - Private: can only be accessed from within the class itself
+- Protected: can be accessed from within the class itself as well as child classes
 
 ```
 class User {
@@ -254,6 +291,31 @@ if ('x' in q) {
 }
 ```
 
+## Implements
+we can confirm that a class conrofms to a specific interface using `implements`
+
+`implements` keyword tells TypeScript to "make sure that an instance of a class satisfies the requirements of an interface"
+
+```
+interface A {
+  display(): void;
+}
+
+class B implements A {
+  display () {
+    console.log('B');
+  }
+}
+
+class C implements A {
+  print() {
+    console.log('C')
+  }
+}
+```
+
+the above code shows a Typescript error for class C since it doesn't contain a `display()` function.
+
 ## Type Predicates
 
 `type predicates` are a way to narrow down the type of a variable within a conditional statement.
@@ -266,6 +328,53 @@ To define a user-defined type guard, we simply need to define a function whose r
 function isFish(pet: Fish | Bird): pet is Fish {
   return (pet as Fish).swim !== undefined;
 }
+```
+
+## Type Guards
+A type guard is a TypeScript technique used to get information about the type of a variable, usually within a conditional block. Type guards are regular functions that return a boolean, taking a type and telling TypeScript if it can be narrowed down to something more specific. Type guards have the unique property of assuring that the value tested is of a set type depending on the returned boolean.
+
+use them to restore access to a set of properties that may have been restricted due to union operator
+
+### typeof
+`typeof variableName === 'string'`
+
+### instanceof
+`instanceof` is a built-in type guard that can be used to check if a value is an instance of a given constructor function or class. With this type guard, we can test if an object or value is derived from a class, which is useful for determining the type of an instance type.
+
+`objectVariable instanceof ClassName`
+
+```
+interface Accessory {
+    brand: string;
+  }
+  class Necklace implements Accessory{
+    kind: string;
+    brand: string;
+    constructor(brand: string, kind: string) {    
+      this.brand = brand;
+      this.kind = kind;
+    }
+  }
+  class bracelet implements Accessory{
+    brand: string;
+    year: number;
+    constructor(brand: string, year: number) {    
+      this.brand = brand;
+      this.year = year;
+    }
+  }
+  const getRandomAccessory = () =>{
+    return Math.random() < 0.5 ?
+      new bracelet('cartier', 2021) :
+      new Necklace('choker', 'TASAKI');
+  }
+  let Accessory = getRandomAccessory();
+  if (Accessory instanceof bracelet) {
+    console.log(Accessory.year);
+  }
+  if (Accessory instanceof Necklace) {
+    console.log(Accessory.brand);    
+  }
 ```
 
 ## Utility Types
@@ -357,4 +466,8 @@ InstanceType<T> — Obtain the instance type of a constructor function type.
     type T23 = InstanceType<string>; // Error
     type T24 = InstanceType<Function>; // Error
 
-## Function Overloads
+## Design Patterns
+general strategy for reusable code in typescript:
+- create functions that accept arguments that are typed with interfaces
+- objects/classes can decide to 'implement' a given interface to work with a function   
+
