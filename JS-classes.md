@@ -269,3 +269,12 @@ const Mikey = new Character('Mikey')
     Mikey.#age //54
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields
+
+## Abstract Class
+- can't be used to create an object directly
+- only used as a parent class
+- can contain real implementation for some methods
+- the implemented methods can refer to other methods that don't actually exist yet (we still have to provide names and types for the un-implemented methods)
+- can make child classes promise to implement some other method
+
+`abstract class ClassName {}`

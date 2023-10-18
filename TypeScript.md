@@ -269,6 +269,17 @@ class User {
 }
 ```
 
+## Interfaces vs Abstract Classes
+Interfaces:
+- sets up a contract between different classes
+- use when we have very different objects that we want to work together
+- promotes loose coupling
+
+Inheritance / Abstract Classes:
+- sets up a contract between different classes
+- use when we are trying to build up a definition of an object
+- strongly couples classes together
+
 ## in operator narrowing
 
 The `in` operator in JS can determin if an object or its prototyupe chain has a property with a name.
