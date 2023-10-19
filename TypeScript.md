@@ -388,6 +388,68 @@ interface Accessory {
   }
 ```
 
+## enums
+Enums are one of the few features TypeScript has which is not a type-level extension of JavaScript.
+
+Enums allow a developer to define a set of named constants. Using enums can make it easier to document intent, or create a set of distinct cases. TypeScript provides both numeric and string-based enums.
+
+Enums:
+- follow near-identical syntax rules as normal objects
+- create an object with the same keys and values when converted from TS to JS
+- primary goal is to signal to other engineers that these are all closely related values
+- use whenever we have a small fixed set of values that are all closely related and known at compile time
+
+### String enums
+```
+enum Direction {
+  Up = "UP",
+  Down = "DOWN",
+  Left = "LEFT",
+  Right = "RIGHT",
+}
+```
+
+
+### numeric enums
+```
+enum Direction {
+  Up = 1,
+  Down, 
+  Left,
+  Right,
+}
+```
+Above, `Up` is initialized with `1`.  All folowing members are auto-incremented from that point on.
+
+So `Direction.Up` has a value of `1`, `Down` has `2`, `Left` has `3`, `Right` has `4`
+
+We can also leave of initializers entirely:
+```
+enum Direction {
+  Up,
+  Down, 
+  Left,
+  Right,
+}
+```
+Here `Direction.Up` has a value of `0`, `Down` has `1`, etc
+
+We can use enums to access values as well as declare types:
+```
+enum UserResponse {
+  No = 0,
+  Yes = 1,
+}
+ 
+function respond(recipient: string, message: UserResponse): void {
+  // ...
+}
+ 
+respond("Princess Caroline", UserResponse.Yes);
+```
+
+
+
 ## Utility Types
 
 ### Partial<Type>
