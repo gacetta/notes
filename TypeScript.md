@@ -166,19 +166,47 @@ else return data;
 
 ## Generics & Parameterizing Types
 
-What if we want a function to work on any number of types?
-In these cases, we can define `generics` or `type parameters`
+We can define `generics` or `type parameters` when we want a function to work on any number of types
 
-    function map<Input, Output>(array: Input[], callback: (element: Input)) => Output):
-    Ouput[] {
-      const newArray: Outpu[] = [];
-      for (let element of array) {
-        newArray.push(callback(element));
-      }
-      return newArray;
-    }
+- Like function arguments, but for types in class/function definitions
+- Allows us to define the type of a property/argument/return value at a future point
+- Used heavily when writing reusable code
+
+```
+  class HoldAnything<TypeOfData> {
+    data: TypeOfData
+  }
+
+  const holdNumber = new HoldAnything<number>();
+```
 
 Type parameters are assigned to the type of the function's arguments when it's invoked
+
+*Common Practice* to name Generic Type as `T`, e.g. `class HoldAnything<T>`
+
+### Extending Generics
+There are times when declaring a generic type, that we need to add a constraint to the type.
+
+In this case, we can declare an `interface` and `extend` it:
+
+```
+interface Printable {
+  print(): void
+}
+
+function printHousesOrCars<T extends Printable>(arr: T[]): void {
+  for (let i = 0; i < arr.length: i++) {
+    arr[i].print();
+  }
+}
+```
+**Without** `extends`, Typescript throws an error because it is unsure there will be a print method on the Type class
+
+
+## Inheritance vs Composition
+`inheritance` - characterized by an 'is a' relationship between two classes
+
+`composition` - characterized by a 'has a' relationship between two classes
 
 ## Type Aliases
 
@@ -325,7 +353,7 @@ class C implements A {
 }
 ```
 
-the above code shows a Typescript error for class C since it doesn't contain a `display()` function.
+**NOTE:** the above code shows a Typescript error for class C since it doesn't contain a `display()` function.
 
 ## Type Predicates
 
@@ -448,7 +476,21 @@ function respond(recipient: string, message: UserResponse): void {
 respond("Princess Caroline", UserResponse.Yes);
 ```
 
+## Type Assertion
+`type assertion` is where we, the developers, are trying to override typescript's default behavior.  In other words, "Hey typescript, we know what's going on here"
 
+```
+enum MatchResult {
+  H = `home`,
+  A = `away`,
+  D = `draw`
+}
+
+const H = `home`
+H as Matchresult 
+
+// type assertion telling typescript to read H not as a string, but as a MatchResult enum
+```
 
 ## Utility Types
 
