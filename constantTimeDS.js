@@ -3,13 +3,6 @@
  * remove (num:int) -> removes a number from the ds
  * has (num:int) -> returns if the number already exists in ds
  * All in O(1) time
- * 
- * We know that a hashmap / Set() has all these properties
- * 
- * Here's an implementation that assumes:
- *  - no duplicate values 
- *    -> add('test') & add('test') would result in only one 'test' in ds
- *    -> add(42) & add('42') would result in both values stored
  */
 
 class ConstantTimeDS {
