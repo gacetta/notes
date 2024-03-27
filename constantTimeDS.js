@@ -23,21 +23,20 @@ class ConstantTimeDS {
     return `${value.toString()}-${typeof value}`
   }
 
-  // only adds value to ds if it doesn't exist
-  // saves the data type 
-  // allows return of value with proper datatype
+  // saves the data type in the key
+  // allows for storing duplicate entries
   add(value) {
-    if (!this.has(value)) {
-      const key = this.#createKey(value)
-      this.data[key] = typeof value;
-    }
+    const key = this.#createKey(value)
+    if (this.has(value)) this.#data[key] += 1
+    else this.#data[key] = 1
   }
 
   // removes the value from ds if it exists
   remove(value) {
+    const key = this.#createKey(value);
     if (this.has(value)) {
-      const key = this.#createKey(value);
-      delete this.data[key]
+      this.#data[key] -= 1
+      if (this.#data[key] <= 0) delete this.#data[key]
     }
   }
 
@@ -47,3 +46,14 @@ class ConstantTimeDS {
     return this.#data.hasOwnProperty(key);
   }
 }
+
+const test = new ConstantTimeDS();
+console.log(test.has(1))
+test.add(1)
+console.log(test.has(1))
+test.add(1)
+console.log(test.has(1))
+test.remove(1)
+console.log(test.has(1))
+test.remove(1)
+console.log(test.has(1))
