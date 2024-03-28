@@ -10,13 +10,13 @@ var RandomizedSet = function() {
  * @return {boolean}
  */
 RandomizedSet.prototype.insert = function(val) {
-    if (this.indexMap.hasOwnProperty(val.toString())) return false;
+    if (this.indexMap.hasOwnProperty(val)) return false;
     else {
         // deal with array
         this.data.push(val);
 
         // deal with hashMap
-        this.indexMap[val.toString()] = this.length;
+        this.indexMap[val] = this.length;
 
         // deal with length
         this.length++;
@@ -29,11 +29,11 @@ RandomizedSet.prototype.insert = function(val) {
  * @return {boolean}
  */
 RandomizedSet.prototype.remove = function(val) {
-    if (this.indexMap.hasOwnProperty(val.toString())) {
+    if (this.indexMap.hasOwnProperty(val)) {
         // deal with length
         this.length--;
 
-        const valIndex = this.indexMap[val.toString()];
+        const valIndex = this.indexMap[val];
         const lastEl = this.data[this.length];
 
         // deal with array
@@ -41,8 +41,8 @@ RandomizedSet.prototype.remove = function(val) {
         this.data.pop();
 
         // deal with hashMap
-        this.indexMap[lastEl.toString()] = valIndex;
-        delete this.indexMap[val.toString()]
+        this.indexMap[lastEl] = valIndex;
+        delete this.indexMap[val]
 
         return true;
     } else {
