@@ -1,22 +1,22 @@
 class RandomizedSet:
 
     def __init__(self):
-        self.numMap = {}
-        self.numList = []
+        self.numMap = {} # num: indexOfNumList
+        self.numList = [] 
 
     def insert(self, val: int) -> bool:
         valExists = val in self.numMap
 
         if valExists:
             return False
-        else:
-            # deal with map
-            self.numMap[val] = len(self.numList)
 
-            # deal with list
-            self.numList.append(val)
+        # update map
+        self.numMap[val] = len(self.numList)
 
-            return True
+        # update list
+        self.numList.append(val)
+
+        return True
 
     def remove(self, val: int) -> bool:
         valExists = val in self.numMap
@@ -25,16 +25,16 @@ class RandomizedSet:
             valIndex = self.numMap[val]
             lastVal = self.numList[len(self.numList) - 1]
 
-            # deal with list
+            # update list
             self.numList[valIndex] = lastVal
             self.numList.pop()
 
-            # deal with map
+            # update map
             self.numMap[lastVal] = valIndex
             del self.numMap[val]
             return True
-        else:
-            return False
+
+        return False
 
     def getRandom(self) -> int:
         return random.choice(self.numList)

@@ -1,5 +1,6 @@
 
 var RandomizedSet = function() {
+    // num: indexInData
     this.indexMap = {}
     this.data = []
     this.length = 0
@@ -11,17 +12,16 @@ var RandomizedSet = function() {
  */
 RandomizedSet.prototype.insert = function(val) {
     if (this.indexMap.hasOwnProperty(val)) return false;
-    else {
-        // deal with array
-        this.data.push(val);
 
-        // deal with hashMap
-        this.indexMap[val] = this.length;
+    // update array
+    this.data.push(val);
 
-        // deal with length
-        this.length++;
-        return true;
-    }
+    // update hashMap
+    this.indexMap[val] = this.length;
+
+    // update length
+    this.length++;
+    return true;
 };
 
 /** 
@@ -30,24 +30,23 @@ RandomizedSet.prototype.insert = function(val) {
  */
 RandomizedSet.prototype.remove = function(val) {
     if (this.indexMap.hasOwnProperty(val)) {
-        // deal with length
+        // update length
         this.length--;
 
         const valIndex = this.indexMap[val];
         const lastEl = this.data[this.length];
 
-        // deal with array
+        // update array
         this.data[valIndex] = lastEl;
         this.data.pop();
 
-        // deal with hashMap
+        // update hashMap
         this.indexMap[lastEl] = valIndex;
         delete this.indexMap[val]
 
         return true;
-    } else {
-        return false;
-    }
+    } 
+    return false;
 };
 
 /**
