@@ -41,14 +41,37 @@ Explanation:
 The sum of -1 and 0 is -1. Therefore index1 = 1, index2 = 2. We return [1, 2].
 */
 
-function twoSumSorted(arr, target) {
-  // create start and end pointers
+// function twoSumSorted(arr, target) {
+//   // create start and end pointers
+//   let start = 0;
+//   let end = arr.length - 1;
+
+//   while (start < end) {
+//     // for sum = start + end vals
+//     sum = arr[start] + arr[end];
+//     // if sum === target, return indices
+//     if (sum === target) return [start + 1, end + 1];
+//     // if sum < target, start++
+//     else if (sum < target) start++;
+//     // if sum > target, end++
+//     else if (sum > target) end--;
+//   }
+//   return;
+// }
+
+/**
+ * @param {number[]} numbers
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(numbers, target) {
+    // create start and end pointers
   let start = 0;
-  let end = arr.length - 1;
+  let end = numbers.length - 1;
 
   while (start < end) {
     // for sum = start + end vals
-    sum = arr[start] + arr[end];
+    sum = numbers[start] + numbers[end];
     // if sum === target, return indices
     if (sum === target) return [start + 1, end + 1];
     // if sum < target, start++
@@ -57,4 +80,4 @@ function twoSumSorted(arr, target) {
     else if (sum > target) end--;
   }
   return;
-}
+};
